@@ -36,4 +36,6 @@ size_t my_strlen(char *str);
 
 char **my_stwa(char *str, char *delim);
 
+char *concat_strings(size_t num_args, ...);
+
 #endif /* !MY_LIB_H_ */
