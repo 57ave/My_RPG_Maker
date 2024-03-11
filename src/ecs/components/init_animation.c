@@ -9,41 +9,52 @@
 #include "macro.h"
 #include "components.h"
 #include "my_toml.h"
+#include "my_lib.h"
 
-static int init_rect(c_animation_t *animation_component, obj_t *obj)
+static const char *DIRECTION_WORDS[] = {
+    "LEFT",
+    "UP",
+    "RIGHT",
+    "DOWN"
+};
+
+static int init_rect(sfIntRect *rect, obj_t *obj, char *name)
 {
-    int **rect = (int **) pull_data(obj, "ANIMATION-RECT");
+    char *data_name = concat_strings(3, "ANIMATION-", name, "-RECT");
+    int **tmp_rect = (int **) pull_data(obj, data_name);
     int i = 0;
 
-    if (!rect) {
+    if (!tmp_rect) {
         return EXIT_ERROR;
     }
-    for (i = 0; rect[i] != NULL; i++);
+    for (i = 0; tmp_rect[i] != NULL; i++);
     if (i != 4) {
         return EXIT_ERROR;
     }
-    animation_component->initial_rect = (sfIntRect){
-        *(rect[0]), *(rect[1]), *(rect[2]), *(rect[3])};
+    *rect = (sfIntRect){
+        *(tmp_rect[0]), *(tmp_rect[1]), *(tmp_rect[2]), *(tmp_rect[3])};
+    free(data_name);
     return EXIT_SUCCESS;
 }
 
-static int init_animation_data(c_animation_t *animation_component, obj_t *obj)
+static int init_animation_data(struct anim_data *data, obj_t *obj, char *name)
 {
-    int *x_add = NULL;
-    int *y_add = NULL;
-    int *nb_frame = NULL;
-    int *next_line_frame = NULL;
+    int *x_add = (int *) pull_data(obj,
+    concat_strings(3, "ANIMATION-", name, "-X_ADD"));
+    int *y_add = (int *) pull_data(obj,
+    concat_strings(3, "ANIMATION-", name, "-Y_ADD"));
+    int *nb_frame = (int *) pull_data(obj,
+    concat_strings(3, "ANIMATION-", name, "-NB_FRAME"));
+    int *next_line_frame = (int *) pull_data(obj,
+    concat_strings(3, "ANIMATION-", name, "-NEXT_LINE_FRAME"));
 
-    x_add = (int *) pull_data(obj, "ANIMATION-X_ADD");
-    y_add = (int *) pull_data(obj, "ANIMATION-Y_ADD");
-    nb_frame = (int *) pull_data(obj, "ANIMATION-NB_FRAME");
-    next_line_frame = (int *) pull_data(obj, "ANIMATION-NEXT_LINE_FRAME");
-    if (!x_add || !y_add || !nb_frame || !next_line_frame)
+    data->x_add = (!x_add) ? *x_add : 0;
+    data->y_add = (!y_add) ? *y_add : 0;
+    data->nb_frame = (!nb_frame) ? *nb_frame : 1;
+    data->next_line_frame = (!next_line_frame) ? *next_line_frame : 0;
+    if (init_rect(&(data->rect), obj, name) == EXIT_ERROR) {
         return EXIT_ERROR;
-    *x_add = animation_component->x_add;
-    *y_add = animation_component->y_add;
-    *nb_frame = animation_component->nb_frame;
-    *next_line_frame = animation_component->next_line_frame;
+    }
     return EXIT_SUCCESS;
 }
 
@@ -52,11 +63,15 @@ int init_component_animation(entity_system_t *es, obj_t *obj,
 {
     c_animation_t *animation_component = calloc(sizeof(c_animation_t), 1);
 
-    if (init_rect(animation_component, obj) == EXIT_ERROR)
+    if (init_animation_data(
+        &(animation_component->static_anim), obj, "STATIC")) {
         return EXIT_ERROR;
-    animation_component->current_rect = animation_component->initial_rect;
-    if (init_animation_data(animation_component, obj) == EXIT_ERROR)
-        return EXIT_ERROR;
+    }
+    for (direction_t dir = 0; dir < END_DIRECTION; dir++) {
+        if (init_animation_data(
+        &(animation_component->multidir_anim[dir]), obj, DIRECTION_WORDS[dir]))
+            return EXIT_ERROR;
+    }
     if (init_components(es, (void *)animation_component, type, entity) ==
         EXIT_ERROR) {
         return EXIT_ERROR;
