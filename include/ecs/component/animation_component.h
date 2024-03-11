@@ -24,10 +24,7 @@ typedef enum direction {
 } direction_t;
 
 typedef struct animation_component {
-    sfIntRect rect;
-    struct anim_data simple_anim;
+    struct anim_data static_anim;
     direction_t direction;
-    struct anim_data move_multidir[END_DIRECTION];
-    struct anim_data attack_multidir[END_DIRECTION];
-    struct anim_data a;
+    struct anim_data multidir_anim[END_DIRECTION];
 } c_animation_t;
