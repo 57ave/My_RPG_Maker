@@ -30,7 +30,7 @@ vec_t *push_index_vector(
         return NULL;
     }
     while (index >= vec->capacity) {
-        vec->data = my_realloc(vec->data, vec->elem_size * (vec->capacity * 2)
+        vec->data = realloc(vec->data, vec->elem_size * (vec->capacity * 2)
         , vec->elem_size * vec->capacity);
         if (vec->data == NULL) {
             return NULL;
