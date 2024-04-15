@@ -1,4 +1,4 @@
-name: chocolatine
+name: requirement
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - "ga-ignore-**"
 
 env:
-  MIRROR_URL: git@github.com:EpitechPromo2028/B-DOP-200-PAR-2-1-chocolatine-gustave.delecroix.git
+  MIRROR_URL: git@github.com:EpitechPromo2028/B-MUL-200-PAR-2-1-myrpg-gustave.delecroix.git
   EXECUTABLES: ./myrpg
 
 jobs:
