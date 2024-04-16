@@ -1,0 +1,7 @@
+*.o
+*.a
+*.log
+vgcore*
+*.save
+.vscode
+my_rpg
