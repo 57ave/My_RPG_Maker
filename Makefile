@@ -41,9 +41,9 @@ OBJ = $(SRC:.c=.o)
 
 OBJ_TEST = $(SRC_TEST:.c=.o)
 
-all: $(OBJ)
+all: $(OBJ_MAIN) $(OBJ)
 	make -C lib
-	$(CC) -o $(NAME) $(OBJ) $(OBJ_MAIN)
+	$(CC) -o $(NAME) $(OBJ_MAIN) $(OBJ)
 
 tests_run: 	LDLIBS += --coverage -lcriterion
 tests_run:
