@@ -15,7 +15,8 @@ env:
 jobs:
   check_coding_style:
     runs-on: ubuntu-latest
-    container: yanis897349/lw-epitest-docker
+    container: 
+      image : yanis897349/lw-epitest-docker
     env:
       REPORT_FILENAME: coding-style-reports.log
     steps:
