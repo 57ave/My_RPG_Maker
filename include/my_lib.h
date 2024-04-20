@@ -16,6 +16,8 @@ void *my_memset(void *dest, size_t size);
 
 void *my_realloc(void *ptr, size_t new_size, size_t old_size);
 
+void *my_calloc(size_t size);
+
 char *my_strcat_line(char *dest, char *src);
 
 char *my_strdup(char const *str);
