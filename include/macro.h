@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2023
-** my_hunter
+** EPITECH PROJECT, 2024
+** my_rpg
 ** File description:
 ** macro
 */
