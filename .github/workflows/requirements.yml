@@ -16,7 +16,7 @@ jobs:
   check_coding_style:
     runs-on: ubuntu-latest
     container: 
-      image : yanis897349/lw-epitest-docker
+      image : ghcr.io/epitech/coding-style-checker:latest
     env:
       REPORT_FILENAME: coding-style-reports.log
     steps:
