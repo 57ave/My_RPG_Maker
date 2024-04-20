@@ -56,16 +56,12 @@ jobs:
   run_tests:
     needs: [check_program_compilation]
     runs-on: ubuntu-latest
-    container:
-
-      image: yanis897349/lw-epitest-docker
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       
       - name: Download CSFML
-        run: sudo apt install libcsfml-graphics2.5 libcsfml-audio2.5 libcsfml-system2.5 libcsfml-window2.5
+        run: sudo apt-get install -y libcsfml-graphics2.5 libcsfml-audio2.5 libcsfml-system2.5 libcsfml-window2.5
 
       - name: Launch unit tests
         timeout-minutes: 2
