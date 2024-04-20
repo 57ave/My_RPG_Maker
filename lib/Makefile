@@ -14,6 +14,7 @@ CPPFLAGS += -iquote "../include"
 CFLAGS = -Wall -Wextra -g3
 
 SRC =	my_realloc.c 	\
+		my_calloc.c 	\
 		my_memcpy.c \
 		my_strdup.c \
 		my_strdup_delim.c 	\
@@ -27,6 +28,9 @@ SRC =	my_realloc.c 	\
 		my_toml/get_objects.c 	\
 		my_toml/get_data.c 	\
 		my_toml/pull_data.c	\
+		vector/push_back_vector.c 	\
+		vector/push_index_vector.c 	\
+		vector/init_vector.c 	\
 
 OBJ = 	$(SRC:.c=.o)
 
