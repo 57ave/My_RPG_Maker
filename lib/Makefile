@@ -28,6 +28,7 @@ SRC =	my_realloc.c 	\
 		my_toml/get_objects.c 	\
 		my_toml/get_data.c 	\
 		my_toml/pull_data.c	\
+		my_toml/pull_obj.c 	\
 		vector/push_back_vector.c 	\
 		vector/push_index_vector.c 	\
 		vector/init_vector.c 	\
