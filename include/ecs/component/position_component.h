@@ -8,10 +8,8 @@
 #pragma once
 
 #include <SFML/System/Vector2.h>
-#include <SFML/Graphics/Sprite.h>
-#include <stddef.h>
 
 typedef struct position_s {
-    sfVector2f prev_pos;
+    sfVector2f pos;
     sfVector2f new_pos;
-} _position_data;
+} c_position_t;

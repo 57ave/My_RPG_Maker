@@ -7,10 +7,10 @@
 
 #pragma once
 
-#include <Event.h>
-#include <SFML/Window/Export.h>
+#include <SFML/Window/Keyboard.h>
+#include "SFML/Window/Event.h"
 
 typedef struct key_pressed_s {
     sfKeyEvent event;
     sfKeyCode code;
-} _position_data;
+} c_key_pressed_t;

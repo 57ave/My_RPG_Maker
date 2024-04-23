@@ -10,4 +10,4 @@
 typedef struct heatlh_component {
     int health;
     int damage;
-} _health_data;
+} c_health_t;

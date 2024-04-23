@@ -12,4 +12,4 @@
 typedef struct draw_s {
     sfSprite *sprite;
     sfTexture *texture;
-} _draw_data;
+} c_draw_t;
