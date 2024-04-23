@@ -37,6 +37,8 @@ data_t *get_data_struct(char *line);
 
 void *pull_data(obj_t *obj, char *data_name);
 
+obj_t *pull_obj(obj_t **obj_tab, char const *name);
+
 void free_obj(obj_t **obj);
 
 void free_data(data_t **data);
