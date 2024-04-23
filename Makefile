@@ -31,7 +31,10 @@ SRC_TEST = 	tests/vector/init_test.c 	\
 			tests/vector/push_back_test.c 	\
 			tests/vector/push_index_test.c
 
-SRC 	=
+SRC 	= 	src/launch_rpg.c \
+			src/lauching_error_handling.c \
+			src/ecs/init_type.c 	\
+			src/ecs/components/init_component.c
 
 SRC_MAIN = 	src/main.c
 
