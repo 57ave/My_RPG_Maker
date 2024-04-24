@@ -51,7 +51,7 @@ OBJ_TEST = $(SRC_TEST:.c=.o)
 
 all: $(OBJ_MAIN) $(OBJ)
 	make -C lib
-	$(CC) -o $(NAME) $(OBJ_MAIN) $(OBJ) $(LDFLAGS) -lmy -lcsfml-graphics
+	$(CC) -o $(NAME) $(OBJ_MAIN) $(OBJ) $(LDFLAGS) $(LDLIBS)
 
 tests_run: 	LDLIBS += --coverage -lcriterion
 tests_run:
