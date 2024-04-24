@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+#include <stdbool.h>
 #include "macro.h"
 
 int env_verification(char **env)

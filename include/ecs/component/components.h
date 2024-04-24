@@ -36,36 +36,43 @@ typedef struct component_data_s {
     size_t size;
 } component_data_t;
 
-int init_component_position(void *es, obj_t *, component_t, int entity);
-int init_component_velocity(void *es, obj_t *, component_t, int entity);
-int init_component_health(void *es, obj_t *, component_t, int entity);
-int init_component_draw(void *es, obj_t *, component_t, int entity);
-int init_component_text(void *es, obj_t *, component_t, int entity);
-int init_component_key_pressed(void *es, obj_t *, component_t, int entity);
-int init_component_mouse_pressed(void *es, obj_t *, component_t, int entity);
+int init_component_position(entity_system_t *es,
+    obj_t *, component_t, int entity);
+int init_component_velocity(entity_system_t *es,
+    obj_t *, component_t, int entity);
+int init_component_health(entity_system_t *es,
+    obj_t *, component_t, int entity);
+int init_component_draw(entity_system_t *es,
+    obj_t *, component_t, int entity);
+int init_component_text(entity_system_t *es,
+    obj_t *, component_t, int entity);
+int init_component_key_pressed(entity_system_t *es,
+    obj_t *, component_t, int entity);
+int init_component_mouse_pressed(entity_system_t *es, obj_t *,
+    component_t, int entity);
 
 static const component_data_t COMPONENT_INIT_DATA[] = {
     {
-        "POSITION", POSITION, &init_component_position, sizeof(position_c)
+        "POSITION", POSITION, &init_component_position, sizeof(c_position_t)
     },
     {
-        "HEALTH", HEALTH, &init_component_health, sizeof(health_c)
+        "HEALTH", HEALTH, &init_component_health, sizeof(c_health_t)
     },
     {
-        "VELOCITY", VELOCITY, &init_component_velocity, sizeof(velocity_c)
+        "VELOCITY", VELOCITY, &init_component_velocity, sizeof(c_velocity_t)
     },
     {
-        "DRAW", DRAW, &init_component_draw, sizeof(draw_c)
+        "DRAW", DRAW, &init_component_draw, sizeof(c_draw_t)
     },
     {
-        "TEXT", TEXT, &init_component_text, sizeof(text_c)
+        "TEXT", TEXT, &init_component_text, sizeof(c_text_t)
     },
     {
         "KEY_PRESSED", KEY_PRESSED, &init_component_key_pressed,
-        sizeof(key_pressed_c)
+        sizeof(c_key_pressed_t)
     },
     {
         "MOUSE_PRESSED", MOUSE_PRESSED, &init_component_mouse_pressed,
-        sizeof(mouse_pressed_c)
+        sizeof(c_mouse_pressed_t)
     }
 };

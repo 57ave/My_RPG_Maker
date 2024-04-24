@@ -11,9 +11,9 @@
     #include <stddef.h>
     #include "vector.h"
 
-struct entity_system {
+typedef struct entity_system {
     vec_t *entity_state;
     vec_t *components;
-};
+}entity_system_t;
 
-#endif /* !ECS_H_ */
+#endif
