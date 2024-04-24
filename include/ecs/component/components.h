@@ -29,6 +29,7 @@ typedef enum component_e {
     TEXT,
     KEY_PRESSED,
     MOUSE_PRESSED,
+    GAME_MODE,
     LAST_COMPONENT
 } component_t;
 
@@ -53,6 +54,8 @@ int init_component_draw(entity_system_t *es,
 //     obj_t *, component_t, int entity);
 // int init_component_mouse_pressed(entity_system_t *es, obj_t *,
 //     component_t, int entity);
+int init_component_game_mode(entity_system_t *es, obj_t *,
+    component_t, int entity);
 
 static const component_data_t COMPONENT_INIT_DATA[] = {
     // {
@@ -78,4 +81,8 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     //     "MOUSE_PRESSED", MOUSE_PRESSED, &init_component_mouse_pressed,
     //     sizeof(c_mouse_pressed_t)
     // }
+    {
+        "GAME_MODE", GAME_MODE, &init_component_game_mode,
+        sizeof(c_game_mode_t)
+    }
 };
