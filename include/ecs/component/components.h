@@ -17,6 +17,7 @@
     #include "text_component.h"
     #include "key_pressed_component.h"
     #include "mouse_pressed_component.h"
+    #include "game_mode_component.h"
     #include "ecs.h"
 
 entity_system_t *init_entity_system(entity_system_t *es);
