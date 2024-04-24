@@ -46,8 +46,8 @@ int init_components(entity_system_t *es, void *component,
 
 int init_component_position(entity_system_t *es,
     obj_t *, component_t, int entity);
-// int init_component_velocity(entity_system_t *es,
-//     obj_t *, component_t, int entity);
+int init_component_velocity(entity_system_t *es,
+    obj_t *, component_t, int entity);
 int init_component_health(entity_system_t *es,
     obj_t *, component_t, int entity);
 int init_component_draw(entity_system_t *es,
@@ -68,9 +68,9 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     {
         "HEALTH", HEALTH, &init_component_health, sizeof(c_health_t)
     },
-    // {
-    //     "VELOCITY", VELOCITY, &init_component_velocity, sizeof(c_velocity_t)
-    // },
+    {
+        "VELOCITY", VELOCITY, &init_component_velocity, sizeof(c_velocity_t)
+    },
     {
         "DRAW", DRAW, &init_component_draw, sizeof(c_draw_t)
     },
