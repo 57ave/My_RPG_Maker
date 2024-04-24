@@ -5,10 +5,10 @@
 ** my_toml
 */
 
-#include "stddef.h"
-
 #ifndef MY_TOML_H_
     #define MY_TOML_H_
+
+    #include "stddef.h"
 
 typedef enum type_e {
     INT = 0,
@@ -29,7 +29,7 @@ typedef struct obj_s {
     size_t obj_size;
 } obj_t;
 
-char **read_file(char *filepath);
+char **read_file(char const *filepath);
 
 obj_t **get_object(char **content, int *line_offset, obj_t **obj);
 

@@ -11,7 +11,7 @@ NAME_TEST = unit_tests
 
 LIB = libmy.a
 
-LDFLAGS += -L.
+LDFLAGS += -L./lib
 
 LDLIBS = 	-lmy 	\
  			-lcsfml-graphics	\
@@ -31,10 +31,11 @@ SRC_TEST = 	tests/vector/init_test.c 	\
 			tests/vector/push_back_test.c 	\
 			tests/vector/push_index_test.c
 
-SRC 	= 	src/launch_rpg.c \
+SRC 	=	src/launch_rpg.c \
 			src/lauching_error_handling.c \
 			src/ecs/init_type.c 	\
-			src/ecs/components/init_component.c
+			src/ecs/components/init_component.c	\
+			src/ecs/components/init_drawable.c	\
 
 SRC_MAIN = 	src/main.c
 
@@ -46,7 +47,7 @@ OBJ_TEST = $(SRC_TEST:.c=.o)
 
 all: $(OBJ_MAIN) $(OBJ)
 	make -C lib
-	$(CC) -o $(NAME) $(OBJ_MAIN) $(OBJ)
+	$(CC) -o $(NAME) $(OBJ_MAIN) $(OBJ) $(LDFLAGS) -lmy -lcsfml-graphics
 
 tests_run: 	LDLIBS += --coverage -lcriterion
 tests_run:
@@ -71,9 +72,8 @@ asan: CC = clang
 asan: LDFLAGS += -fsanitize=address
 asan: re
 
-debug:
-	CFLAGS += -ggdb3
-	all
+debug: CFLAGS += -ggdb3
+debug: all
 
 re: fclean
 re: all

@@ -39,7 +39,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rc -o $(NAME) $(OBJ)
-	cp libmy.a ../libmy.a
 
 clean:
 	$(RM) $(OBJ)

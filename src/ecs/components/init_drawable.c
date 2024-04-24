@@ -5,8 +5,8 @@
 ** init drawable
 */
 
-#include <SFML/Graphics/Texture.h>
-#include <SFML/Graphics/Sprite.h>
+#include <SFML/Graphics.h>
+#include <stdlib.h>
 #include <math.h>
 #include "macro.h"
 #include "my_lib.h"
@@ -32,10 +32,8 @@ static int init_sprite(sfSprite *sprite, sfTexture *texture, obj_t *obj)
     if (!file_path || !size_x || !size_y)
         return EXIT_ERROR;
     texture = sfTexture_createFromFile(file_path, NULL);
-    if (texture == NULL) {
-        free_obj(obj);
+    if (texture == NULL)
         return EXIT_ERROR;
-    }
     sfSprite_setTexture(sprite, texture, sfTrue);
     sfSprite_setScale(sprite, sprite_size(texture,
         (sfVector2f){(float)*size_x, (float)*size_y}));
@@ -49,14 +47,14 @@ int init_component_draw(entity_system_t *es,
     sfTexture *texture = NULL;
     sfSprite *sprite = NULL;
 
-    if (init_sprite(sprite, texture, obj) == EXIT_ERROR) {
-        free_obj(obj);
+    if (init_sprite(sprite, texture, obj) == EXIT_ERROR)
         return EXIT_ERROR;
-    }
     new = calloc(sizeof(c_draw_t), 1);
     new->sprite = sprite;
     new->texture = texture;
     es->components[type].data = push_index_vector(es->components[type].data,
         new, sizeof(c_draw_t), entity);
+    if (!es->components[type].data)
+        return EXIT_ERROR;
     return EXIT_SUCCESS;
 }
