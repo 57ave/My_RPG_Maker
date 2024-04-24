@@ -36,6 +36,7 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/init_type.c 	\
 			src/ecs/components/init_component.c	\
 			src/ecs/components/init_drawable.c	\
+			src/ecs/components/init_game_mode.c	\
 
 SRC_MAIN = 	src/main.c
 
