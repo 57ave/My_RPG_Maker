@@ -44,8 +44,8 @@ typedef struct component_data_s {
 int init_components(entity_system_t *es, void *component,
     component_t component_type, int entity);
 
-// int init_component_position(entity_system_t *es,
-//     obj_t *, component_t, int entity);
+int init_component_position(entity_system_t *es,
+    obj_t *, component_t, int entity);
 // int init_component_velocity(entity_system_t *es,
 //     obj_t *, component_t, int entity);
 int init_component_health(entity_system_t *es,
@@ -62,12 +62,12 @@ int init_component_game_mode(entity_system_t *es, obj_t *,
     component_t, int entity);
 
 static const component_data_t COMPONENT_INIT_DATA[] = {
-    // {
-    //     "POSITION", POSITION, &init_component_position, sizeof(c_position_t)
-    // },
-    // {
-    //     "HEALTH", HEALTH, &init_component_health, sizeof(c_health_t)
-    // },
+    {
+        "POSITION", POSITION, &init_component_position, sizeof(c_position_t)
+    },
+    {
+        "HEALTH", HEALTH, &init_component_health, sizeof(c_health_t)
+    },
     // {
     //     "VELOCITY", VELOCITY, &init_component_velocity, sizeof(c_velocity_t)
     // },
