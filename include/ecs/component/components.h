@@ -18,6 +18,7 @@
     #include "key_pressed_component.h"
     #include "mouse_pressed_component.h"
     #include "game_mode_component.h"
+    #include "temporary_component.h"
     #include "ecs.h"
 
 entity_system_t *init_entity_system(entity_system_t *es);
@@ -31,6 +32,7 @@ typedef enum component_e {
     KEY_PRESSED,
     MOUSE_PRESSED,
     GAME_MODE,
+    TEMPORARY,
     LAST_COMPONENT
 } component_t;
 
@@ -60,6 +62,8 @@ int init_component_draw(entity_system_t *es,
 //     component_t, int entity);
 int init_component_game_mode(entity_system_t *es, obj_t *,
     component_t, int entity);
+int init_component_temporary(entity_system_t *es,
+    obj_t *obj, component_t type, int entity);
 
 static const component_data_t COMPONENT_INIT_DATA[] = {
     {
@@ -84,9 +88,13 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     // {
     //     "MOUSE_PRESSED", MOUSE_PRESSED, &init_component_mouse_pressed,
     //     sizeof(c_mouse_pressed_t)
-    // }
+    // },
     {
         "GAME_MODE", GAME_MODE, &init_component_game_mode,
         sizeof(c_game_mode_t)
+    },
+    {
+        "TEMPORARY", TEMPORARY, &init_component_temporary,
+        sizeof(c_temporary_t)
     }
 };
