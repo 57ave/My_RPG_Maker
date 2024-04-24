@@ -11,8 +11,7 @@
 #include "components.h"
 #include "ecs.h"
 
-int init_components(
-    struct entity_system *es, void *component,
+int init_components(entity_system_t *es, void *component,
     component_t component_type, int entity)
 {
     es->components[component_type].data =

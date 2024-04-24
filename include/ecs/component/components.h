@@ -41,12 +41,15 @@ typedef struct component_data_s {
     size_t size;
 } component_data_t;
 
+int init_components(entity_system_t *es, void *component,
+    component_t component_type, int entity);
+
 // int init_component_position(entity_system_t *es,
 //     obj_t *, component_t, int entity);
 // int init_component_velocity(entity_system_t *es,
 //     obj_t *, component_t, int entity);
-// int init_component_health(entity_system_t *es,
-//     obj_t *, component_t, int entity);
+int init_component_health(entity_system_t *es,
+    obj_t *, component_t, int entity);
 int init_component_draw(entity_system_t *es,
     obj_t *, component_t, int entity);
 // int init_component_text(entity_system_t *es,

@@ -15,6 +15,7 @@ int init_component_game_mode(entity_system_t *es, obj_t *obj,
 {
     c_game_mode_t *game_mode = calloc(1, sizeof(c_game_mode_t));
     int *mode = (int *)pull_data(obj, "GAME_MODE-MODE");
+
     if (!mode || !game_mode) {
         return EXIT_ERROR;
     }

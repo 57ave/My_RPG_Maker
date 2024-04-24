@@ -8,6 +8,6 @@
 #pragma once
 
 typedef struct heatlh_component {
-    int health;
-    int damage;
+    int current_health;
+    int max_health;
 } c_health_t;
