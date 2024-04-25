@@ -42,6 +42,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Download CSFML
+        run: sudo apt install libcsfml-graphics2.5 libcsfml-audio2.5 libcsfml-system2.5 libcsfml-window2.5
       - name: Building project
         timeout-minutes: 2
         run: make
@@ -61,6 +63,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Download CSFML
+        run: sudo apt install libcsfml-graphics2.5 libcsfml-audio2.5 libcsfml-system2.5 libcsfml-window2.5
       
       - name: Launch unit tests
         timeout-minutes: 2
