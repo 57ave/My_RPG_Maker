@@ -9,7 +9,6 @@
 
     #include <stddef.h>
     #include "my_toml.h"
-    #include "type_create.h"
     #include "position_component.h"
     #include "health_component.h"
     #include "velocity_component.h"
@@ -36,6 +35,9 @@ typedef enum component_e {
     LAST_COMPONENT
 } component_t;
 
+int init_components(entity_system_t *es, void *component,
+    component_t component_type, int entity);
+
 typedef struct component_data_s {
     char *name;
     component_t index;
@@ -54,8 +56,8 @@ int init_component_health(entity_system_t *es,
     obj_t *, component_t, int entity);
 int init_component_draw(entity_system_t *es,
     obj_t *, component_t, int entity);
-// int init_component_text(entity_system_t *es,
-//     obj_t *, component_t, int entity);
+int init_component_text(entity_system_t *es,
+    obj_t *, component_t, int entity);
 // int init_component_key_pressed(entity_system_t *es,
 //     obj_t *, component_t, int entity);
 // int init_component_mouse_pressed(entity_system_t *es, obj_t *,
@@ -78,9 +80,9 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     {
         "DRAW", DRAW, &init_component_draw, sizeof(c_draw_t)
     },
-    // {
-    //     "TEXT", TEXT, &init_component_text, sizeof(c_text_t)
-    // },
+    {
+        "TEXT", TEXT, &init_component_text, sizeof(c_text_t)
+    },
     // {
     //     "KEY_PRESSED", KEY_PRESSED, &init_component_key_pressed,
     //     sizeof(c_key_pressed_t)
@@ -98,3 +100,6 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
         sizeof(c_temporary_t)
     }
 };
+
+static const size_t NB_OF_COMPONENT =
+sizeof(COMPONENT_INIT_DATA) / sizeof(component_data_t);

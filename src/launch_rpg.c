@@ -26,6 +26,6 @@ int launcher(char **env)
     if (env_verification(env) == EXIT_ERROR)
         return EXIT_ERROR;
     if (test() == EXIT_ERROR)
-        return 42;
+        return EXIT_ERROR;
     return EXIT_SUCCESS;
 }

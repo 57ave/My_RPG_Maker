@@ -41,6 +41,7 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/components/init_position.c	\
 			src/ecs/components/init_velocity.c	\
 			src/ecs/components/init_temporary.c	\
+			src/ecs/components/init_text.c	\
 
 SRC_MAIN = 	src/main.c
 
@@ -78,7 +79,7 @@ asan: LDFLAGS += -fsanitize=address
 asan: re
 
 debug: CFLAGS += -ggdb3
-debug: all
+debug: re
 
 re: fclean
 re: all

@@ -18,10 +18,10 @@ typedef enum entity_e {
     LAST_ENTITY
 } entity_t;
 
-static const char *entity_type_creater[] = {
+static const char *ENTITY_TYPE_CREATER[] = {
     "./config/entity/player_type.toml",
     // "./config/entity/npc_type.toml",
     // "./config/entity/enemy_type.toml"
 };
 
-    #define TOTAL_TYPES (sizeof(entity_type_creater) / sizeof(char *))
+    #define TOTAL_TYPES (sizeof(ENTITY_TYPE_CREATER) / sizeof(char *))
