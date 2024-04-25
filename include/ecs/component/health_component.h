@@ -7,7 +7,9 @@
 
 #pragma once
 
-typedef struct heatlh_component {
+typedef struct health_s {
     int current_health;
     int max_health;
+    int current_armor;
+    int max_armor;
 } c_health_t;
