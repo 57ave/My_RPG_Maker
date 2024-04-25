@@ -51,8 +51,8 @@ jobs:
         run: make clean
       - name: check_executables
         run: |
-          if [ ! -s $LIBRARY_FILENAME ]; then
-            echo "::error title=Library not found::"
+          if [ ! -s $EXECUTABLES ]; then
+            echo "::error title=Executable not found::"
             exit 1
           fi
   run_tests:
@@ -63,8 +63,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Download CSFML
-        run: sudo apt install libcsfml-graphics2.5 libcsfml-audio2.5 libcsfml-system2.5 libcsfml-window2.5
       
       - name: Launch unit tests
         timeout-minutes: 2
