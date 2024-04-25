@@ -82,7 +82,11 @@ asan: re
 debug: CFLAGS += -ggdb3
 debug: re
 
+warning:
+	CFLAGS += -Werror
+	re
+
 re: fclean
 re: all
 
-.PHONY: all clean fclean debug asan re
+.PHONY: all clean fclean debug asan warning re
