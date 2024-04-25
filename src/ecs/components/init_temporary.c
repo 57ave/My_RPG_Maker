@@ -17,7 +17,7 @@ int init_component_temporary(entity_system_t *es,
     obj_t *obj, component_t type, int entity)
 {
     c_temporary_t *new_component = calloc(sizeof(c_temporary_t), 1);
-    size_t *time = (size_t *)pull_data(obj, "TEMPORARY_TIME");
+    size_t *time = (size_t *)pull_data(obj, "TEMPORARY-TIME");
 
     if (!new_component || !time)
         return EXIT_ERROR;
