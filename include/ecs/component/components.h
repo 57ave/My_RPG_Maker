@@ -18,6 +18,7 @@
     #include "mouse_pressed_component.h"
     #include "game_mode_component.h"
     #include "temporary_component.h"
+    #include "damage_component.h"
     #include "ecs.h"
 
 entity_system_t *init_entity_system(entity_system_t *es);
@@ -32,6 +33,7 @@ typedef enum component_e {
     MOUSE_PRESSED,
     GAME_MODE,
     TEMPORARY,
+    DAMAGE,
     LAST_COMPONENT
 } component_t;
 
@@ -66,6 +68,8 @@ int init_component_game_mode(entity_system_t *es, obj_t *,
     component_t, int entity);
 int init_component_temporary(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
+int init_component_damage(entity_system_t *es,
+    obj_t *obj, component_t type, int entity);
 
 static const component_data_t COMPONENT_INIT_DATA[] = {
     {
@@ -98,6 +102,10 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     {
         "TEMPORARY", TEMPORARY, &init_component_temporary,
         sizeof(c_temporary_t)
+    },
+    {
+        "DAMAGE", DAMAGE, &init_component_damage,
+        sizeof(c_damage_t)
     }
 };
 

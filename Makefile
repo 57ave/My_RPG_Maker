@@ -42,6 +42,7 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/components/init_velocity.c	\
 			src/ecs/components/init_temporary.c	\
 			src/ecs/components/init_text.c	\
+			src/ecs/components/init_damage.c	\
 
 SRC_MAIN = 	src/main.c
 
