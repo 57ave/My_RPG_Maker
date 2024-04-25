@@ -39,11 +39,11 @@ jobs:
   check_program_compilation:
     runs-on: ubuntu-latest
     needs: [check_coding_style]
+    container:
+        image: epitechcontent/epitest-docker:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Download CSFML
-        run: sudo apt install libcsfml-graphics2.5 libcsfml-audio2.5 libcsfml-system2.5 libcsfml-window2.5
       - name: Building project
         timeout-minutes: 2
         run: make
@@ -58,8 +58,8 @@ jobs:
   run_tests:
     needs: [check_program_compilation]
     runs-on: ubuntu-latest
-    container: 
-      image : ghcr.io/epitech/coding-style-checker:latest
+    container:
+        image: epitechcontent/epitest-docker:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
