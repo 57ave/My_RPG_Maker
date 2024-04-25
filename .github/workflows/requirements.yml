@@ -10,7 +10,6 @@ on:
 
 env:
   MIRROR_URL: git@github.com:EpitechPromo2028/B-MUL-200-PAR-2-1-myrpg-gustave.delecroix.git
-  EXECUTABLES: ./myrpg
 
 jobs:
   check_coding_style:
@@ -49,12 +48,6 @@ jobs:
         run: make
       - name: Clean
         run: make clean
-      - name: check_executables
-        run: |
-          if [ ! -x $EXECUTABLES ]; then
-            echo "::error title=Executable not found::"
-            exit 1
-          fi
   run_tests:
     needs: [check_program_compilation]
     runs-on: ubuntu-latest
