@@ -51,7 +51,7 @@ jobs:
         run: make clean
       - name: check_executables
         run: |
-          if [ ! -s $EXECUTABLES ]; then
+          if [ ! -x $EXECUTABLES ]; then
             echo "::error title=Executable not found::"
             exit 1
           fi
