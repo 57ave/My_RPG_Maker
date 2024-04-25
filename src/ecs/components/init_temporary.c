@@ -17,13 +17,14 @@ int init_component_temporary(entity_system_t *es,
     obj_t *obj, component_t type, int entity)
 {
     c_temporary_t *new_component = calloc(sizeof(c_temporary_t), 1);
+    size_t *time = (size_t *)pull_data(obj, "TEMPORARY_TIME");
 
-    if (!new_component)
+    if (!new_component || !time)
         return EXIT_ERROR;
     new_component->clock = sfClock_create();
     if (!new_component->clock)
         return EXIT_ERROR;
-    new_component->time = *(size_t *)pull_data(obj, "TEMPORARY_TIME");
+    new_component->time = *time;
     if (init_components(es, (void *)new_component, type, entity) == EXIT_ERROR)
         return EXIT_ERROR;
     return EXIT_SUCCESS;
