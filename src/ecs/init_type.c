@@ -6,6 +6,7 @@
 */
 
 #include <string.h>
+#include <stdlib.h>
 #include "macro.h"
 #include "my_toml.h"
 #include "components.h"
@@ -60,7 +61,7 @@ static vec_t *init_component_vector(entity_system_t *es, unsigned long size)
     es->components = init_vector(es->components, size);
     if (!es->components)
         return NULL;
-    for (int i = 0; i < NB_OF_COMPONENT; ++i) {
+    for (size_t i = 0; i < NB_OF_COMPONENT; ++i) {
         es->components[i].data = calloc(sizeof(vec_t), 1);
         if (!es->components[i].data)
             return NULL;

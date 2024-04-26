@@ -5,6 +5,7 @@
 ** init_damage
 */
 
+#include <stdlib.h>
 #include "vector.h"
 #include "macro.h"
 #include "components.h"
