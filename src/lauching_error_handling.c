@@ -9,7 +9,7 @@
 #include <stdbool.h>
 #include "macro.h"
 
-int env_verification(char **env)
+int env_verification(char **)
 {
     if (getenv("DISPLAY") == NULL) {
         return EXIT_ERROR;

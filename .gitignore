@@ -1,7 +1,21 @@
+
+#Temporary file
+*~
+*#
+.save
+
+#Obj file
 *.o
-*.a
+
+#Report file
 *.log
-vgcore*
-*.save
-.vscode
+vgcore.*
+
+#Binary
 my_rpg
+unit_tests
+
+#Test file
+*.gcno
+*.gcda
+*_test
