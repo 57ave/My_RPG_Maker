@@ -54,7 +54,7 @@ int add_entities_type(entity_system_t *es, entity_t type)
         es->entity_indexes = realloc(es->entity_indexes,
             es->nb_of_entities + 1);
         if (es->entity_indexes == NULL)
-            return NULL;
+            return EXIT_ERROR;
         es->entity_indexes[es->nb_of_entities] = (int)entity;
         es->nb_of_entities += 1;
     }
