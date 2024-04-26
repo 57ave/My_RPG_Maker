@@ -44,14 +44,19 @@ int add_entities_type(entity_system_t *es, entity_t type)
     int offset = 0;
 
     obj_tab = get_object(content, &offset, obj_tab);
-    if (obj_tab == NULL) {
+    if (obj_tab == NULL)
         return EXIT_ERROR;
-    }
     for (int entity = 0; obj_tab[entity] != NULL; entity++) {
         if (obj_to_components(es, obj_tab[entity], entity) == EXIT_ERROR) {
             free_obj(obj_tab);
             return EXIT_ERROR;
         }
+        es->entity_indexes = realloc(es->entity_indexes,
+            es->nb_of_entities + 1);
+        if (es->entity_indexes == NULL)
+            return NULL;
+        es->entity_indexes[es->nb_of_entities] = (int)entity;
+        es->nb_of_entities += 1;
     }
     return EXIT_SUCCESS;
 }
@@ -75,10 +80,8 @@ static vec_t *init_component_vector(entity_system_t *es, unsigned long size)
 
 entity_system_t *init_entity_system(entity_system_t *es)
 {
-    es->entity_state = init_vector(es->entity_state, sizeof(int));
-    if (es->entity_state == NULL) {
-        return NULL;
-    }
+    es->entity_indexes = NULL;
+    es->nb_of_entities = 0;
     if (!init_component_vector(es, sizeof(vec_t))) {
         return NULL;
     }
