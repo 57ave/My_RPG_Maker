@@ -7,43 +7,44 @@
 
 #include "my_toml.h"
 #include "my_lib.h"
+#include "macro.h"
 #include <stdlib.h>
 
-static int get_type(char *line, int *idx)
+int go_to_char_skip(char *line, int *idx, char end)
 {
-    while (line[*idx] != '=') {
+    while (line[*idx] != end) {
         if (line[*idx] == '\0') {
-            return -1;
+            return EXIT_ERROR;
         }
         *idx += 1;
     }
-    for (; line[*idx] != '\0'; *idx += 1) {
-        if (line[*idx] == '"') {
-            *idx += 1;
-            return CHAR_PTR;
-        }
-        if (('0' <= line[*idx] && line[*idx] <= '9')
-            || (line[*idx] == '-')) {
-            return INT;
-        }
-    }
-    return -1;
+    return EXIT_SUCCESS;
 }
 
-static void *get_data_value(char *line, int type)
+static int get_type(char *line, int *idx)
 {
-    int value = 0;
-    int *ptr = NULL;
+    if (go_to_char_skip(line, idx, '=') == EXIT_ERROR) {
+        return EXIT_ERROR;
+    }
+    for (; line[*idx] != '\0'; *idx += 1) {
+        if (get_type_string(line, idx) == CHAR_PTR)
+            return CHAR_PTR;
+        if (get_type_int(line, idx) == INT)
+            return INT;
+        if (get_type_tab(line, idx) == TAB)
+            return TAB;
+    }
+    return EXIT_ERROR;
+}
 
-    if (type == CHAR_PTR) {
-        return (void *)my_strdup_delim(line, '"');
-    }
-    if (type == INT) {
-        value = my_getnbr(line);
-        ptr = malloc(sizeof(int));
-        *ptr = value;
-        return (void *)ptr;
-    }
+static void *get_data_value(char *line, int *type)
+{
+    if (*type == INT)
+        return get_value_int(line);
+    if (*type == CHAR_PTR)
+        return get_value_string(line);
+    if (*type == TAB)
+        return get_value_tab(line, type);
     return NULL;
 }
 
@@ -54,7 +55,7 @@ data_t *get_data_struct(char *line)
 
     data->name = my_strdup_delim(line, ' ');
     data->type = get_type(line, &idx);
-    data->data = get_data_value(&line[idx], data->type);
+    data->data = get_data_value(&line[idx], (int *)&data->type);
     return data;
 }
 
