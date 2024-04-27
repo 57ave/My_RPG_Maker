@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "ecs.h"
+
 typedef enum entity_e {
     PLAYER = 0,
     // NPC,
@@ -24,4 +26,9 @@ static const char *ENTITY_TYPE_CREATER[] = {
     // "./config/entity/enemy_type.toml"
 };
 
-    #define TOTAL_TYPES (sizeof(ENTITY_TYPE_CREATER) / sizeof(char *))
+#define ENTITY_TYPE_CREATER_PATH "./config/entity/"
+
+#define TOTAL_TYPES (sizeof(ENTITY_TYPE_CREATER) / sizeof(char *))
+
+int add_entities_type(entity_system_t *es, char const *filepath);
+int search_for_config_files(const char *path, entity_system_t *es);
