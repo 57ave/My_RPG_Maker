@@ -24,11 +24,13 @@ static char *create_filepath(const char *path, const char *filename)
     return filepath;
 }
 
-static void process_directory(char *filepath, entity_system_t *es)
+static int process_directory(char *filepath, entity_system_t *es)
 {
     filepath = realloc(filepath, sizeof(char) * (strlen(filepath) + 2));
     strcat(filepath, "/");
-    search_for_config_files(filepath, es);
+    if (search_for_config_files(filepath, es) == EXIT_ERROR)
+        return EXIT_ERROR;
+    return EXIT_SUCCESS;
 }
 
 static int process_file(char *filepath, struct dirent *dir_entry,
@@ -38,11 +40,12 @@ static int process_file(char *filepath, struct dirent *dir_entry,
 
     filepath = create_filepath(path, dir_entry->d_name);
     stat(filepath, &sb);
-    if (S_ISDIR(sb.st_mode))
-        process_directory(filepath, es);
-    else {
+    if (S_ISDIR(sb.st_mode)) {
+        if (process_directory(filepath, es) == EXIT_ERROR)
+            return EXIT_ERROR;
+    } else {
         printf("Loading entities from: %s\n", filepath);
-        if (add_entities_type(es, filepath) == EXIT_ERROR)
+        if (add_entities_from_path(es, filepath) == EXIT_ERROR)
             return EXIT_ERROR;
     }
     free(filepath);

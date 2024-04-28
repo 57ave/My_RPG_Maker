@@ -20,9 +20,9 @@ typedef enum entity_e {
     LAST_ENTITY
 } entity_t;
 
-#define ENTITY_TYPE_CREATER_PATH "./config/entity/"
+#define ENTITY_DIRECTORY_PATH "./config/entity/"
 
 #define TOTAL_TYPES (sizeof(ENTITY_TYPE_CREATER) / sizeof(char *))
 
-int add_entities_type(entity_system_t *es, char const *filepath);
+int add_entities_from_path(entity_system_t *es, char const *filepath);
 int search_for_config_files(const char *path, entity_system_t *es);
