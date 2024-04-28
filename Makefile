@@ -84,9 +84,8 @@ asan: re
 debug: CFLAGS += -ggdb3
 debug: re
 
-warning:
-	CFLAGS += -Werror
-	re
+warning: CFLAGS += -Werror
+warning: re
 
 re: fclean
 re: all
