@@ -45,6 +45,9 @@ static int test(void)
 
     tmp->components = calloc(sizeof(vec_t), 1);
     tmp = init_entity_system(tmp);
+    if (tmp == NULL) {
+        return EXIT_ERROR;
+    }
     start_window(tmp);
         return EXIT_ERROR;
     return EXIT_SUCCESS;
