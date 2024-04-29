@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-char **read_file(char *filepath)
+char **read_file(char const *filepath)
 {
     FILE *file_ptr = fopen(filepath, "r");
     char *lineptr = NULL;

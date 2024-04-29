@@ -35,6 +35,7 @@ jobs:
           if [[ -s $REPORT_FILENAME ]]; then
             exit 1
           fi
+
   check_program_compilation:
     runs-on: ubuntu-latest
     needs: [check_coding_style]
@@ -48,6 +49,20 @@ jobs:
         run: make
       - name: Clean
         run: make clean
+
+  check_program_warning:
+    runs-on: ubuntu-latest
+    container:
+        image: epitechcontent/epitest-docker:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Building project
+        timeout-minutes: 2
+        run: make warning
+      - name: Clean
+        run: make clean
+ 
   run_tests:
     needs: [check_program_compilation]
     runs-on: ubuntu-latest

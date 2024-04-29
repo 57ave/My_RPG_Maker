@@ -10,7 +10,7 @@
 
 vec_t *init_vector(vec_t *new_vec, size_t type_size)
 {
-    new_vec->data = malloc(type_size);
+    new_vec->data = calloc(type_size, 1);
     if (new_vec->data == NULL) {
         return NULL;
     }

@@ -11,7 +11,7 @@ CC = gcc
 
 CPPFLAGS += -iquote "../include"
 
-CFLAGS = -Wall -Wextra -g3
+CFLAGS = -Wall -Wextra
 
 SRC =	my_realloc.c 	\
 		my_calloc.c 	\
@@ -23,11 +23,16 @@ SRC =	my_realloc.c 	\
 		my_strcmp.c \
 		my_strncmp.c	\
 		my_strcat.c \
+		my_stwa.c 	\
 		my_int_to_ascii.c 	\
 		my_toml/open_toml.c \
 		my_toml/get_objects.c 	\
 		my_toml/get_data.c 	\
 		my_toml/pull_data.c	\
+		my_toml/pull_obj.c 	\
+		my_toml/char_handler.c 	\
+		my_toml/int_handler.c 	\
+		my_toml/tab_handler.c 	\
 		vector/push_back_vector.c 	\
 		vector/push_index_vector.c 	\
 		vector/init_vector.c 	\
@@ -38,7 +43,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rc -o $(NAME) $(OBJ)
-	cp libmy.a ../libmy.a
 
 clean:
 	$(RM) $(OBJ)
@@ -47,7 +51,7 @@ fclean: clean
 	$(RM) $(NAME)
 
 debug: CC = clang
-debug: CFLAGS += -ggdb3
+debug: CFLAGS += -ggdb
 debug: fclean all
 
 re: fclean all
