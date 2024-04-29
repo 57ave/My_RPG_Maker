@@ -25,6 +25,7 @@ static int extract_data(obj_t *obj, c_position_t *new_component)
     if (tmp == NULL) {
         return EXIT_ERROR;
     }
+    new_component->pos.y = *tmp;
     return EXIT_SUCCESS;
 }
 

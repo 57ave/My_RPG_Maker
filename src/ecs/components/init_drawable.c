@@ -62,5 +62,5 @@ int init_component_draw(entity_system_t *es,
     }
     new->sprite = sprite;
     new->texture = texture;
-    return (init_components(es, (void *)new, type, entity) == EXIT_ERROR);
+    return init_components(es, (void *)new, type, entity);
 }
