@@ -15,7 +15,7 @@ typedef struct entity_system {
     //vec_t *entity_state;
     int *entity_indexes;
     int nb_of_entities;
-    vec_t *components;
+    vec_t **components;
 }entity_system_t;
 
 #endif
