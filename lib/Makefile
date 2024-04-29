@@ -11,7 +11,7 @@ CC = gcc
 
 CPPFLAGS += -iquote "../include"
 
-CFLAGS = -Wall -Wextra -g3
+CFLAGS = -Wall -Wextra
 
 SRC =	my_realloc.c 	\
 		my_calloc.c 	\
@@ -47,7 +47,7 @@ fclean: clean
 	$(RM) $(NAME)
 
 debug: CC = clang
-debug: CFLAGS += -ggdb3
+debug: CFLAGS += -ggdb
 debug: fclean all
 
 re: fclean all

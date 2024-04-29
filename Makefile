@@ -79,10 +79,10 @@ fclean: clean
 	$(RM) .save
 
 asan: CC = clang
-asan: LDFLAGS += -fsanitize=address
+asan: LDFLAGS += -fsanitize=address -static-libsan
 asan: re
 
-debug: CFLAGS += -ggdb3
+debug: CFLAGS += -ggdb
 debug: re
 
 warning: CFLAGS += -Werror
