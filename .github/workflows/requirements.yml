@@ -10,13 +10,12 @@ on:
 
 env:
   MIRROR_URL: git@github.com:EpitechPromo2028/B-MUL-200-PAR-2-1-myrpg-gustave.delecroix.git
-  EXECUTABLES: ./myrpg
 
 jobs:
   check_coding_style:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/epitech/coding-style-checker:latest
+    container: 
+      image : ghcr.io/epitech/coding-style-checker:latest
     env:
       REPORT_FILENAME: coding-style-reports.log
     steps:
@@ -36,13 +35,12 @@ jobs:
           if [[ -s $REPORT_FILENAME ]]; then
             exit 1
           fi
+
   check_program_compilation:
     runs-on: ubuntu-latest
     needs: [check_coding_style]
     container:
-
-      image: yanis897349/lw-epitest-docker
-
+        image: epitechcontent/epitest-docker:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -51,9 +49,29 @@ jobs:
         run: make
       - name: Clean
         run: make clean
-      - name: check_executables
-        run: |
-          if [ ! -s $LIBRARY_FILENAME ]; then
-            echo "::error title=Library not found::"
-            exit 1
-          fi
+
+  check_program_warning:
+    runs-on: ubuntu-latest
+    container:
+        image: epitechcontent/epitest-docker:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Building project
+        timeout-minutes: 2
+        run: make warning
+      - name: Clean
+        run: make clean
+ 
+  run_tests:
+    needs: [check_program_compilation]
+    runs-on: ubuntu-latest
+    container:
+        image: epitechcontent/epitest-docker:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Launch unit tests
+        timeout-minutes: 2
+        run: make tests_run

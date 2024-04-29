@@ -2,15 +2,16 @@
 ** EPITECH PROJECT, 2024
 ** my_rpg
 ** File description:
-** main
+** laucking error
 */
 
+#include <stdlib.h>
+#include <stdbool.h>
 #include "macro.h"
-#include "launcher.h"
 
-int main(int, char **, char **env)
+int env_verification(char **)
 {
-    if (launcher(env) == EXIT_ERROR) {
+    if (getenv("DISPLAY") == NULL) {
         return EXIT_ERROR;
     }
     return EXIT_SUCCESS;

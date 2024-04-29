@@ -1,0 +1,7 @@
+[PLAYER]
+TEXT-CONTENT = "test"
+TEXT-FONT = "assets/font/Milker.otf"
+TEXT-SIZE = 42
+DRAW-TEXTURE = "./assets/sprites/player.png"
+DRAW-SIZE_X = 10
+DRAW-SIZE_Y = 10
