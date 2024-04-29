@@ -5,8 +5,13 @@
 ** init_type
 */
 
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <sys/stat.h>
+#include <unistd.h>
 #include "macro.h"
 #include "my_toml.h"
 #include "components.h"
@@ -37,9 +42,9 @@ int obj_to_components(entity_system_t *es, obj_t *obj, int entity)
     return EXIT_SUCCESS;
 }
 
-int add_entities_type(entity_system_t *es, entity_t type)
+int add_entities_from_path(entity_system_t *es, char const *filepath)
 {
-    char **content = read_file(ENTITY_TYPE_CREATER[type]);
+    char **content = read_file(filepath);
     obj_t **obj_tab = NULL;
     int offset = 0;
 
@@ -85,10 +90,8 @@ entity_system_t *init_entity_system(entity_system_t *es)
     if (!init_component_vector(es, sizeof(vec_t))) {
         return NULL;
     }
-    for (entity_t i = 0; i < LAST_ENTITY; i++) {
-        if (add_entities_type(es, i) == EXIT_ERROR) {
-            return NULL;
-        }
+    if (search_for_config_files(ENTITY_DIRECTORY_PATH, es) == EXIT_ERROR) {
+        return NULL;
     }
     return es;
 }

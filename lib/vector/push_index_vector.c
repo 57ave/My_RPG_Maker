@@ -38,7 +38,7 @@ vec_t *push_index_vector(
         vec->capacity *= 2;
     }
     fill_null_data(vec, index);
-    vec->size = (vec->size > index) ? index : vec->size;
+    vec->size = (vec->size > index) ? vec->size : index;
     tmp_data = (void **)vec->data;
     tmp_data[index] = data;
     return vec;

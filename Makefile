@@ -45,6 +45,7 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/components/init_damage.c	\
 			src/ecs/isolate_entities.c	\
 			src/ecs/systems/drawing_system.c	\
+			src/ecs/read_config.c
 
 SRC_MAIN = 	src/main.c
 
@@ -84,9 +85,8 @@ asan: re
 debug: CFLAGS += -ggdb3
 debug: re
 
-warning:
-	CFLAGS += -Werror
-	re
+warning: CFLAGS += -Werror
+warning: re
 
 re: fclean
 re: all
