@@ -12,11 +12,12 @@
 
 int get_type_string(char *line, int *idx)
 {
-    if (line[*idx] == '"') {
+    printf("in type_string line[idx] >%c, ref >%c\n", line[*idx], STRING_CHAR);
+    if (line[*idx] == STRING_CHAR) {
         *idx += 1;
         return CHAR_PTR;
     }
-    return EXIT_ERROR;
+    return -1;
 }
 
 char *get_value_string(char *line)
