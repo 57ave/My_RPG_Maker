@@ -61,18 +61,18 @@ int add_entities_type(entity_system_t *es, entity_t type)
     return EXIT_SUCCESS;
 }
 
-static vec_t *init_component_vector(entity_system_t *es, unsigned long size)
+static vec_t **init_component_vector(entity_system_t *es, unsigned long size)
 {
-    es->components = init_vector(es->components, size);
+    es->components = calloc(sizeof(vec_t *), NB_OF_COMPONENT);
     if (!es->components)
         return NULL;
     for (size_t i = 0; i < NB_OF_COMPONENT; ++i) {
-        es->components[i].data = calloc(sizeof(vec_t), 1);
-        if (!es->components[i].data)
+        es->components[i] = calloc(size, 1);
+        if (!es->components[i])
             return NULL;
-        es->components[i].data = init_vector(es->components[i].data,
-            COMPONENT_INIT_DATA[i].size);
-        if (!es->components[i].data)
+        es->components[i] = init_vector(es->components[i],
+            COMPONENT_INIT_DATA->size);
+        if (!es->components[i])
             return NULL;
     }
     return es->components;
