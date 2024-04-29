@@ -60,7 +60,7 @@ void *get_value_int(char *line);
 
 int get_type_tab(char *line, int *idx);
 
-void *get_value_tab(char *line, int *type);
+void *get_value_tab(char *line, char *type);
 
 int go_to_char_skip(char *line, int *idx, char end);
 
