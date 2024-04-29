@@ -10,9 +10,16 @@
 
     #include "stddef.h"
 
+    #define STRING_CHAR '"'
+    #define INT_CHARS "1234567890-"
+    #define TAB_CHAR '{'
+
 typedef enum type_e {
     INT = 0,
-    CHAR_PTR
+    CHAR_PTR,
+    TAB,
+    INT_TAB,
+    CHAR_PTR_TAB
 } type_t;
 
     #define SIZE_MENU 2
@@ -42,5 +49,19 @@ obj_t *pull_obj(obj_t **obj_tab, char const *name);
 void free_obj(obj_t **obj);
 
 void free_data(data_t **data);
+
+int get_type_string(char *line, int *idx);
+
+char *get_value_string(char *line);
+
+int get_type_int(char *line, int *idx);
+
+void *get_value_int(char *line);
+
+int get_type_tab(char *line, int *idx);
+
+void *get_value_tab(char *line, char *type);
+
+int go_to_char_skip(char *line, int *idx, char end);
 
 #endif /* !MY_TOML_H_ */

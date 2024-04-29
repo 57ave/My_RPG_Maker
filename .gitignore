@@ -15,6 +15,12 @@ vgcore.*
 my_rpg
 unit_tests
 
+#library
+libmy.a
+
+#VScode file
+.vscode
+
 #Test file
 *.gcno
 *.gcda

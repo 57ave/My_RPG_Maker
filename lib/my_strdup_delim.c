@@ -13,6 +13,9 @@ size_t my_len_to_delim(char *str, char delim)
 {
     size_t len = 0;
 
+    if (str == NULL || *str == '\0') {
+        return -1;
+    }
     while (str[len] != '\0') {
         if (str[len + 1] == delim) {
             return len + 1;
@@ -24,9 +27,13 @@ size_t my_len_to_delim(char *str, char delim)
 
 char *my_strdup_delim(char *str, char delim)
 {
-    char *new_str = malloc(sizeof(char) * (my_len_to_delim(str, delim) + 1));
+    int len = my_len_to_delim(str, delim);
+    char *new_str = NULL;
     int i = 0;
 
+    if (len < 0)
+        return NULL;
+    new_str = malloc(sizeof(char) * (len + 1));
     if (new_str == NULL)
         return NULL;
     for (i = 0; str[i] != delim && str[i] != '\0'; i++) {
