@@ -34,4 +34,6 @@ char *int_to_ascii(int nb);
 
 size_t my_strlen(char *str);
 
+char **my_stwa(char *str, char *delim);
+
 #endif /* !MY_LIB_H_ */
