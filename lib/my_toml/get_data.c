@@ -27,17 +27,19 @@ static int get_type(char *line, int *idx)
         return EXIT_ERROR;
     }
     for (; line[*idx] != '\0'; *idx += 1) {
-        if (get_type_string(line, idx) == CHAR_PTR)
+        if (get_type_string(line, idx) == CHAR_PTR) {
             return CHAR_PTR;
+        }
         if (get_type_int(line, idx) == INT)
             return INT;
-        if (get_type_tab(line, idx) == TAB)
+        if (get_type_tab(line, idx) == TAB) {
             return TAB;
+        }
     }
     return EXIT_ERROR;
 }
 
-static void *get_data_value(char *line, int *type)
+static void *get_data_value(char *line, char *type)
 {
     if (*type == INT)
         return get_value_int(line);
@@ -55,7 +57,7 @@ data_t *get_data_struct(char *line)
 
     data->name = my_strdup_delim(line, ' ');
     data->type = get_type(line, &idx);
-    data->data = get_data_value(&line[idx], (int *)&data->type);
+    data->data = get_data_value(&line[idx], (char *)&data->type);
     return data;
 }
 

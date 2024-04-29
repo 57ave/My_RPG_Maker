@@ -13,13 +13,12 @@
 int get_type_tab(char *line, int *idx)
 {
     if (line[*idx] == TAB_CHAR) {
-        (*idx)++;
         return TAB;
     }
     return EXIT_ERROR;
 }
 
-static int get_type_in_tab(char **line_parse, int *type)
+static int get_type_in_tab(char **line_parse, char *type)
 {
     for (int i = 0; line_parse[0][i] != '\0'; i++) {
         if (get_type_int(line_parse[0], &i) == INT) {
@@ -44,15 +43,15 @@ void skip_char(char *string, int *i, char to_skip)
     }
 }
 
-static int add_elem(void **tab, char *word, int type, int i)
+static void **add_elem(void **tab, char *word, char type, int i)
 {
     size_t size = (type == INT_TAB) ? sizeof(int *) : sizeof(char *);
     int idx = 0;
     int *int_tmp;
 
-    tab = my_realloc(tab, size * (i + 1), size * (i + 2));
+    tab = my_realloc(tab, size * (i + 2), size * (i + 1));
     if (tab == NULL) {
-        return EXIT_ERROR;
+        return NULL;
     }
     if (type == INT_TAB) {
         int_tmp = calloc(sizeof(int), 1);
@@ -61,16 +60,17 @@ static int add_elem(void **tab, char *word, int type, int i)
         tab[i + 1] = NULL;
     } else {
         go_to_char_skip(word, &idx, '"');
+        idx++;
         tab[i] = my_strdup_delim(&word[idx], '"');
         tab[i + 1] = NULL;
     }
-    return EXIT_SUCCESS;
+    return tab;
 }
 
-void *get_value_tab(char *line, int *type)
+void *get_value_tab(char *line, char *type)
 {
-    void **tab = my_calloc(sizeof(void *));
-    char **line_parse = my_stwa(line, ",}");
+    void **tab = NULL;
+    char **line_parse = my_stwa(line, ",");
     int i_word = 0;
 
     if (line_parse == NULL || line_parse[0] == NULL)
@@ -79,7 +79,10 @@ void *get_value_tab(char *line, int *type)
         return NULL;
     for (int i = 0; line_parse[i] != NULL; i++) {
         skip_char(line_parse[i], &i_word, ' ');
-        if (add_elem(tab, &line_parse[i][i_word], *type, i) == EXIT_ERROR)
+        if (line_parse[i][i_word] == '}')
+            return tab;
+        tab = add_elem(tab, &line_parse[i][i_word], *type, i);
+        if (tab == NULL)
             return NULL;
         i_word = 0;
         free(line_parse[i]);
