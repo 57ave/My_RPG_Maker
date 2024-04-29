@@ -19,6 +19,7 @@
     #include "game_mode_component.h"
     #include "temporary_component.h"
     #include "damage_component.h"
+    #include "animation_component.h"
     #include "ecs.h"
 
 entity_system_t *init_entity_system(entity_system_t *es);
@@ -34,6 +35,7 @@ typedef enum component_e {
     GAME_MODE,
     TEMPORARY,
     DAMAGE,
+    ANIMATION,
     LAST_COMPONENT
 } component_t;
 
@@ -69,6 +71,8 @@ int init_component_game_mode(entity_system_t *es, obj_t *,
 int init_component_temporary(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
 int init_component_damage(entity_system_t *es,
+    obj_t *obj, component_t type, int entity);
+int init_component_animation(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
 
 static const component_data_t COMPONENT_INIT_DATA[] = {
@@ -106,6 +110,10 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     {
         "DAMAGE", DAMAGE, &init_component_damage,
         sizeof(c_damage_t)
+    },
+    {
+        "ANIMATION", ANIMATION, &init_component_animation,
+        sizeof(c_animation_t)
     }
 };
 
