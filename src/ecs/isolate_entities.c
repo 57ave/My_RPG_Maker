@@ -30,7 +30,7 @@ static bool check_components(entity_system_t *es,
     vec_t *component = NULL;
 
     for (size_t i = 0; i < nb_of_filters; ++i) {
-        component = (vec_t *)(es->components[filters[i]].data);
+        component = es->components[filters[i]];
         if (((void **)(component->data))[index] == NULL)
             return false;
     }
