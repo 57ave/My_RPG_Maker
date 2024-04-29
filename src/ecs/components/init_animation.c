@@ -19,7 +19,7 @@ static int init_rect(c_animation_t *animation_component, obj_t *obj)
     }
     for (i = 0; rect[i] != NULL; i++);
     if (i != 4) {
-        return  EXIT_ERROR;
+        return EXIT_ERROR;
     }
     animation_component->initial_rect = {
         *(rect[0]), *(rect[1]), *(rect[2]), *(rect[3])};
@@ -43,13 +43,12 @@ static init_animation_data(c_animation_t *animation_component, obj_t *obj)
     *nb_frame = animation_component->nb_frame;
     *next_line_frame = animation_component->next_line_frame;
     return EXIT_SUCCESS;
-
 }
 
 int init_component_animation(entity_system_t *es, obj_t *obj,
     component_t type, int entity)
 {
-   c_animation_t *animation_component = calloc(sizeof(c_animation_t), 1);
+    c_animation_t *animation_component = calloc(sizeof(c_animation_t), 1);
 
     if (init_rect(animation_component, obj) == EXIT_ERROR)
         return EXIT_ERROR;
