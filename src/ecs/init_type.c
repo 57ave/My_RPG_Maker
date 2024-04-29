@@ -60,9 +60,7 @@ int add_entities_from_path(entity_system_t *es, char const *filepath)
             sizeof(int) * (es->nb_of_entities + 1));
         if (es->entity_indexes == NULL)
             return EXIT_ERROR;
-        printf("entity >%i, es->nb_of_entities > %i\n", entity, es->nb_of_entities);
         es->entity_indexes[es->nb_of_entities] = entity;
-        printf("entity->index >%i\n", es->entity_indexes[es->nb_of_entities]);
         es->nb_of_entities += 1;
     }
     return EXIT_SUCCESS;
