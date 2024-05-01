@@ -58,14 +58,13 @@ static size_t get_obj_size(char **content, int line_offset)
 void get_object_values(char **content, int *line_offset, obj_t *obj, int *err)
 {
     size_t idx = 0;
-
     size_t total_size = *line_offset;
 
     obj->obj_size = get_obj_size(content, *line_offset);
     if (obj->obj_size == 0) {
         *err = -1;
         return;
-}
+    }
     total_size += obj->obj_size;
     obj->data = malloc(sizeof(data_t *) * (obj->obj_size + 1));
     if (obj->obj_size == 0 || obj->data == NULL) {
