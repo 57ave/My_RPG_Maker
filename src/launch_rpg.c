@@ -6,6 +6,7 @@
 */
 
 #include <SFML/Graphics.h>
+#include <SFML/System.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include "components.h"
@@ -28,14 +29,54 @@ sfRenderWindow *init_window(char *name, int length, int higth, int frame)
     return wnd;
 }
 
+static void handle_event(sfRenderWindow *wnd,
+    sfEvent *event, entity_system_t *es)
+{
+    c_velocity_t *player_velocity = (c_velocity_t *)
+        (((void **)(((vec_t *)
+        (es->components[VELOCITY]))->data))[es->player]);
+
+    if (event->type == sfEvtClosed) {
+        sfRenderWindow_close(wnd);
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyZ)) {
+        player_velocity->velocity.y -= 1;
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyS)) {
+        player_velocity->velocity.y += 1;
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyQ)) {
+        player_velocity->velocity.x -= 1;
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyD)) {
+        player_velocity->velocity.x += 1;
+    }
+}
+
+static void reset_player_velocity(entity_system_t *es)
+{
+    c_velocity_t *player_velocity = (c_velocity_t *)
+        (((void **)(((vec_t *)
+        (es->components[VELOCITY]))->data))[es->player]);
+
+    player_velocity->velocity.x = 0;
+    player_velocity->velocity.y = 0;
+}
+
 static void start_window(entity_system_t *es)
 {
     sfRenderWindow *wnd = init_window("my_rpg", 500, 500, 30);
+    sfEvent event;
 
     while (sfRenderWindow_isOpen(wnd)) {
+        move_entities(es);
         draw_entities(es, wnd);
         sfRenderWindow_display(wnd);
         sfRenderWindow_clear(wnd, sfBlack);
+        reset_player_velocity(es);
+        while (sfRenderWindow_pollEvent(wnd, &event)) {
+            handle_event(wnd, &event, es);
+        }
     }
 }
 

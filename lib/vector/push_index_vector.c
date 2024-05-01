@@ -9,7 +9,7 @@
 #include "my_lib.h"
 #include <stdlib.h>
 
-void fill_null_data(vec_t *vec, size_t index)
+static void fill_null_data(vec_t *vec, size_t index)
 {
     void **tmp_data = (void **)vec->data;
 

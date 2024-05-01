@@ -5,6 +5,7 @@
 ** init _animation
 */
 
+#include <stdlib.h>
 #include "macro.h"
 #include "components.h"
 #include "my_toml.h"
@@ -21,7 +22,7 @@ static int init_rect(c_animation_t *animation_component, obj_t *obj)
     if (i != 4) {
         return EXIT_ERROR;
     }
-    animation_component->initial_rect = {
+    animation_component->initial_rect = (sfIntRect){
         *(rect[0]), *(rect[1]), *(rect[2]), *(rect[3])};
 }
 

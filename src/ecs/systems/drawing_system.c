@@ -26,4 +26,5 @@ void draw_entities(entity_system_t *es, sfRenderWindow *wnd)
         sfSprite_setPosition(tmp_draw->sprite, tmp_pos->pos);
         sfRenderWindow_drawSprite(wnd, tmp_draw->sprite, NULL);
     }
+    free_filter(filter);
 }
