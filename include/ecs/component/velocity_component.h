@@ -8,7 +8,10 @@
 #pragma once
 
 #include <SFML/System/Vector2.h>
+#include <SFML/System/Clock.h>
 
 typedef struct velocity_s {
     sfVector2f velocity;
+    sfVector2f speed;
+    sfClock *clock;
 } c_velocity_t;

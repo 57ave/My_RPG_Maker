@@ -23,8 +23,8 @@ void move_entities(entity_system_t *es)
             ((void **)component_pos->data)[filter->indexes[i]];
         tmp_vel = (c_velocity_t *)
             ((void **)component_vel->data)[filter->indexes[i]];
-        tmp_pos->pos.x += tmp_vel->velocity.x;
-        tmp_pos->pos.y += tmp_vel->velocity.y;
+        tmp_pos->pos.x += tmp_vel->speed.x;
+        tmp_pos->pos.y += tmp_vel->speed.y;
     }
     free_filter(filter);
 }

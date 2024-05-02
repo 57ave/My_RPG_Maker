@@ -40,6 +40,13 @@ int init_component_velocity(entity_system_t *es,
         free(new_component);
         return EXIT_ERROR;
     }
+    new_component->speed.x = 0;
+    new_component->speed.y = 0;
+    new_component->clock = sfClock_create();
+    if (new_component->clock == NULL) {
+        free(new_component);
+        return EXIT_ERROR;
+    }
     if (init_components(es, (void *)new_component, type, entity) == EXIT_ERROR)
         return EXIT_ERROR;
     return EXIT_SUCCESS;
