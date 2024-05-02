@@ -18,3 +18,4 @@ typedef struct entity_filter_s {
 
 entity_filter_t *filter_entities(size_t nb_of_filters,
     entity_system_t *es, ...);
+void free_filter(entity_filter_t *filter);

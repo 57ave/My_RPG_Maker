@@ -43,9 +43,12 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/components/init_temporary.c	\
 			src/ecs/components/init_text.c	\
 			src/ecs/components/init_damage.c	\
+			src/ecs/components/init_animation.c 	\
 			src/ecs/isolate_entities.c	\
 			src/ecs/systems/drawing_system.c	\
-			src/ecs/read_config.c
+			src/ecs/read_config.c	\
+			src/free/free_filter.c	\
+			src/ecs/systems/mooving_system.c	\
 
 SRC_MAIN = 	src/main.c
 

@@ -11,3 +11,4 @@
     #include "ecs.h"
 
 void draw_entities(entity_system_t *es, sfRenderWindow *wnd);
+void move_entities(entity_system_t *es);

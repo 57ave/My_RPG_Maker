@@ -11,7 +11,7 @@
 int main(int, char **, char **env)
 {
     if (launcher(env) == EXIT_ERROR) {
-        return EXIT_ERROR;
+        return EXIT_FAIL;
     }
     return EXIT_SUCCESS;
 }
