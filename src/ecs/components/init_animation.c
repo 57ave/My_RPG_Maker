@@ -24,9 +24,10 @@ static int init_rect(c_animation_t *animation_component, obj_t *obj)
     }
     animation_component->initial_rect = (sfIntRect){
         *(rect[0]), *(rect[1]), *(rect[2]), *(rect[3])};
+    return EXIT_SUCCESS;
 }
 
-static init_animation_data(c_animation_t *animation_component, obj_t *obj)
+static int init_animation_data(c_animation_t *animation_component, obj_t *obj)
 {
     int *x_add = NULL;
     int *y_add = NULL;
