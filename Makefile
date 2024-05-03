@@ -48,7 +48,7 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/systems/drawing_system.c	\
 			src/ecs/read_config.c	\
 			src/free/free_filter.c	\
-			src/ecs/systems/mooving_system.c	\
+			src/ecs/systems/moving_system.c	\
 
 SRC_MAIN = 	src/main.c
 

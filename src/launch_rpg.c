@@ -9,6 +9,7 @@
 #include <SFML/System.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "components.h"
 #include "macro.h"
 #include "launcher.h"
@@ -17,9 +18,9 @@
 #include "filter_entity.h"
 #include "systems.h"
 
-sfRenderWindow *init_window(char *name, int length, int higth, int frame)
+sfRenderWindow *init_window(char *name, int length, int hight, int frame)
 {
-    sfVideoMode node = {length, higth, 100};
+    sfVideoMode node = {length, hight, 100};
     sfRenderWindow *wnd = NULL;
 
     wnd = sfRenderWindow_create(node, name, 4 | 2, NULL);
@@ -82,12 +83,14 @@ static void set_view(entity_system_t *es, sfView *view)
     sfView_setCenter(view, (sfVector2f){player_pos->pos.x + 25, player_pos->pos.y + 25});
 }
 
-static void start_window(entity_system_t *es)
+static bool start_window(entity_system_t *es)
 {
     sfRenderWindow *wnd = init_window("my_rpg", 500, 500, 18);
     sfView *view = sfView_createFromRect((sfFloatRect){0, 0, 400, 400});
     sfEvent event;
 
+    if (!view || !wnd)
+        return false;
     while (sfRenderWindow_isOpen(wnd)) {
         sfRenderWindow_setView(wnd, view);
         set_view(es, view);
@@ -101,6 +104,7 @@ static void start_window(entity_system_t *es)
         }
         reset_player_velocity(es);
     }
+    return true;
 }
 
 static int test(void)
@@ -112,8 +116,8 @@ static int test(void)
     if (tmp == NULL) {
         return EXIT_ERROR;
     }
-    if (!start_window(tmp));
-    return EXIT_ERROR;
+    if (!start_window(tmp))
+        return EXIT_ERROR;
     return EXIT_SUCCESS;
 }
 
