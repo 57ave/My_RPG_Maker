@@ -101,9 +101,8 @@ static bool start_window(entity_system_t *es)
         draw_entities(es, wnd);
         sfRenderWindow_display(wnd);
         sfRenderWindow_clear(wnd, sfBlack);
-        while (sfRenderWindow_pollEvent(wnd, &event)) {
+        while (sfRenderWindow_pollEvent(wnd, &event))
             handle_event(wnd, &event, es);
-        }
         reset_player_velocity(es);
     }
     return true;
