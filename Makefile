@@ -52,6 +52,7 @@ SRC 	=	src/launch_rpg.c \
 			src/free/free_filter.c	\
 			src/ecs/systems/moving_system.c	\
 			src/ecs/systems/interaction_zone_system.c	\
+			src/ecs/systems/aggro_system.c	\
 
 SRC_MAIN = 	src/main.c
 

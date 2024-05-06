@@ -55,7 +55,7 @@ static void catch_keys(entity_system_t *es)
         (es->components[VELOCITY]))->data))[es->player]);
     sfInt64 time = (sfTime_asMicroseconds(
         sfClock_getElapsedTime(player_velocity->clock)));
-  
+
     if (sfKeyboard_isKeyPressed(sfKeyD))
         player_velocity->speed.x +=
             (time * player_velocity->velocity.x) / 100000;
@@ -80,13 +80,14 @@ static void set_view(entity_system_t *es, sfView *view)
         (((void **)(((vec_t *)
         (es->components[DRAW]))->data))[es->player]);
 
-    sfView_setCenter(view, (sfVector2f){player_pos->pos.x + 25, player_pos->pos.y + 25});
+    sfView_setCenter(view, (sfVector2f)
+        {player_pos->pos.x + 25, player_pos->pos.y + 25});
 }
 
 static bool start_window(entity_system_t *es)
 {
-    sfRenderWindow *wnd = init_window("my_rpg", 500, 500, 18);
-    sfView *view = sfView_createFromRect((sfFloatRect){0, 0, 400, 400});
+    sfRenderWindow *wnd = init_window("my_rpg", 1920, 1080, 18);
+    sfView *view = sfView_createFromRect((sfFloatRect){0, 0, 400, 225});
     sfEvent event;
 
     if (!view || !wnd)
@@ -96,6 +97,7 @@ static bool start_window(entity_system_t *es)
         set_view(es, view);
         catch_keys(es);
         move_entities(es);
+        aggro_entities(es);
         draw_entities(es, wnd);
         sfRenderWindow_display(wnd);
         sfRenderWindow_clear(wnd, sfBlack);

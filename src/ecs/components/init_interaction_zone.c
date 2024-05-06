@@ -16,7 +16,7 @@ int init_component_interaction_zone(entity_system_t *es,
     obj_t *obj, component_t type, int entity)
 {
     c_interaction_zone_t *new_component =
-    calloc(sizeof(c_interaction_zone_t), 1);
+        calloc(sizeof(c_interaction_zone_t), 1);
     int *radius = (int *)pull_data(obj, "INTERACTION_ZONE-RADIUS");
 
     if (!new_component || !radius)
