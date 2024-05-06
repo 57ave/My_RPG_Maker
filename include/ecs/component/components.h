@@ -19,7 +19,7 @@
     #include "game_mode_component.h"
     #include "temporary_component.h"
     #include "damage_component.h"
-    #include "animation_component.h"
+    // #include "animation_component.h"
     #include "interaction_zone_component.h"
     #include "ecs.h"
 
@@ -36,7 +36,7 @@ typedef enum component_e {
     GAME_MODE,
     TEMPORARY,
     DAMAGE,
-    ANIMATION,
+    // ANIMATION,
     INTERACTION_ZONE,
     LAST_COMPONENT
 } component_t;
@@ -74,8 +74,8 @@ int init_component_temporary(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
 int init_component_damage(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
-int init_component_animation(entity_system_t *es,
-    obj_t *obj, component_t type, int entity);
+// int init_component_animation(entity_system_t *es,
+//     obj_t *obj, component_t type, int entity);
 int init_component_interaction_zone(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
 
@@ -115,10 +115,10 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
         "DAMAGE", DAMAGE, &init_component_damage,
         sizeof(c_damage_t)
     },
-    {
-        "ANIMATION", ANIMATION, &init_component_animation,
-        sizeof(c_animation_t)
-    },
+    // {
+    //     "ANIMATION", ANIMATION, &init_component_animation,
+    //     sizeof(c_animation_t)
+    // },
     {
         "INTERACTION_ZONE", INTERACTION_ZONE, &init_component_interaction_zone,
         sizeof(c_interaction_zone_t)

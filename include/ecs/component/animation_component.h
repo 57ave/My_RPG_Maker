@@ -29,5 +29,5 @@ typedef struct animation_component {
     direction_t direction;
     struct anim_data move_multidir[END_DIRECTION];
     struct anim_data attack_multidir[END_DIRECTION];
-    struct anim_data
+    struct anim_data a;
 } c_animation_t;
