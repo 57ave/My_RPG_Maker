@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** moving system
 ** File description:
-** mooving system
+** moving system
 */
 
 #include <SFML/System.h>
