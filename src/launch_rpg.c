@@ -38,16 +38,6 @@ static void handle_event(sfRenderWindow *wnd,
     }
 }
 
-static void reset_player_velocity(entity_system_t *es)
-{
-    c_velocity_t *player_velocity = (c_velocity_t *)
-        (((void **)(((vec_t *)
-        (es->components[VELOCITY]))->data))[es->player]);
-
-    player_velocity->speed.x = 0;
-    player_velocity->speed.y = 0;
-}
-
 static void catch_keys(entity_system_t *es)
 {
     c_velocity_t *player_velocity = (c_velocity_t *)
@@ -96,14 +86,13 @@ static bool start_window(entity_system_t *es)
         sfRenderWindow_setView(wnd, view);
         set_view(es, view);
         catch_keys(es);
-        move_entities(es);
         aggro_entities(es);
+        move_entities(es);
         draw_entities(es, wnd);
         sfRenderWindow_display(wnd);
         sfRenderWindow_clear(wnd, sfBlack);
         while (sfRenderWindow_pollEvent(wnd, &event))
             handle_event(wnd, &event, es);
-        reset_player_velocity(es);
     }
     return true;
 }

@@ -33,33 +33,23 @@ static void aggro_move_direction(entity_system_t *es,
         ((time * entity_vel->velocity.y) / 100000);
 }
 
-static void reset_entities_velocity(c_velocity_t *velocity_entity)
-{
-    velocity_entity->speed.x = 0;
-    velocity_entity->speed.y = 0;
-    sfClock_restart(velocity_entity->clock);
-}
-
 void aggro_entities(entity_system_t *es)
 {
     entity_filter_t *filter = filter_entities(4, es, VELOCITY, POSITION,
-    DAMAGE, INTERACTION_ZONE);
-    vec_t *component_pos = (vec_t *)(es->components[POSITION]);
+        DAMAGE, INTERACTION_ZONE);
     vec_t *component_vel = (vec_t *)(es->components[VELOCITY]);
-    c_position_t *tmp_pos = NULL;
+    vec_t *component_pos = (vec_t *)(es->components[POSITION]);
     c_velocity_t *tmp_vel = NULL;
+    c_position_t *tmp_pos = NULL;
 
     for (int i = 0; i < filter->number; ++i) {
         tmp_vel = (c_velocity_t *)
             ((void **)component_vel->data)[filter->indexes[i]];
+        tmp_pos = (c_position_t *)
+        ((void **)component_pos->data)[filter->indexes[i]];
         if (interaction_zone_entities(es, filter->indexes[i])) {
-            tmp_pos = (c_position_t *)
-                ((void **)component_pos->data)[filter->indexes[i]];
             aggro_move_direction(es, tmp_vel, tmp_pos);
-            tmp_pos->pos.x += tmp_vel->speed.x;
-            tmp_pos->pos.y += tmp_vel->speed.y;
         }
-        reset_entities_velocity(tmp_vel);
     }
     free_filter(filter);
 }
