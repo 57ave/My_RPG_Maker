@@ -99,14 +99,14 @@ static bool start_window(entity_system_t *es)
 
 static int test(void)
 {
-    entity_system_t *tmp = calloc(sizeof(entity_system_t), 1);
+    entity_system_t *es = calloc(sizeof(entity_system_t), 1);
 
-    tmp->components = calloc(sizeof(vec_t), 1);
-    tmp = init_entity_system(tmp);
-    if (tmp == NULL) {
+    es->components = calloc(sizeof(vec_t), 1);
+    es = init_entity_system(es);
+    if (es == NULL) {
         return EXIT_ERROR;
     }
-    if (!start_window(tmp))
+    if (!start_window(es))
         return EXIT_ERROR;
     return EXIT_SUCCESS;
 }
