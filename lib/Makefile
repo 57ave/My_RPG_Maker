@@ -25,6 +25,7 @@ SRC =	my_realloc.c 	\
 		my_strcat.c \
 		my_stwa.c 	\
 		my_int_to_ascii.c 	\
+		cat_strings.c 	\
 		my_toml/open_toml.c \
 		my_toml/get_objects.c 	\
 		my_toml/get_data.c 	\
