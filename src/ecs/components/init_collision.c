@@ -49,7 +49,8 @@ int init_component_collision(entity_system_t *es, obj_t *obj,
     if (!new_component || !collision_type)
         return EXIT_ERROR;
     new_component->type = *collision_type;
-    set_collision_shape(new_component, obj);
+    if (set_collision_shape(new_component, obj) == EXIT_ERROR)
+        return EXIT_ERROR;
     if (init_components(es, (void *)new_component, type, entity) == EXIT_ERROR)
         return EXIT_ERROR;
     return EXIT_SUCCESS;
