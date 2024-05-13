@@ -33,6 +33,8 @@ SRC_TEST = 	tests/vector/init_test.c 	\
 			tests/vector/push_index_test.c
 
 SRC 	=	src/launch_rpg.c \
+			src/system_loop.c \
+			src/event_loop.c \
 			src/lauching_error_handling.c \
 			src/ecs/init_type.c 	\
 			src/ecs/components/init_component.c	\
@@ -52,6 +54,7 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/systems/moving_system.c	\
 			src/ecs/systems/interaction_zone_system.c	\
 			src/ecs/systems/aggro_system.c	\
+			src/ecs/systems/random_move_system.c	\
 
 SRC_MAIN = 	src/main.c
 

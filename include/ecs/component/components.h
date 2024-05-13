@@ -27,7 +27,7 @@ entity_system_t *init_entity_system(entity_system_t *es);
 
 typedef enum component_e {
     POSITION = 0,
-    HEALTH,
+    DAMAGE,
     VELOCITY,
     DRAW,
     TEXT,
@@ -35,7 +35,7 @@ typedef enum component_e {
     // MOUSE_PRESSED,
     GAME_MODE,
     TEMPORARY,
-    DAMAGE,
+    HEALTH,
     // ANIMATION,
     INTERACTION_ZONE,
     LAST_COMPONENT
@@ -81,19 +81,20 @@ int init_component_interaction_zone(entity_system_t *es,
 
 static const component_data_t COMPONENT_INIT_DATA[] = {
     {
-        "POSITION", POSITION, &init_component_position, sizeof(c_position_t)
+        "POSITION", POSITION, &init_component_position, sizeof(c_position_t *)
     },
     {
-        "HEALTH", HEALTH, &init_component_health, sizeof(c_health_t)
+        "DAMAGE", DAMAGE, &init_component_damage,
+        sizeof(c_damage_t *)
     },
     {
-        "VELOCITY", VELOCITY, &init_component_velocity, sizeof(c_velocity_t)
+        "VELOCITY", VELOCITY, &init_component_velocity, sizeof(c_velocity_t *)
     },
     {
-        "DRAW", DRAW, &init_component_draw, sizeof(c_draw_t)
+        "DRAW", DRAW, &init_component_draw, sizeof(c_draw_t *)
     },
     {
-        "TEXT", TEXT, &init_component_text, sizeof(c_text_t)
+        "TEXT", TEXT, &init_component_text, sizeof(c_text_t *)
     },
     // {
     //     "KEY_PRESSED", KEY_PRESSED, &init_component_key_pressed,
@@ -105,15 +106,14 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     // },
     {
         "GAME_MODE", GAME_MODE, &init_component_game_mode,
-        sizeof(c_game_mode_t)
+        sizeof(c_game_mode_t *)
     },
     {
         "TEMPORARY", TEMPORARY, &init_component_temporary,
-        sizeof(c_temporary_t)
+        sizeof(c_temporary_t *)
     },
     {
-        "DAMAGE", DAMAGE, &init_component_damage,
-        sizeof(c_damage_t)
+        "HEALTH", HEALTH, &init_component_health, sizeof(c_health_t *)
     },
     // {
     //     "ANIMATION", ANIMATION, &init_component_animation,
@@ -121,7 +121,7 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     // },
     {
         "INTERACTION_ZONE", INTERACTION_ZONE, &init_component_interaction_zone,
-        sizeof(c_interaction_zone_t)
+        sizeof(c_interaction_zone_t *)
     }
 };
 

@@ -15,3 +15,4 @@ void draw_entities(entity_system_t *es, sfRenderWindow *wnd);
 void move_entities(entity_system_t *es);
 bool interaction_zone_entities(entity_system_t *es, int index);
 void aggro_entities(entity_system_t *es);
+void random_move_entities(entity_system_t *es);
