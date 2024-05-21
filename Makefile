@@ -59,6 +59,7 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/systems/random_move_system.c	\
 			src/ecs/systems/moving_system.c	\
 			src/ecs/systems/warp_system.c	\
+			src/ecs/systems/collision_system.c	\
 			src/map_parsing/get_char_map.c	\
 			src/map_parsing/get_map.c	\
 			src/map_parsing/init_floor_possibilities.c	\
