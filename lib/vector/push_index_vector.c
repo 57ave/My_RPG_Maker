@@ -9,16 +9,11 @@
 #include "my_lib.h"
 #include <stdlib.h>
 
-static void fill_null_data(vec_t *vec, size_t index)
+static void fill_null_data(vec_t *vec)
 {
     void **tmp_data = (void **)vec->data;
 
-    if (index <= vec->size) {
-        return;
-    }
-    for (size_t i = vec->size + 1; i < (vec->size * 2); i++) {
-        if (i == index)
-            continue;
+    for (size_t i = vec->capacity; i < (vec->capacity * 2); i++) {
         tmp_data[i] = NULL;
     }
 }
@@ -36,9 +31,9 @@ vec_t *push_index_vector(
         if (vec->data == NULL) {
             return NULL;
         }
+        fill_null_data(vec);
         vec->capacity *= 2;
     }
-    fill_null_data(vec, index);
     vec->size = (vec->size > index) ? vec->size : index;
     tmp_data = (void **)vec->data;
     tmp_data[index] = data;

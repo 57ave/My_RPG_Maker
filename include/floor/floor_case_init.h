@@ -23,6 +23,6 @@ static const tailed_init_t FLOOR_INIT[] = {
 };
 
 static const size_t FLOOR_INIT_SIZE =
-sizeof(FLOOR_INIT) / sizeof(tailed_init_t); 
+sizeof(FLOOR_INIT) / sizeof(tailed_init_t);
 
 #endif
