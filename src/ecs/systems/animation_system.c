@@ -64,7 +64,7 @@ void animation_entities(entity_system_t *es, entity_filter_t *filter)
     for (int i = 0; i < filter->number; ++i) {
         tmp_anim = (c_animation_t *)
             ((void **)component_animation->data)[filter->indexes[i]];
-        if (sfClock_getElapsedTime(tmp_anim->clock).microseconds >= ANIM_TIME) {
+        if (sfClock_getElapsedTime(tmp_anim->clock).microseconds > ANIM_TIME) {
             tmp_draw = (c_draw_t *)
                 ((void **)component_draw->data)[filter->indexes[i]];
             dir = get_dir(es, filter, i);
