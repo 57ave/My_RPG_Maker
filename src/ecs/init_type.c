@@ -61,22 +61,22 @@ static int set_vector_size(entity_system_t *es, int index)
 int add_entities_from_path(entity_system_t *es, char const *filepath)
 {
     char **content = read_file(filepath);
-    obj_t **obj_tab = NULL;
+    obj_t **obs = NULL;
     int offset = 0;
 
-    obj_tab = get_object(content, &offset, obj_tab);
-    if (obj_tab == NULL)
+    obs = get_object(content, &offset, obs);
+    if (obs == NULL)
         return EXIT_ERROR;
-    for (int entity = 0; obj_tab[entity] != NULL; entity++) {
-        if (obj_to_components(es, obj_tab[entity], entity) == EXIT_ERROR) {
-            free_obj(obj_tab);
+    for (int i = 0; obs[i] != NULL; i++) {
+        if (obj_to_components(es, obs[i], es->nb_of_entities) == EXIT_ERROR) {
+            free_obj(obs);
             return EXIT_ERROR;
         }
         es->entity_indexes = realloc(es->entity_indexes,
             sizeof(int) * (es->nb_of_entities + 1));
         if (es->entity_indexes == NULL)
             return EXIT_ERROR;
-        es->entity_indexes[es->nb_of_entities] = entity;
+        es->entity_indexes[es->nb_of_entities] = es->nb_of_entities;
         es->nb_of_entities += 1;
     }
     return set_vector_size(es, es->nb_of_entities);

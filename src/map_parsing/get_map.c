@@ -64,6 +64,16 @@ static bool fill_sprite_line(char const *const char_line,
     return true;
 }
 
+static void set_line(floor_t ***sprites, int i)
+{
+    for (size_t j = 0; sprites[i][j]; ++j) {
+        if (sprites[i][j]->sprite == NULL)
+            continue;
+        sfSprite_setPosition(sprites[i][j]->sprite,
+        (sfVector2f){(TAILED_SIZE) * j, (TAILED_SIZE) * i});
+    }
+}
+
 static floor_t ***get_sprite_map(char const *const *const char_map,
     tailed_t **possibilities)
 {
@@ -78,10 +88,7 @@ static floor_t ***get_sprite_map(char const *const *const char_map,
             return NULL;
     }
     for (size_t i = 0; sprites[i]; ++i)
-        for (size_t j = 0; sprites[i][j]; ++j) {
-            sfSprite_setPosition(sprites[i][j]->sprite,
-            (sfVector2f){(TAILED_SIZE) * j, (TAILED_SIZE) * i});
-        }
+        set_line(sprites, i);
     return sprites;
 }
 
