@@ -16,7 +16,7 @@ int init_components(entity_system_t *es, void *component,
 {
     vec_t *vec = es->components[component_type];
 
-    vec = (void *)push_index_vector(
+    vec = push_index_vector(
             vec, component,
             COMPONENT_INIT_DATA[component_type].size, entity
     );

@@ -6,8 +6,10 @@
 */
 
 #include <SFML/Graphics.h>
+#include <SFML/System.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "components.h"
 #include "macro.h"
 #include "launcher.h"
@@ -15,10 +17,13 @@
 #include "ecs.h"
 #include "filter_entity.h"
 #include "systems.h"
+#include "floor/floor_case_struct.h"
+#include "floor/floor_struct.h"
+#include "functions.h"
 
-sfRenderWindow *init_window(char *name, int length, int higth, int frame)
+sfRenderWindow *init_window(char *name, int length, int hight, int frame)
 {
-    sfVideoMode node = {length, higth, 100};
+    sfVideoMode node = {length, hight, 100};
     sfRenderWindow *wnd = NULL;
 
     wnd = sfRenderWindow_create(node, name, 4 | 2, NULL);
@@ -28,27 +33,49 @@ sfRenderWindow *init_window(char *name, int length, int higth, int frame)
     return wnd;
 }
 
-static void start_window(entity_system_t *es)
+static void set_view(entity_system_t *es, sfView *view)
 {
-    sfRenderWindow *wnd = init_window("my_rpg", 500, 500, 30);
+    c_position_t *player_pos = (c_position_t *)
+        (((void **)(((vec_t *)
+        (es->components[POSITION]))->data))[es->player]);
 
+    sfView_setCenter(view, (sfVector2f)
+        {player_pos->pos.x + 25, player_pos->pos.y + 25});
+}
+
+static bool start_window(entity_system_t *es, floor_t ***floor)
+{
+    sfRenderWindow *wnd = init_window("my_rpg",
+        WIDTH_WINDOW, HEIGHT_WINDOW, 18);
+    sfView *view = sfView_createFromRect((sfFloatRect)
+        {0, 0, WIDTH_VIEW, HEIGHT_VIEW});
+    sfEvent event;
+
+    if (!view || !wnd)
+        return false;
     while (sfRenderWindow_isOpen(wnd)) {
-        draw_entities(es, wnd);
+        sfRenderWindow_setView(wnd, view);
+        set_view(es, view);
+        system_loop(wnd, es, floor);
         sfRenderWindow_display(wnd);
         sfRenderWindow_clear(wnd, sfBlack);
+        event_loop(wnd, &event, es);
     }
+    return true;
 }
 
 static int test(void)
 {
-    entity_system_t *tmp = calloc(sizeof(entity_system_t), 1);
+    tailed_t **possibilities = init_floor_possibilities();
+    floor_t ***floor = get_map(possibilities, "./config/map.txt");
+    entity_system_t *es = calloc(sizeof(entity_system_t), 1);
 
-    tmp->components = calloc(sizeof(vec_t), 1);
-    tmp = init_entity_system(tmp);
-    if (tmp == NULL) {
+    es->components = calloc(sizeof(vec_t), 1);
+    es = init_entity_system(es);
+    if (es == NULL) {
         return EXIT_ERROR;
     }
-    start_window(tmp);
+    if (!start_window(es, floor))
         return EXIT_ERROR;
     return EXIT_SUCCESS;
 }

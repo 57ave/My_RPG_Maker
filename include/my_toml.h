@@ -12,7 +12,7 @@
 
     #define STRING_CHAR '"'
     #define INT_CHARS "1234567890-"
-    #define TAB_CHAR '{'
+    #define TAB_CHAR '['
 
 typedef enum type_e {
     INT = 0,

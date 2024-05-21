@@ -36,4 +36,12 @@ size_t my_strlen(char *str);
 
 char **my_stwa(char *str, char *delim);
 
+char *concat_strings(size_t num_args, ...);
+
+char *get_buffer(char const *const path);
+
+int my_arraylen(char const *const *const array);
+
+char **format_line(char *line, const char *separators, const char *ignorer);
+
 #endif /* !MY_LIB_H_ */

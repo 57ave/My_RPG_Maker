@@ -12,7 +12,7 @@
     #include "vector.h"
 
 typedef struct entity_system {
-    //vec_t *entity_state;
+    int player;
     int *entity_indexes;
     int nb_of_entities;
     vec_t **components;

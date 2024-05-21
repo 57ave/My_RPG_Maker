@@ -39,6 +39,22 @@ int obj_to_components(entity_system_t *es, obj_t *obj, int entity)
             return EXIT_ERROR;
         }
     }
+    if (strcmp(obj->obj_name, "PLAYER") == 0) {
+        if (es->player != -1) {
+            dprintf(2, "you can't define 2 players... sry\n");
+            return EXIT_ERROR;
+        }
+        es->player = entity;
+    }
+    return EXIT_SUCCESS;
+}
+
+static int set_vector_size(entity_system_t *es, int index)
+{
+    for (size_t cmpt_id = 0; cmpt_id < NB_OF_COMPONENT; cmpt_id++) {
+        es->components[cmpt_id] = push_index_vector(es->components[cmpt_id],
+            NULL, COMPONENT_INIT_DATA[cmpt_id].size, index);
+    }
     return EXIT_SUCCESS;
 }
 
@@ -63,7 +79,7 @@ int add_entities_from_path(entity_system_t *es, char const *filepath)
         es->entity_indexes[es->nb_of_entities] = entity;
         es->nb_of_entities += 1;
     }
-    return EXIT_SUCCESS;
+    return set_vector_size(es, es->nb_of_entities);
 }
 
 static vec_t **init_component_vector(entity_system_t *es, unsigned long size)
@@ -76,7 +92,7 @@ static vec_t **init_component_vector(entity_system_t *es, unsigned long size)
         if (!es->components[i])
             return NULL;
         es->components[i] = init_vector(es->components[i],
-            COMPONENT_INIT_DATA->size);
+            COMPONENT_INIT_DATA[i].size);
         if (!es->components[i])
             return NULL;
     }
@@ -87,10 +103,15 @@ entity_system_t *init_entity_system(entity_system_t *es)
 {
     es->entity_indexes = NULL;
     es->nb_of_entities = 0;
+    es->player = -1;
     if (!init_component_vector(es, sizeof(vec_t))) {
         return NULL;
     }
     if (search_for_config_files(ENTITY_DIRECTORY_PATH, es) == EXIT_ERROR) {
+        return NULL;
+    }
+    if (es->player == -1) {
+        dprintf(2, "player not initialized\n");
         return NULL;
     }
     return es;
