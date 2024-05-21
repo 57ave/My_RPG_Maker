@@ -62,7 +62,7 @@ SRC 	=	src/launch_rpg.c \
 			src/map_parsing/get_map.c	\
 			src/map_parsing/init_floor_possibilities.c	\
 			src/draw_floor.c	\
-
+			src/ecs/systems/animation_system.c 	\
 
 SRC_MAIN = 	src/main.c
 
@@ -97,6 +97,8 @@ fclean: clean
 
 asan: CC = clang
 asan: LDFLAGS += -fsanitize=address -static-libsan -g3
+asan: CFLAGS += -g3
+asan: LDFLAGS += -fsanitize=address -static-libsan
 asan: re
 
 debug: CFLAGS += -ggdb

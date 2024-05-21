@@ -57,6 +57,11 @@ static bool start_window(entity_system_t *es, floor_t ***floor)
         sfRenderWindow_setView(wnd, view);
         set_view(es, view);
         system_loop(wnd, es, floor);
+        catch_keys(es);
+        move_entities(es);
+        aggro_entities(es);
+        draw_entities(es, wnd);
+        animation_system(es);
         sfRenderWindow_display(wnd);
         sfRenderWindow_clear(wnd, sfBlack);
         event_loop(wnd, &event, es);

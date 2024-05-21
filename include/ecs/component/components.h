@@ -37,7 +37,7 @@ typedef enum component_e {
     GAME_MODE,
     TEMPORARY,
     HEALTH,
-    // ANIMATION,
+    ANIMATION,
     INTERACTION_ZONE,
     WARP,
     LAST_COMPONENT
@@ -119,10 +119,10 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     {
         "HEALTH", HEALTH, &init_component_health, sizeof(c_health_t *)
     },
-    // {
-    //     "ANIMATION", ANIMATION, &init_component_animation,
-    //     sizeof(c_animation_t)
-    // },
+    {
+        "ANIMATION", ANIMATION, &init_component_animation,
+        sizeof(c_animation_t)
+    },
     {
         "INTERACTION_ZONE", INTERACTION_ZONE, &init_component_interaction_zone,
         sizeof(c_interaction_zone_t *)
