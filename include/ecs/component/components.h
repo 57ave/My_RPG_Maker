@@ -121,7 +121,7 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     },
     {
         "ANIMATION", ANIMATION, &init_component_animation,
-        sizeof(c_animation_t)
+        sizeof(c_animation_t *)
     },
     {
         "INTERACTION_ZONE", INTERACTION_ZONE, &init_component_interaction_zone,
