@@ -49,6 +49,15 @@ int obj_to_components(entity_system_t *es, obj_t *obj, int entity)
     return EXIT_SUCCESS;
 }
 
+static int set_vector_size(entity_system_t *es, int index)
+{
+    for (size_t cmpt_id = 0; cmpt_id < NB_OF_COMPONENT; cmpt_id++) {
+        es->components[cmpt_id] = push_index_vector(es->components[cmpt_id],
+            NULL, COMPONENT_INIT_DATA[cmpt_id].size, index);
+    }
+    return EXIT_SUCCESS;
+}
+
 int add_entities_from_path(entity_system_t *es, char const *filepath)
 {
     char **content = read_file(filepath);
@@ -70,7 +79,7 @@ int add_entities_from_path(entity_system_t *es, char const *filepath)
         es->entity_indexes[es->nb_of_entities] = entity;
         es->nb_of_entities += 1;
     }
-    return EXIT_SUCCESS;
+    return set_vector_size(es, es->nb_of_entities);
 }
 
 static vec_t **init_component_vector(entity_system_t *es, unsigned long size)

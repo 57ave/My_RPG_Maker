@@ -9,6 +9,7 @@
 
     #include <SFML/Graphics.h>
     #include "ecs.h"
+    #include "floor/floor_struct.h"
 
     #define HEIGHT_WINDOW 1080
     #define WIDTH_WINDOW 1920
@@ -18,5 +19,5 @@
 int env_verification(char **env);
 
 int launcher(char **env);
-void system_loop(sfRenderWindow *wnd, entity_system_t *es);
+void system_loop(sfRenderWindow *wnd, entity_system_t *es, floor_t ***);
 void event_loop(sfRenderWindow *wnd, sfEvent *event, entity_system_t *es);

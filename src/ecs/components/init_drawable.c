@@ -62,5 +62,7 @@ int init_component_draw(entity_system_t *es,
     }
     new->sprite = sprite;
     new->texture = texture;
+    new->size.x = *(int *)pull_data(obj, "DRAW-SIZE_X");
+    new->size.y = *(int *)pull_data(obj, "DRAW-SIZE_Y");
     return init_components(es, (void *)new, type, entity);
 }

@@ -17,6 +17,9 @@
 #include "ecs.h"
 #include "filter_entity.h"
 #include "systems.h"
+#include "floor/floor_case_struct.h"
+#include "floor/floor_struct.h"
+#include "functions.h"
 
 sfRenderWindow *init_window(char *name, int length, int hight, int frame)
 {
@@ -35,15 +38,12 @@ static void set_view(entity_system_t *es, sfView *view)
     c_position_t *player_pos = (c_position_t *)
         (((void **)(((vec_t *)
         (es->components[POSITION]))->data))[es->player]);
-    c_draw_t *player_draw = (c_draw_t *)
-        (((void **)(((vec_t *)
-        (es->components[DRAW]))->data))[es->player]);
 
     sfView_setCenter(view, (sfVector2f)
         {player_pos->pos.x + 25, player_pos->pos.y + 25});
 }
 
-static bool start_window(entity_system_t *es)
+static bool start_window(entity_system_t *es, floor_t ***floor)
 {
     sfRenderWindow *wnd = init_window("my_rpg",
         WIDTH_WINDOW, HEIGHT_WINDOW, 18);
@@ -56,7 +56,7 @@ static bool start_window(entity_system_t *es)
     while (sfRenderWindow_isOpen(wnd)) {
         sfRenderWindow_setView(wnd, view);
         set_view(es, view);
-        system_loop(wnd, es);
+        system_loop(wnd, es, floor);
         sfRenderWindow_display(wnd);
         sfRenderWindow_clear(wnd, sfBlack);
         event_loop(wnd, &event, es);
@@ -66,6 +66,8 @@ static bool start_window(entity_system_t *es)
 
 static int test(void)
 {
+    tailed_t **possibilities = init_floor_possibilities();
+    floor_t ***floor = get_map(possibilities, "./config/map.txt");
     entity_system_t *es = calloc(sizeof(entity_system_t), 1);
 
     es->components = calloc(sizeof(vec_t), 1);
@@ -73,7 +75,7 @@ static int test(void)
     if (es == NULL) {
         return EXIT_ERROR;
     }
-    if (!start_window(es))
+    if (!start_window(es, floor))
         return EXIT_ERROR;
     return EXIT_SUCCESS;
 }
