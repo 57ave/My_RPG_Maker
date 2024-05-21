@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics/RectangleShape.h>
 #include <SFML/Graphics/CircleShape.h>
+#include <SFML/Graphics/Types.h>
 #include <stdlib.h>
 #include "collision_component.h"
 #include "macro.h"
