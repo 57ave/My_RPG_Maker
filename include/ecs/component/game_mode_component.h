@@ -8,5 +8,5 @@
 #pragma once
 
 typedef struct game_mode_component {
-    int mode;
+    double mode;
 } c_game_mode_t;
