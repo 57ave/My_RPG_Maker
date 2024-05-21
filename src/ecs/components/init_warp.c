@@ -6,27 +6,45 @@
 */
 
 #include <stdlib.h>
+#include <stdbool.h>
 #include "vector.h"
 #include "macro.h"
 #include "components.h"
 #include "my_toml.h"
 #include "ecs.h"
 
-static int extract_data(obj_t *obj, c_warp_t *new_component)
+static bool extract_sound(obj_t *obj, c_warp_t *new_component)
+{
+    char *tmp = NULL;
+
+    tmp = (char *)pull_data(obj, "WARP-SOUND");
+    if (tmp == NULL)
+        return false;
+    new_component->buffer = sfSoundBuffer_createFromFile(tmp);
+    new_component->sound = sfSound_create();
+    if (!new_component->buffer || !new_component->sound)
+        return false;
+    sfSound_setBuffer(new_component->sound, new_component->buffer);
+    return true;
+}
+
+static bool extract_data(obj_t *obj, c_warp_t *new_component)
 {
     int *tmp = NULL;
 
     tmp = (int *)pull_data(obj, "WARP-X");
     if (tmp == NULL) {
-        return EXIT_ERROR;
+        return false;
     }
     new_component->warp.x = *tmp;
     tmp = (int *)pull_data(obj, "WARP-Y");
     if (tmp == NULL) {
-        return EXIT_ERROR;
+        return false;
     }
     new_component->warp.y = *tmp;
-    return EXIT_SUCCESS;
+    if (!extract_sound(obj, new_component))
+        return false;
+    return true;
 }
 
 int init_component_warp(entity_system_t *es,
@@ -36,7 +54,7 @@ int init_component_warp(entity_system_t *es,
 
     if (!new_component)
         return EXIT_ERROR;
-    if (extract_data(obj, new_component) == EXIT_ERROR) {
+    if (!extract_data(obj, new_component)) {
         free(new_component);
         return EXIT_ERROR;
     }

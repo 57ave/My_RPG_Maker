@@ -25,7 +25,8 @@ static void move_entities_position(entity_system_t *es,
             to_warp_pos = (c_position_t *)
                 ((void **)component_pos->data)[to_warp->indexes[i]];
             to_warp_pos->pos.x = warp_coord->warp.x;
-            to_warp_pos->pos.y = warp_coord->warp.x;
+            to_warp_pos->pos.y = warp_coord->warp.y;
+            sfSound_play(warp_coord->sound);
         }
     }
 }

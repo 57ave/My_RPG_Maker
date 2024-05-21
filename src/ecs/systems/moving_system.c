@@ -41,7 +41,8 @@ static void play_sound(floor_t ***floor, c_position_t *pos,
         index_y = (int)((pos->pos.y) / (TAILED_SIZE)) + 2;
         index_x = (int)(pos->pos.x / (TAILED_SIZE));
         if (index_y < get_floor_y_size(floor) &&
-            index_x < get_floor_x_size(floor[index_y])) {
+            index_x < get_floor_x_size(floor[index_y]) &&
+            floor[index_y][index_x]->sound != NULL) {
             sfSound_play(floor[index_y][index_x]->sound);
         }
     }
