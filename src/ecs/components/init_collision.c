@@ -9,32 +9,42 @@
 #include <SFML/Graphics/CircleShape.h>
 #include <stdlib.h>
 #include "collision_component.h"
-#include "vector.h"
 #include "macro.h"
 #include "components.h"
 #include "my_toml.h"
 #include "ecs.h"
 
+static int create_circle_collision(c_collision_t *new_component, obj_t *obj)
+{
+    int *radius = (int *)pull_data(obj, "COLLISION-RADIUS");
+
+    new_component->shape.circle = sfCircleShape_create();
+    if (!new_component->shape.circle || !radius)
+        return EXIT_ERROR;
+    sfCircleShape_setRadius(new_component->shape.circle, *radius);
+    return EXIT_SUCCESS;
+}
+
+static int create_rect_collision(c_collision_t *new_component, obj_t *obj)
+{
+    float *width = (float *)pull_data(obj, "COLLISION-WIDTH");
+    float *height = (float *)pull_data(obj, "COLLISION-HEIGHT");
+
+    new_component->shape.rectangle = sfRectangleShape_create();
+    if (!new_component->shape.rectangle || !width || !height)
+        return EXIT_ERROR;
+    sfRectangleShape_setSize(new_component->shape.rectangle,
+        (sfVector2f){*width, *height});
+    return EXIT_SUCCESS;
+}
+
 static int set_collision_shape(c_collision_t *new_component, obj_t *obj)
 {
-    collision_size_t *collision_size =
-        (collision_size_t *)pull_data(obj, "COLLISION-SIZE");
-
     switch (new_component->type) {
         case CIRCLE:
-            new_component->shape.circle = sfCircleShape_create();
-            if (!new_component->shape.circle)
-                return EXIT_ERROR;
-            sfCircleShape_setRadius(new_component->shape.circle,
-                collision_size->radius);
-            break;
+            return create_circle_collision(new_component, obj);
         default:
-            new_component->shape.rectangle = sfRectangleShape_create();
-            if (!new_component->shape.rectangle)
-                return EXIT_ERROR;
-            sfRectangleShape_setSize(new_component->shape.rectangle,
-                (sfVector2f){collision_size->rect.width,
-                    collision_size->rect.height});
+            return create_rect_collision(new_component, obj);
     }
     return EXIT_SUCCESS;
 }
