@@ -83,6 +83,7 @@ int init_component_animation(entity_system_t *es,
 int init_component_interaction_zone(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
 int init_component_collision(entity_system_t *es,
+    obj_t *obj, component_t type, int entity);
 int init_component_warp(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
 
