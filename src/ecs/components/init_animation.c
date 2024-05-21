@@ -18,7 +18,7 @@ static const char *DIRECTION_WORDS[] = {
     "DOWN"
 };
 
-static int init_rect(sfIntRect *rect, obj_t *obj, char *name)
+static int init_rect(sfIntRect *rect, obj_t *obj, char const *name)
 {
     char *data_name = concat_strings(3, "ANIMATION-", name, "-RECT");
     int **tmp_rect = (int **) pull_data(obj, data_name);
@@ -37,7 +37,7 @@ static int init_rect(sfIntRect *rect, obj_t *obj, char *name)
     return EXIT_SUCCESS;
 }
 
-static int init_animation_data(struct anim_data *data, obj_t *obj, char *name)
+static int init_animation_data(struct anim_data *data, obj_t *obj, char const *name)
 {
     int *x_add = (int *) pull_data(obj,
     concat_strings(3, "ANIMATION-", name, "-X_ADD"));

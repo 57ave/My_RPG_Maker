@@ -46,13 +46,19 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/components/init_damage.c	\
 			src/ecs/components/init_interaction_zone.c 	\
 			src/ecs/components/init_animation.c 	\
+			src/ecs/components/init_warp.c 	\
 			src/ecs/isolate_entities.c	\
 			src/ecs/systems/drawing_system.c	\
 			src/ecs/read_config.c	\
 			src/free/free_filter.c	\
-			src/ecs/systems/moving_system.c	\
 			src/ecs/systems/interaction_zone_system.c	\
 			src/ecs/systems/aggro_system.c	\
+			src/ecs/systems/moving_system.c	\
+			src/ecs/systems/warp_system.c	\
+			src/map_parsing/get_char_map.c	\
+			src/map_parsing/get_map.c	\
+			src/map_parsing/init_floor_possibilities.c	\
+			src/draw_floor.c	\
 
 SRC_MAIN = 	src/main.c
 

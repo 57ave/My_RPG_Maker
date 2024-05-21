@@ -21,6 +21,7 @@
     #include "damage_component.h"
     #include "animation_component.h"
     #include "interaction_zone_component.h"
+    #include "warp_component.h"
     #include "ecs.h"
 
 entity_system_t *init_entity_system(entity_system_t *es);
@@ -38,6 +39,7 @@ typedef enum component_e {
     DAMAGE,
     ANIMATION,
     INTERACTION_ZONE,
+    WARP,
     LAST_COMPONENT
 } component_t;
 
@@ -77,6 +79,8 @@ int init_component_damage(entity_system_t *es,
 int init_component_animation(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
 int init_component_interaction_zone(entity_system_t *es,
+    obj_t *obj, component_t type, int entity);
+int init_component_warp(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
 
 static const component_data_t COMPONENT_INIT_DATA[] = {
@@ -122,6 +126,9 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     {
         "INTERACTION_ZONE", INTERACTION_ZONE, &init_component_interaction_zone,
         sizeof(c_interaction_zone_t)
+    },
+    {
+        "WARP", WARP, &init_component_warp, sizeof(c_warp_t)
     }
 };
 

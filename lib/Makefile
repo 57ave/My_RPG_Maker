@@ -37,6 +37,9 @@ SRC =	my_realloc.c 	\
 		vector/push_back_vector.c 	\
 		vector/push_index_vector.c 	\
 		vector/init_vector.c 	\
+		get_buffer.c	\
+		my_arraylen.c	\
+		format_line.c	\
 
 OBJ = 	$(SRC:.c=.o)
 

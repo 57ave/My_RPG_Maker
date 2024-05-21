@@ -14,4 +14,5 @@ typedef struct velocity_s {
     sfVector2f velocity;
     sfVector2f speed;
     sfClock *clock;
+    sfClock *floor_sound;
 } c_velocity_t;
