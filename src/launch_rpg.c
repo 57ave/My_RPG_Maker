@@ -46,7 +46,7 @@ static void set_view(entity_system_t *es, sfView *view)
 static bool start_window(entity_system_t *es, floor_t ***floor)
 {
     sfRenderWindow *wnd = init_window("my_rpg",
-        WIDTH_WINDOW, HEIGHT_WINDOW, 18);
+        WIDTH_WINDOW, HEIGHT_WINDOW, 40);
     sfView *view = sfView_createFromRect((sfFloatRect)
         {0, 0, WIDTH_VIEW, HEIGHT_VIEW});
     sfEvent event;

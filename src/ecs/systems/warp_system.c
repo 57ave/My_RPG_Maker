@@ -9,6 +9,7 @@
 #include "ecs.h"
 #include "components.h"
 #include "filter_entity.h"
+#include "systems.h"
 
 static void move_entities_position(entity_system_t *es,
     int warp, entity_filter_t *to_warp)
@@ -20,12 +21,12 @@ static void move_entities_position(entity_system_t *es,
         ((void **)component_warp->data)[warp];
 
     for (int i = 0; i < to_warp->number; ++i) {
-        // if (colision_entities(es, warp, to_warp->indexes[i])) {
+        if (collision_entities(es, warp, to_warp->indexes[i])) {
             to_warp_pos = (c_position_t *)
                 ((void **)component_pos->data)[to_warp->indexes[i]];
             to_warp_pos->pos.x = warp_coord->warp.x;
             to_warp_pos->pos.y = warp_coord->warp.x;
-        //}
+        }
     }
 }
 
