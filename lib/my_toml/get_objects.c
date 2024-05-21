@@ -82,6 +82,8 @@ obj_t **get_object(char **content, int *line_offset, obj_t **obj)
     int size_obj = 1;
     int idx_line = 0;
 
+    if (content == NULL)
+        return NULL;
     for (; content[*line_offset] != NULL; (*line_offset) += 1) {
         if (is_obj(content[*line_offset], &idx_line)) {
             obj = alloc_obj(

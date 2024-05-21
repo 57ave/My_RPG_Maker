@@ -8,6 +8,7 @@
 #include <stdarg.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include "components.h"
 #include "vector.h"
 #include "ecs.h"
 #include "filter_entity.h"
@@ -28,7 +29,13 @@ static bool check_components(entity_system_t *es,
     size_t *filters, size_t nb_of_filters, int index)
 {
     vec_t *component = NULL;
+    c_game_mode_t *mode = NULL;
 
+    component = es->components[GAME_MODE];
+    mode = (((void **)component->data)[index]);
+    if (mode != NULL && mode->mode != es->game_mode) {
+        return false;
+    }
     for (size_t i = 0; i < nb_of_filters; ++i) {
         component = es->components[filters[i]];
         if (((void **)(component->data))[index] == NULL)
