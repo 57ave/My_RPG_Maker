@@ -7,6 +7,10 @@
 
 #pragma once
 
+#include <SFML/System/Clock.h>
+
+#define ANIM_TIME ((sfInt64) 55555)
+
 struct anim_data {
     sfIntRect rect;
     int x_add;
@@ -28,4 +32,5 @@ typedef struct animation_component {
     struct anim_data static_anim;
     direction_t direction;
     struct anim_data multidir_anim[END_DIRECTION];
+    sfClock *clock;
 } c_animation_t;
