@@ -74,6 +74,7 @@ int init_component_animation(entity_system_t *es, obj_t *obj,
         &(animation_component->multidir_anim[dir]), obj, DIRECTION_WORDS[dir]))
             return EXIT_ERROR;
     }
+    animation_component->clock = sfClock_create();
     if (init_components(es, (void *)animation_component, type, entity) ==
         EXIT_ERROR) {
         return EXIT_ERROR;
