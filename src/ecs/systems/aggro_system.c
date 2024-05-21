@@ -37,8 +37,8 @@ void aggro_entities(entity_system_t *es)
 {
     entity_filter_t *filter = filter_entities(4, es, VELOCITY, POSITION,
         DAMAGE, INTERACTION_ZONE);
-    vec_t *component_vel = (vec_t *)(es->components[VELOCITY]);
-    vec_t *component_pos = (vec_t *)(es->components[POSITION]);
+    vec_t *component_vel = es->components[VELOCITY];
+    vec_t *component_pos = es->components[POSITION];
     c_velocity_t *tmp_vel = NULL;
     c_position_t *tmp_pos = NULL;
 

@@ -12,4 +12,5 @@
 typedef struct draw_s {
     sfSprite *sprite;
     sfTexture *texture;
+    sfVector2f size;
 } c_draw_t;

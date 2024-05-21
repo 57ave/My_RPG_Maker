@@ -79,7 +79,7 @@ void *get_value_tab(char *line, char *type)
         return NULL;
     for (int i = 0; line_parse[i] != NULL; i++) {
         skip_char(line_parse[i], &i_word, ' ');
-        if (line_parse[i][i_word] == '}')
+        if (line_parse[i][i_word] == ']')
             return tab;
         tab = add_elem(tab, &line_parse[i][i_word], *type, i);
         if (tab == NULL)

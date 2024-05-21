@@ -24,8 +24,8 @@ static bool is_inside_zone(sfVector2f *point, sfVector2f *center,
 
 bool interaction_zone_entities(entity_system_t *es, int index)
 {
-    vec_t *component_zone = (vec_t *)(es->components[INTERACTION_ZONE]);
-    vec_t *component_pos = (vec_t *)(es->components[POSITION]);
+    vec_t *component_zone = es->components[INTERACTION_ZONE];
+    vec_t *component_pos = es->components[POSITION];
     c_position_t *player_pos = (c_position_t *)
         (((void **)(((vec_t *)
         (es->components[POSITION]))->data))[es->player]);

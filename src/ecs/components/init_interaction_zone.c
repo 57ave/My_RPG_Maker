@@ -18,10 +18,12 @@ int init_component_interaction_zone(entity_system_t *es,
     c_interaction_zone_t *new_component =
         calloc(sizeof(c_interaction_zone_t), 1);
     int *radius = (int *)pull_data(obj, "INTERACTION_ZONE-RADIUS");
+    sfVector2f target_position = {0, 0};
 
     if (!new_component || !radius)
         return EXIT_ERROR;
     new_component->radius = *radius;
+    new_component->target_position = target_position;
     if (init_components(es, (void *)new_component, type, entity) == EXIT_ERROR)
         return EXIT_ERROR;
     return EXIT_SUCCESS;
