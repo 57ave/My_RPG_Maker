@@ -102,11 +102,11 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     },
     // {
     //     "KEY_PRESSED", KEY_PRESSED, &init_component_key_pressed,
-    //     sizeof(c_key_pressed_t)
+    //     sizeof(c_key_pressed_t *)
     // },
     // {
     //     "MOUSE_PRESSED", MOUSE_PRESSED, &init_component_mouse_pressed,
-    //     sizeof(c_mouse_pressed_t)
+    //     sizeof(c_mouse_pressed_t *)
     // },
     {
         "GAME_MODE", GAME_MODE, &init_component_game_mode,
