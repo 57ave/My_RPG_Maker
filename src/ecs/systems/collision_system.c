@@ -5,63 +5,67 @@
 ** collision_system
 */
 
-#include <SFML/Graphics/Rect.h>
-#include <SFML/System/Vector2.h>
-#include <math.h>
 #include <stdbool.h>
+#include <stddef.h>
+#include <SFML/Graphics/Rect.h>
+#include <SFML/Graphics/Sprite.h>
+#include <SFML/Graphics/Types.h>
+#include <SFML/System/Vector2.h>
 #include <SFML/Graphics/RectangleShape.h>
 #include <SFML/Graphics/CircleShape.h>
 #include "collision_component.h"
 #include "ecs.h"
 #include "components.h"
-#include "position_component.h"
 
-static bool is_rect_colliding(c_position_t *pos_1, c_position_t *pos_2,
-    c_collision_t *col)
+static bool is_rect_colliding(c_collision_t *col_1, c_collision_t *col_2)
 {
-    sfVector2f size = sfRectangleShape_getSize(col->shape.rectangle);
-    sfFloatRect rect_1 = {pos_1->pos.x, pos_1->pos.y, size.x, size.y};
-    sfFloatRect rect_2 = {pos_2->pos.x, pos_2->pos.y, size.x, size.y};
+    sfFloatRect rect_1 =
+        sfRectangleShape_getGlobalBounds(col_1->shape.rectangle);
+    sfFloatRect rect_2 =
+        sfRectangleShape_getGlobalBounds(col_2->shape.rectangle);
 
-    if (sfFloatRect_intersects(&rect_1, &rect_2, NULL))
-        return true;
-    return false;
+    return sfFloatRect_intersects(&rect_1, &rect_2, NULL);
 }
 
-static bool is_circle_colliding(c_position_t *pos_1, c_position_t *pos_2,
-    c_collision_t *col)
+static bool is_circle_colliding(c_collision_t *col_1, c_collision_t *col_2)
 {
-    int radius = sfCircleShape_getRadius(col->shape.circle);
-    float distance = sqrtf(pow(pos_1->pos.x - pos_2->pos.x,
-        2.0) + pow(pos_1->pos.y - pos_2->pos.y, 2.0));
+    sfFloatRect rect_1 =
+        sfCircleShape_getGlobalBounds(col_1->shape.circle);
+    sfFloatRect rect_2 =
+        sfCircleShape_getGlobalBounds(col_2->shape.circle);
 
-    if (distance < radius)
-        return true;
-    return false;
+    return sfFloatRect_intersects(&rect_1, &rect_2, NULL);
 }
 
-static bool is_colliding(c_position_t *pos_1, c_position_t *pos_2,
-    c_collision_t *col)
+static bool is_circle_rect_colliding(c_collision_t *col_1,
+    c_collision_t *col_2)
 {
-    switch (col->type) {
-        case CIRCLE:
-            return is_circle_colliding(pos_1, pos_2, col);
-        default:
-            return is_rect_colliding(pos_1, pos_2, col);
+    sfFloatRect rect_1 = {0};
+    sfFloatRect rect_2 = {0};
+
+    if (col_1->type == CIRCLE) {
+        rect_1 = sfCircleShape_getGlobalBounds(col_1->shape.circle);
+        rect_2 = sfRectangleShape_getGlobalBounds(col_2->shape.rectangle);
+    } else {
+        rect_1 = sfRectangleShape_getGlobalBounds(col_1->shape.rectangle);
+        rect_2 = sfCircleShape_getGlobalBounds(col_2->shape.circle);
     }
+    return sfFloatRect_intersects(&rect_1, &rect_2, NULL);
 }
 
-bool collision_entities(entity_system_t *es, int index)
+bool collision_entities(entity_system_t *es, int e_1, int e_2)
 {
     vec_t *component_collision = (vec_t *)(es->components[COLLISION]);
-    vec_t *component_pos = (vec_t *)(es->components[POSITION]);
-    c_position_t *pos_1 = (c_position_t *)
-        (((void **)(((vec_t *)
-        (es->components[POSITION]))->data))[es->player]);
-    c_position_t *pos_2 = (c_position_t *)
-        ((void **)component_pos->data)[index];
-    c_collision_t *collision = (c_collision_t *)
-        ((void **)component_collision->data)[index];
+    c_collision_t *col_1 = (c_collision_t *)
+        ((void **)component_collision->data)[e_1];
+    c_collision_t *col_2 = (c_collision_t *)
+        ((void **)component_collision->data)[e_2];
 
-    return is_colliding(pos_1, pos_2, collision);
+    if (col_1 == NULL || col_2 == NULL)
+        return false;
+    if (col_1->type == RECTANGLE && col_2->type == RECTANGLE)
+        return is_rect_colliding(col_1, col_2);
+    if (col_1->type == CIRCLE && col_2->type == CIRCLE)
+        return is_circle_colliding(col_1, col_2);
+    return is_circle_rect_colliding(col_1, col_2);
 }
