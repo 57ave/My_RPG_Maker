@@ -19,7 +19,7 @@
 #include "systems.h"
 
 static void handle_event(sfRenderWindow *wnd,
-    sfEvent *event, entity_system_t *es)
+    sfEvent *event, entity_system_t *)
 {
     if (event->type == sfEvtClosed) {
         sfRenderWindow_close(wnd);
