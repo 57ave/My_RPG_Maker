@@ -30,6 +30,7 @@ static bool check_components(entity_system_t *es,
 {
     vec_t *component = NULL;
     c_game_mode_t *mode = NULL;
+
     component = es->components[GAME_MODE];
     mode = (((void **)component->data)[index]);
     if (mode != NULL && mode->mode != es->game_mode) {
