@@ -40,6 +40,7 @@ typedef enum component_e {
     ANIMATION,
     INTERACTION_ZONE,
     WARP,
+    INVENTORY,
     LAST_COMPONENT
 } component_t;
 
@@ -129,6 +130,10 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     },
     {
         "WARP", WARP, &init_component_warp, sizeof(c_warp_t *)
+    },
+    {
+        "INVENTORY", INVENTORY, &init_component_inventory,
+        sizeof(c_inventory_t *)
     }
 };
 
