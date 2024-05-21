@@ -10,23 +10,6 @@
 #include "components.h"
 #include "filter_entity.h"
 
-static void move_entities_position(entity_system_t *es,
-    int warp, entity_filter_t *to_warp)
-{
-    vec_t *component_pos = (vec_t *)(es->components[POSITION]);
-    vec_t *component_warp = (vec_t *)(es->components[WARP]);
-    c_position_t *to_warp_pos = NULL;
-    c_warp_t *warp_coord = (c_warp_t *)
-        ((void **)component_warp->data)[warp];
-
-    for (int i = 0; i < to_warp->number; ++i) {
-            to_warp_pos = (c_position_t *)
-                ((void **)component_pos->data)[to_warp->indexes[i]];
-            to_warp_pos->pos.x = warp_coord->warp.x;
-            to_warp_pos->pos.y = warp_coord->warp.x;
-    }
-}
-
 /*
 static void move_entities_position(entity_system_t *es,
     int warp, entity_filter_t *to_warp)
@@ -47,6 +30,23 @@ static void move_entities_position(entity_system_t *es,
     }
 }
 */
+
+static void move_entities_position(entity_system_t *es,
+    int warp, entity_filter_t *to_warp)
+{
+    vec_t *component_pos = (vec_t *)(es->components[POSITION]);
+    vec_t *component_warp = (vec_t *)(es->components[WARP]);
+    c_position_t *to_warp_pos = NULL;
+    c_warp_t *warp_coord = (c_warp_t *)
+        ((void **)component_warp->data)[warp];
+
+    for (int i = 0; i < to_warp->number; ++i) {
+            to_warp_pos = (c_position_t *)
+                ((void **)component_pos->data)[to_warp->indexes[i]];
+            to_warp_pos->pos.x = warp_coord->warp.x;
+            to_warp_pos->pos.y = warp_coord->warp.x;
+    }
+}
 
 void warp_entities(entity_system_t *es)
 {
