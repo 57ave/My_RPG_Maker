@@ -11,6 +11,7 @@ struct anim_data {
     sfIntRect rect;
     int x_add;
     int y_add;
+    int current_frame;
     int nb_frame;
     int next_line_frame;
 };
