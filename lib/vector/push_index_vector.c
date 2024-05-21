@@ -16,7 +16,9 @@ static void fill_null_data(vec_t *vec, size_t index)
     if (index <= vec->size) {
         return;
     }
-    for (size_t i = vec->size + 1; i < index; i++) {
+    for (size_t i = vec->size + 1; i < (vec->size * 2); i++) {
+        if (i == index)
+            continue;
         tmp_data[i] = NULL;
     }
 }

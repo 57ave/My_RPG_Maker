@@ -40,7 +40,7 @@ char *concat_strings(size_t num_args, ...);
 
 char *get_buffer(char const *const path);
 
-int my_arraylen(char **array);
+int my_arraylen(char const *const *const array);
 
 char **format_line(char *line, const char *separators, const char *ignorer);
 

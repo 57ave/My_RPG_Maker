@@ -9,4 +9,5 @@
 
 typedef struct interaction_zone_s {
     int radius;
+    sfVector2f target_position;
 } c_interaction_zone_t;

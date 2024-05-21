@@ -13,7 +13,9 @@
     #include "floor/floor_struct.h"
 
 void draw_entities(entity_system_t *es, sfRenderWindow *wnd);
-void move_entities(entity_system_t *es);
+void draw_floor(sfRenderWindow *wnd, floor_t ***floor);
+void move_entities(entity_system_t *es, floor_t ***);
 bool interaction_zone_entities(entity_system_t *es, int index);
 void aggro_entities(entity_system_t *es);
 void warp_entities(entity_system_t *es);
+void random_move_entities(entity_system_t *es);

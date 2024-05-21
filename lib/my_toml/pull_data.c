@@ -5,7 +5,6 @@
 ** pull_data
 */
 
-
 #include <string.h>
 #include "my_toml.h"
 #include "my_lib.h"

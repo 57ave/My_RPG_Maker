@@ -14,7 +14,7 @@ tailed_t **init_floor_possibilities(void)
 
     if (new == NULL)
         return NULL;
-    for (int i = 0; i < FLOOR_INIT_SIZE; ++i) {
+    for (size_t i = 0; i < FLOOR_INIT_SIZE; ++i) {
         new[i] = calloc(sizeof(tailed_t), 1);
         if (new[i] == NULL)
             return NULL;

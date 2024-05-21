@@ -1,11 +1,14 @@
 [PLAYER]
-POSITION-X = 0
-POSITION-Y = 100
+TEXT-CONTENT = "test"
+TEXT-FONT = "assets/font/Milker.otf"
+TEXT-SIZE = 42
 DRAW-TEXTURE = "./assets/sprites/player.png"
-DRAW-SIZE_X = 60
-DRAW-SIZE_Y = 60
+POSITION-X = 190
+POSITION-Y = 190
 VELOCITY-X = 10
 VELOCITY-Y = 10
+DRAW-SIZE_X = 25
+DRAW-SIZE_Y = 25
 
 [TEST]
 POSITION-X = 0
@@ -18,26 +21,8 @@ VELOCITY-Y = 0
 
 [TEST]
 POSITION-X = 0
-POSITION-Y = 200
-DRAW-TEXTURE = "./assets/sprites/grass.png"
-DRAW-SIZE_X = 50
-DRAW-SIZE_Y = 50
-VELOCITY-X = 0
-VELOCITY-Y = 0
-
-[TEST]
-POSITION-X = -50
-POSITION-Y = 200
-DRAW-TEXTURE = "./assets/sprites/grass.png"
-DRAW-SIZE_X = 50
-DRAW-SIZE_Y = 50
-VELOCITY-X = 0
-VELOCITY-Y = 0
-
-[TEST]
-POSITION-X = 200
-POSITION-Y = 32
-DRAW-TEXTURE = "./assets/sprites/grass.png"
+POSITION-Y = 0
+DRAW-TEXTURE = "./assets/sprites/player.png"
 DRAW-SIZE_X = 50
 DRAW-SIZE_Y = 50
 VELOCITY-X = 0

@@ -7,7 +7,7 @@
 
 #include <unistd.h>
 
-int my_arraylen(char **array)
+int my_arraylen(char const *const *const array)
 {
     int i;
 
