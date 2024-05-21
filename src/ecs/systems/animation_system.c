@@ -68,7 +68,8 @@ void animation_entities(entity_system_t *es, entity_filter_t *filter)
 
 void animation_system(entity_system_t *es)
 {
-    entity_filter_t *filter = filter_entities(2, es, DRAW, POSITION, VELOCITY, ANIMATION);
+    entity_filter_t *filter = filter_entities(4,
+        es, DRAW, POSITION, VELOCITY, ANIMATION);
 
     animation_entities(es, filter);
     free_filter(filter);

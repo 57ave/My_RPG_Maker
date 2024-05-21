@@ -19,3 +19,4 @@ bool interaction_zone_entities(entity_system_t *es, int index);
 void aggro_entities(entity_system_t *es);
 void warp_entities(entity_system_t *es);
 void random_move_entities(entity_system_t *es);
+void animation_system(entity_system_t *es);

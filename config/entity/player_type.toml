@@ -1,14 +1,3 @@
-[PLAYER]
-TEXT-CONTENT = "test"
-TEXT-FONT = "assets/font/Milker.otf"
-TEXT-SIZE = 42
-DRAW-TEXTURE = "./assets/sprites/player.png"
-POSITION-X = 190
-POSITION-Y = 190
-VELOCITY-X = 10
-VELOCITY-Y = 10
-DRAW-SIZE_X = 25
-DRAW-SIZE_Y = 25
 
 [TEST]
 POSITION-X = 0

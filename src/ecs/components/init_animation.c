@@ -37,7 +37,8 @@ static int init_rect(sfIntRect *rect, obj_t *obj, char const *name)
     return EXIT_SUCCESS;
 }
 
-static int init_animation_data(struct anim_data *data, obj_t *obj, char const *name)
+static int init_animation_data(struct anim_data *data,
+    obj_t *obj, char const *name)
 {
     int *x_add = (int *) pull_data(obj,
     concat_strings(3, "ANIMATION-", name, "-X_ADD"));
