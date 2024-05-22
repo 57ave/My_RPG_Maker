@@ -12,6 +12,7 @@
     #include "ecs.h"
     #include "floor/floor_struct.h"
 
+void pick_system(entity_system_t *es);
 void draw_entities(entity_system_t *es, sfRenderWindow *wnd);
 void draw_floor(sfRenderWindow *wnd, floor_t ***floor);
 void move_entities(entity_system_t *es, floor_t ***);
