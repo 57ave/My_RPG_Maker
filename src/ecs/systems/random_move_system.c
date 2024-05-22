@@ -21,6 +21,20 @@
 #include "filter_entity.h"
 #include "systems.h"
 
+static void init_random_direction(c_position_t *entity_pos,
+    sfVector2f *target_position, c_interaction_zone_t *tmp_zone)
+{
+    if (rand() % 2 == 0)
+        target_position->x = entity_pos->pos.x + rand() % 50;
+    else
+        target_position->x = entity_pos->pos.x - rand() % 50;
+    if (rand() % 2 == 0)
+        target_position->y = entity_pos->pos.y + rand() % 50;
+    else
+        target_position->y = entity_pos->pos.y - rand() % 50;
+    tmp_zone->target_position = *target_position;
+}
+
 static sfVector2f random_target_position(entity_system_t *es, int i,
     c_position_t *entity_pos)
 {
@@ -30,16 +44,14 @@ static sfVector2f random_target_position(entity_system_t *es, int i,
         ((void **)component_zone->data)[i];
 
     srand(time(NULL));
-    if (rand() % 2 == 0)
-        target_position.x = entity_pos->pos.x + rand() % 50;
-    else
-        target_position.x = entity_pos->pos.x - rand() % 50;
-    if (rand() % 2 == 0)
-        target_position.y = entity_pos->pos.y + rand() % 50;
-    else
-        target_position.y = entity_pos->pos.y - rand() % 50;
-    tmp_zone->target_position = target_position;
-    return target_position;
+    if (rand() % 5 == 0 && tmp_zone->count == tmp_zone->step_counter) {
+        tmp_zone->step_counter = rand() % 5 == 0;
+        tmp_zone->count = 0;
+        init_random_direction(entity_pos, &target_position, tmp_zone);
+    }
+    if (tmp_zone->count < tmp_zone->step_counter)
+        tmp_zone->count++;
+    return tmp_zone->target_position;
 }
 
 static void random_move_direction(entity_system_t *es, int i,
@@ -63,8 +75,8 @@ static void random_move_direction(entity_system_t *es, int i,
 
 void random_move_entities(entity_system_t *es)
 {
-    entity_filter_t *filter = filter_entities(4, es, VELOCITY, POSITION,
-        DAMAGE, INTERACTION_ZONE);
+    entity_filter_t *filter = filter_entities(3, es, VELOCITY, POSITION,
+        INTERACTION_ZONE);
     vec_t *component_vel = es->components[VELOCITY];
     vec_t *component_pos = es->components[POSITION];
     c_velocity_t *tmp_vel = NULL;
@@ -75,8 +87,7 @@ void random_move_entities(entity_system_t *es)
             ((void **)component_vel->data)[filter->indexes[i]];
         tmp_pos = (c_position_t *)
         ((void **)component_pos->data)[filter->indexes[i]];
-        if (!interaction_zone_entities(es, filter->indexes[i]) &&
-        (rand() % 30) == 0) {
+        if (!interaction_zone_entities(es, filter->indexes[i])) {
             random_move_direction(es, filter->indexes[i], tmp_vel, tmp_pos);
         }
     }
