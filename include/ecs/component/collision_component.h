@@ -29,4 +29,7 @@ typedef union collision_shape_u {
 typedef struct collision_component {
     collision_type_t type;
     collision_shape_t shape;
+    int wall;
+    int offset_x;
+    int offset_y;
 } c_collision_t;

@@ -26,7 +26,6 @@
     #include "ecs.h"
 
 entity_system_t *init_entity_system(entity_system_t *es);
-
 typedef enum component_e {
     POSITION = 0,
     DAMAGE,
@@ -45,6 +44,7 @@ typedef enum component_e {
     LAST_COMPONENT
 } component_t;
 
+void *get_comp(entity_system_t *es, component_t component, int entity);
 int init_components(entity_system_t *es, void *component,
     component_t component_type, int entity);
 
