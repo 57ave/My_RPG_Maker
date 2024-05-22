@@ -66,6 +66,7 @@ SRC 	=	src/launch_rpg.c \
 			src/map_parsing/init_floor_possibilities.c	\
 			src/draw_floor.c	\
 			src/ecs/systems/animation_system.c 	\
+			src/ecs/filter_near_player.c 	\
 
 SRC_MAIN = 	src/main.c
 

@@ -43,6 +43,13 @@ static void set_view(entity_system_t *es, sfView *view)
         {player_pos->pos.x + 25, player_pos->pos.y + 25});
 }
 
+static void reset_entities(entity_system_t *es)
+{
+    free(es->entity_indexes);
+    es->entity_indexes = NULL;
+    es->nb_of_entities = 0;
+}
+
 static bool start_window(entity_system_t *es, floor_t ***floor)
 {
     sfRenderWindow *wnd = init_window("my_rpg",
@@ -54,12 +61,15 @@ static bool start_window(entity_system_t *es, floor_t ***floor)
     if (!view || !wnd)
         return false;
     while (sfRenderWindow_isOpen(wnd)) {
+        if (!get_entities(es))
+            return false;
         sfRenderWindow_setView(wnd, view);
         set_view(es, view);
         system_loop(wnd, es, floor);
         sfRenderWindow_display(wnd);
         sfRenderWindow_clear(wnd, sfBlack);
         event_loop(wnd, &event, es);
+        reset_entities(es);
     }
     return true;
 }
