@@ -9,8 +9,6 @@
 
 #include <SFML/System/Clock.h>
 
-#define ANIM_TIME ((sfInt64) 55555)
-
 struct anim_data {
     sfIntRect rect;
     int x_add;
@@ -18,6 +16,7 @@ struct anim_data {
     int current_frame;
     int nb_frame;
     int next_line_frame;
+    int speed;
 };
 
 typedef enum direction {

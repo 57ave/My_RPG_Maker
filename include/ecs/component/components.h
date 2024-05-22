@@ -135,11 +135,11 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     },
     {
         "COLLISION", COLLISION, &init_component_collision,
-        sizeof(c_collision_t)
+        sizeof(c_collision_t *)
     },
     {
         "WARP", WARP, &init_component_warp, sizeof(c_warp_t *)
-    }
+    },
 };
 
 static const size_t NB_OF_COMPONENT =
