@@ -44,7 +44,12 @@ static sfVector2f random_target_position(entity_system_t *es, int i,
         ((void **)component_zone->data)[i];
 
     srand(time(NULL));
-    if (rand() % 5 == 0 && tmp_zone->count == tmp_zone->step_counter) {
+    if (tmp_zone->count == tmp_zone->step_counter) {
+        if ((rand() % 15) > 1) {
+            tmp_zone->target_position.x = entity_pos->pos.x;
+            tmp_zone->target_position.y = entity_pos->pos.x;
+            return tmp_zone->target_position;
+        }
         tmp_zone->step_counter = rand() % 5 == 0;
         tmp_zone->count = 0;
         init_random_direction(entity_pos, &target_position, tmp_zone);

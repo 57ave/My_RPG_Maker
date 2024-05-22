@@ -28,6 +28,9 @@ int init_component_health(entity_system_t *es,
     else
         new_component->current_armor = *armor;
     new_component->max_armor = new_component->current_armor;
+    new_component->clock = sfClock_create();
+    if (new_component->clock == NULL)
+        return EXIT_ERROR;
     if (init_components(es, (void *)new_component, type, entity) == EXIT_ERROR)
         return EXIT_ERROR;
     return EXIT_SUCCESS;

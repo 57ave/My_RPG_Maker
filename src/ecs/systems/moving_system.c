@@ -56,18 +56,19 @@ static void reset_speed_entities(c_velocity_t *velocity_entity)
     sfClock_restart(velocity_entity->clock);
 }
 
-static bool check_colisions(entity_filter_t *colisions,
+static bool check_collisions(entity_filter_t *collisions,
     int entity, entity_system_t *es)
 {
     vec_t *component_col = (vec_t *)(es->components[COLLISION]);
 
-    for (int i = 0; i < colisions->number; ++i) {
-        if (colisions->indexes[i] == entity) {
+    for (int i = 0; i < collisions->number; ++i) {
+        if (collisions->indexes[i] == entity)
             continue;
-        }
+        if (collision_entities(es, entity, collisions->indexes[i]))
+            damage_entities(es, entity, collisions->indexes[i]);
         if (((c_collision_t *)
-            ((void **)component_col->data)[colisions->indexes[i]])->wall &&
-            collision_entities(es, entity, colisions->indexes[i])) {
+            ((void **)component_col->data)[collisions->indexes[i]])->wall &&
+            collision_entities(es, entity, collisions->indexes[i])) {
             return true;
         }
     }
@@ -86,7 +87,7 @@ void move_entities(entity_system_t *es, floor_t ***floor)
         tmp_vel = (c_velocity_t *)get_comp(es, VELOCITY, filter->indexes[i]);
         tmp_pos->pos.x += tmp_vel->speed.x;
         tmp_pos->pos.y += tmp_vel->speed.y;
-        if (check_colisions(collision_filter, filter->indexes[i], es)) {
+        if (check_collisions(collision_filter, filter->indexes[i], es)) {
             tmp_pos->pos.x -= tmp_vel->speed.x;
             tmp_pos->pos.y -= tmp_vel->speed.y;
         }

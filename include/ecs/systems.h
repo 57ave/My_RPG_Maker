@@ -22,3 +22,4 @@ void random_move_entities(entity_system_t *es);
 void animation_system(entity_system_t *es);
 bool collision_entities(entity_system_t *es, int e_1, int e_2);
 void dialogue_system(entity_system_t *es, sfRenderWindow *wnd);
+void damage_entities(entity_system_t *es, int entity1, int entity2);
