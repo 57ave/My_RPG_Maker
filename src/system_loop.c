@@ -48,6 +48,7 @@ void system_loop(sfRenderWindow *wnd, entity_system_t *es, floor_t ***floor)
     random_move_entities(es);
     animation_system(es);
     move_entities(es, floor);
+    pick_system(es);
     warp_entities(es);
     draw_floor(wnd, floor);
     draw_entities(es, wnd);
