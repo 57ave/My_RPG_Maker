@@ -25,13 +25,13 @@ static void init_random_direction(c_position_t *entity_pos,
     sfVector2f *target_position, c_interaction_zone_t *tmp_zone)
 {
     if (rand() % 2 == 0)
-        target_position->x = entity_pos->pos.x + rand() % 50;
+        target_position->x = entity_pos->pos.x + rand() % 30;
     else
-        target_position->x = entity_pos->pos.x - rand() % 50;
+        target_position->x = entity_pos->pos.x - rand() % 30;
     if (rand() % 2 == 0)
-        target_position->y = entity_pos->pos.y + rand() % 50;
+        target_position->y = entity_pos->pos.y + rand() % 30;
     else
-        target_position->y = entity_pos->pos.y - rand() % 50;
+        target_position->y = entity_pos->pos.y - rand() % 30;
     tmp_zone->target_position = *target_position;
 }
 
@@ -43,14 +43,13 @@ static sfVector2f random_target_position(entity_system_t *es, int i,
     c_interaction_zone_t *tmp_zone = (c_interaction_zone_t *)
         ((void **)component_zone->data)[i];
 
-    srand(time(NULL));
     if (tmp_zone->count == tmp_zone->step_counter) {
-        if ((rand() % 15) > 1) {
+        if ((rand() % 7) > 1) {
             tmp_zone->target_position.x = entity_pos->pos.x;
-            tmp_zone->target_position.y = entity_pos->pos.x;
+            tmp_zone->target_position.y = entity_pos->pos.y;
             return tmp_zone->target_position;
         }
-        tmp_zone->step_counter = rand() % 5 == 0;
+        tmp_zone->step_counter = rand() % 6 == 0;
         tmp_zone->count = 0;
         init_random_direction(entity_pos, &target_position, tmp_zone);
     }
@@ -87,6 +86,7 @@ void random_move_entities(entity_system_t *es)
     c_velocity_t *tmp_vel = NULL;
     c_position_t *tmp_pos = NULL;
 
+    srand(time(NULL));
     for (int i = 0; i < filter->number; ++i) {
         tmp_vel = (c_velocity_t *)
             ((void **)component_vel->data)[filter->indexes[i]];
