@@ -1,0 +1,19 @@
+[GRASS]
+SPRITE = "./assets/sprites/grass.png"
+SOUND = "./assets/sounds/grass.wav"
+CHAR = "#"
+
+[WATER]
+SPRITE = "./assets/sprites/water.png"
+SOUND = "./assets/sounds/water.wav"
+CHAR = "~"
+
+[SAND]
+SPRITE = "./assets/sprites/sand.png"
+SOUND = "./assets/sounds/sand.wav"
+CHAR = "+"
+
+[WOOD]
+SPRITE = "./assets/sprites/house_floor.png"
+SOUND = "./assets/sounds/wood.wav"
+CHAR = "p"

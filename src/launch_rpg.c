@@ -67,9 +67,12 @@ static bool start_window(entity_system_t *es, floor_t ***floor)
 static int test(void)
 {
     tailed_t **possibilities = init_floor_possibilities();
-    floor_t ***floor = get_map(possibilities, "./config/map.txt");
+    floor_t ***floor = NULL;
     entity_system_t *es = calloc(sizeof(entity_system_t), 1);
 
+    if (possibilities == NULL)
+        return EXIT_ERROR;
+    floor = get_map(possibilities, "./config/map.txt");
     es->components = calloc(sizeof(vec_t), 1);
     es = init_entity_system(es);
     if (es == NULL) {

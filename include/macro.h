@@ -12,4 +12,6 @@
     #define EXIT_ERROR 1
     #define EXIT_FAIL 84
 
+static const char MAP_CONFIG[] = "./config/map.toml";
+
 #endif /* !MACRO_H_ */
