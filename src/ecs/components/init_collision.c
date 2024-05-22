@@ -28,14 +28,14 @@ static int create_circle_collision(c_collision_t *new_component, obj_t *obj)
 
 static int create_rect_collision(c_collision_t *new_component, obj_t *obj)
 {
-    float *width = (float *)pull_data(obj, "COLLISION-WIDTH");
-    float *height = (float *)pull_data(obj, "COLLISION-HEIGHT");
+    int *width = (int *)pull_data(obj, "COLLISION-WIDTH");
+    int *height = (int *)pull_data(obj, "COLLISION-HEIGHT");
 
     new_component->shape.rectangle = sfRectangleShape_create();
     if (!new_component->shape.rectangle || !width || !height)
         return EXIT_ERROR;
     sfRectangleShape_setSize(new_component->shape.rectangle,
-        (sfVector2f){*width, *height});
+        (sfVector2f){(float)*width, (float)*height});
     return EXIT_SUCCESS;
 }
 
@@ -50,6 +50,20 @@ static int set_collision_shape(c_collision_t *new_component, obj_t *obj)
     return EXIT_SUCCESS;
 }
 
+static int set_other_infos(c_collision_t *new_component, obj_t *obj)
+{
+    int *offset_x = (int *)pull_data(obj, "COLLISION-OFFSET_X");
+    int *offset_y = (int *)pull_data(obj, "COLLISION-OFFSET_Y");
+    int *wall = (int *)pull_data(obj, "COLLISION-WALL");
+
+    if (!offset_x || !offset_y || !wall)
+        return EXIT_ERROR;
+    new_component->offset_x = *offset_x;
+    new_component->offset_y = *offset_y;
+    new_component->wall = *wall;
+    return EXIT_SUCCESS;
+}
+
 int init_component_collision(entity_system_t *es, obj_t *obj,
     component_t type, int entity)
 {
@@ -61,6 +75,8 @@ int init_component_collision(entity_system_t *es, obj_t *obj,
         return EXIT_ERROR;
     new_component->type = *collision_type;
     if (set_collision_shape(new_component, obj) == EXIT_ERROR)
+        return EXIT_ERROR;
+    if (set_other_infos(new_component, obj) == EXIT_ERROR)
         return EXIT_ERROR;
     if (init_components(es, (void *)new_component, type, entity) == EXIT_ERROR)
         return EXIT_ERROR;

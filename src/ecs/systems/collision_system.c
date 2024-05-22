@@ -26,9 +26,11 @@ static bool is_rect_colliding(c_collision_t *col_1, c_collision_t *col_2,
     sfFloatRect rect_2 = {0};
 
     sfRectangleShape_setPosition(col_1->shape.rectangle,
-        (sfVector2f){pos_1->pos.x, pos_1->pos.y});
+        (sfVector2f){pos_1->pos.x + col_1->offset_x,
+        pos_1->pos.y + col_1->offset_y});
     sfRectangleShape_setPosition(col_2->shape.rectangle,
-        (sfVector2f){pos_2->pos.x, pos_2->pos.y});
+        (sfVector2f){pos_2->pos.x + col_2->offset_x,
+        pos_2->pos.y + col_2->offset_y});
     rect_1 = sfRectangleShape_getGlobalBounds(col_1->shape.rectangle);
     rect_2 = sfRectangleShape_getGlobalBounds(col_2->shape.rectangle);
     return sfFloatRect_intersects(&rect_1, &rect_2, NULL);
@@ -41,9 +43,11 @@ static bool is_circle_colliding(c_collision_t *col_1, c_collision_t *col_2,
     sfFloatRect rect_2 = {0};
 
     sfCircleShape_setPosition(col_1->shape.circle,
-        (sfVector2f){pos_1->pos.x, pos_1->pos.y});
+        (sfVector2f){pos_1->pos.x + col_1->offset_x,
+        pos_1->pos.y + col_1->offset_y});
     sfCircleShape_setPosition(col_2->shape.circle,
-        (sfVector2f){pos_2->pos.x, pos_2->pos.y});
+        (sfVector2f){pos_2->pos.x + col_2->offset_x,
+        pos_2->pos.y + col_2->offset_y});
     rect_1 = sfCircleShape_getGlobalBounds(col_1->shape.circle);
     rect_2 = sfCircleShape_getGlobalBounds(col_2->shape.circle);
     return sfFloatRect_intersects(&rect_1, &rect_2, NULL);
