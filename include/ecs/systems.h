@@ -25,3 +25,7 @@ bool collision_entities(entity_system_t *es, int e_1, int e_2);
 void dialogue_system(entity_system_t *es, sfRenderWindow *wnd);
 void damage_entities(entity_system_t *es, int entity1, int entity2);
 void life_entities(entity_system_t *es, sfRenderWindow *wnd);
+int init_spell(entity_system_t *es, int item_inventory, int entity);
+int obj_to_components(entity_system_t *es, obj_t *obj, int entity);
+void get_object_values(char **content, int *line_offset, obj_t *obj);
+int set_vector_size(entity_system_t *es, int index);

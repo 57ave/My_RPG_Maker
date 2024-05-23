@@ -77,8 +77,8 @@ void damage_entities(entity_system_t *es, int entity1, int entity2)
 
     if ((damage_1 == NULL && health_1 == NULL) || health_2 == NULL)
         return;
-    if (is_wall(es, entity1, entity2) ||
-    (sfClock_getElapsedTime(health_1->clock).microseconds / 1000000 < 1 &&
+    if (is_wall(es, entity1, entity2) || (health_1 != NULL &&
+    (sfClock_getElapsedTime(health_1->clock).microseconds / 1000000 < 1) &&
     sfClock_getElapsedTime(health_2->clock).microseconds / 1000000 < 1))
         return;
     if (invincibility_period(health_2))

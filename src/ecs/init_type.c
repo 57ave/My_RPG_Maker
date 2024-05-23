@@ -49,7 +49,7 @@ int obj_to_components(entity_system_t *es, obj_t *obj, int entity)
     return EXIT_SUCCESS;
 }
 
-static int set_vector_size(entity_system_t *es, int index)
+int set_vector_size(entity_system_t *es, int index)
 {
     for (size_t cmpt_id = 0; cmpt_id < NB_OF_COMPONENT; cmpt_id++) {
         es->components[cmpt_id] = push_index_vector(es->components[cmpt_id],

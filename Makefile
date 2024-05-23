@@ -53,6 +53,7 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/components/init_inventory.c 	\
 			src/ecs/components/init_warp.c 	\
 			src/ecs/components/init_collision.c	\
+			src/ecs/components/init_active_item.c	\
 			src/ecs/isolate_entities.c	\
 			src/ecs/systems/drawing_system.c	\
 			src/ecs/read_config.c	\
