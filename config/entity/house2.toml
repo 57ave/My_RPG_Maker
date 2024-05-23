@@ -1,7 +1,7 @@
 [HOUSE]
 POSITION-X = 450
 POSITION-Y = 300
-DRAW-TEXTURE = "./assets/sprites/house.png"
+DRAW-TEXTURE = "./assets/sprites/exterior/house.png"
 DRAW-SIZE_X = 100
 DRAW-SIZE_Y = 75
 COLLISION-TYPE = 1
@@ -27,7 +27,7 @@ WARP-SOUND = "./assets/sounds/door.wav"
 [WARP OUT]
 POSITION-X = 3650
 POSITION-Y = 300
-DRAW-TEXTURE = "./assets/sprites/house_floor_exit.png"
+DRAW-TEXTURE = "./assets/sprites/interior/house_floor_exit.png"
 DRAW-SIZE_X = 50
 DRAW-SIZE_Y = 50
 COLLISION-TYPE = 1
@@ -43,7 +43,7 @@ WARP-SOUND = "./assets/sounds/door.wav"
 [TOILET]
 POSITION-X = 3763
 POSITION-Y = 92
-DRAW-TEXTURE = "./assets/sprites/blue_toilet.png"
+DRAW-TEXTURE = "./assets/sprites/interior/blue_toilet.png"
 DRAW-SIZE_X = 25
 DRAW-SIZE_Y = 25
 COLLISION-TYPE = 1
@@ -56,7 +56,7 @@ COLLISION-WALL = 1
 [BED]
 POSITION-X = 3600
 POSITION-Y = 190
-DRAW-TEXTURE = "./assets/sprites/red_bed.png"
+DRAW-TEXTURE = "./assets/sprites/interior/red_bed.png"
 DRAW-SIZE_X = 25
 DRAW-SIZE_Y = 50
 COLLISION-TYPE = 1
@@ -69,7 +69,7 @@ COLLISION-WALL = 1
 [DESK]
 POSITION-X = 3775
 POSITION-Y = 220
-DRAW-TEXTURE = "./assets/sprites/desk.png"
+DRAW-TEXTURE = "./assets/sprites/interior/desk.png"
 DRAW-SIZE_X = 25
 DRAW-SIZE_Y = 50
 COLLISION-TYPE = 1
