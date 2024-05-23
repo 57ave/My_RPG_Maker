@@ -8,6 +8,7 @@
 #pragma once
 
     #include <stddef.h>
+    #include <stdbool.h>
     #include "my_toml.h"
     #include "position_component.h"
     #include "health_component.h"
@@ -28,7 +29,6 @@
     #include "ecs.h"
 
 entity_system_t *init_entity_system(entity_system_t *es);
-
 typedef enum component_e {
     POSITION = 0,
     DAMAGE,
@@ -49,8 +49,10 @@ typedef enum component_e {
     LAST_COMPONENT
 } component_t;
 
+void *get_comp(entity_system_t *es, component_t component, int entity);
 int init_components(entity_system_t *es, void *component,
     component_t component_type, int entity);
+bool get_entities(entity_system_t *es);
 
 typedef struct component_data_s {
     char *name;
@@ -141,7 +143,7 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     },
     {
         "COLLISION", COLLISION, &init_component_collision,
-        sizeof(c_collision_t)
+        sizeof(c_collision_t *)
     },
     {
         "WARP", WARP, &init_component_warp, sizeof(c_warp_t *)

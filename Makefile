@@ -37,6 +37,7 @@ SRC 	=	src/launch_rpg.c \
 			src/event_loop.c \
 			src/lauching_error_handling.c \
 			src/ecs/init_type.c 	\
+			src/ecs/get_component.c	\
 			src/ecs/components/init_component.c	\
 			src/ecs/components/init_drawable.c	\
 			src/ecs/components/init_game_mode.c	\
@@ -63,11 +64,15 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/systems/warp_system.c	\
 			src/ecs/systems/collision_system.c	\
 			src/ecs/systems/pick_system.c 	\
+			src/ecs/systems/dialogue_system.c	\
+			src/ecs/systems/damage_system.c 	\
+			src/ecs/systems/life_system.c 	\
 			src/map_parsing/get_char_map.c	\
 			src/map_parsing/get_map.c	\
 			src/map_parsing/init_floor_possibilities.c	\
 			src/draw_floor.c	\
 			src/ecs/systems/animation_system.c 	\
+			src/ecs/filter_near_player.c 	\
 
 SRC_MAIN = 	src/main.c
 

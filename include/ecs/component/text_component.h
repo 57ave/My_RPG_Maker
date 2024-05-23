@@ -11,4 +11,5 @@ typedef struct text_s {
     char *content;
     sfText *text;
     sfFont *font;
+    int size;
 } c_text_t;
