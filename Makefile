@@ -49,6 +49,8 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/components/init_damage.c	\
 			src/ecs/components/init_interaction_zone.c 	\
 			src/ecs/components/init_animation.c 	\
+			src/ecs/components/init_pickable.c 	\
+			src/ecs/components/init_inventory.c 	\
 			src/ecs/components/init_warp.c 	\
 			src/ecs/components/init_collision.c	\
 			src/ecs/isolate_entities.c	\
@@ -61,6 +63,7 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/systems/moving_system.c	\
 			src/ecs/systems/warp_system.c	\
 			src/ecs/systems/collision_system.c	\
+			src/ecs/systems/pick_system.c 	\
 			src/ecs/systems/dialogue_system.c	\
 			src/ecs/systems/damage_system.c 	\
 			src/ecs/systems/life_system.c 	\

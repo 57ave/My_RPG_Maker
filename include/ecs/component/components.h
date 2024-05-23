@@ -23,7 +23,9 @@
     #include "animation_component.h"
     #include "interaction_zone_component.h"
     #include "collision_component.h"
+    #include "inventory_component.h"
     #include "warp_component.h"
+    #include "pickable_component.h"
     #include "ecs.h"
 
 entity_system_t *init_entity_system(entity_system_t *es);
@@ -42,6 +44,8 @@ typedef enum component_e {
     INTERACTION_ZONE,
     COLLISION,
     WARP,
+    INVENTORY,
+    PICKABLE,
     LAST_COMPONENT
 } component_t;
 
@@ -87,6 +91,10 @@ int init_component_interaction_zone(entity_system_t *es,
 int init_component_collision(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
 int init_component_warp(entity_system_t *es,
+    obj_t *obj, component_t type, int entity);
+int init_component_inventory(entity_system_t *es,
+    obj_t *obj, component_t type, int entity);
+int init_component_pickable(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
 
 static const component_data_t COMPONENT_INIT_DATA[] = {
@@ -140,6 +148,14 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     {
         "WARP", WARP, &init_component_warp, sizeof(c_warp_t *)
     },
+    {
+        "INVENTORY", INVENTORY, &init_component_inventory,
+        sizeof(c_inventory_t *)
+    },
+    {
+        "PICKABLE", PICKABLE, &init_component_pickable,
+        sizeof(c_pickable_t *)
+    }
 };
 
 static const size_t NB_OF_COMPONENT =
