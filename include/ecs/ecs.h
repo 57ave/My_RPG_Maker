@@ -10,12 +10,14 @@
 
     #include <stddef.h>
     #include "vector.h"
+    #include "key_mapping.h"
 
-typedef struct entity_system {
+typedef struct entity_system_s {
     int player;
     int *entity_indexes;
     int nb_of_entities;
     vec_t **components;
-}entity_system_t;
+    gamemode_keys_t keys[3];
+} entity_system_t;
 
 #endif
