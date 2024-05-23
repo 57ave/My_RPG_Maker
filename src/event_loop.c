@@ -21,7 +21,7 @@
 
 static void handle_keys_event(sfEvent *event, entity_system_t *es)
 {
-    int gamemode = 0; // get_gamemode();
+    int gamemode = es->game_mode;
 
     for (int i = 0; i < KEYS_COUNT; ++i) {
         if (event->key.code == es->keys[gamemode].key_map[i]->key) {
