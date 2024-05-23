@@ -1,7 +1,7 @@
 [HOUSE]
 POSITION-X = 335
 POSITION-Y = 475
-DRAW-TEXTURE = "./assets/sprites/house.png"
+DRAW-TEXTURE = "./assets/sprites/exterior/house.png"
 DRAW-SIZE_X = 100
 DRAW-SIZE_Y = 75
 COLLISION-TYPE = 1
@@ -27,7 +27,7 @@ WARP-SOUND = "./assets/sounds/door.wav"
 [WARP OUT]
 POSITION-X = 4090
 POSITION-Y = 300
-DRAW-TEXTURE = "./assets/sprites/house_floor_exit.png"
+DRAW-TEXTURE = "./assets/sprites/interior/house_floor_exit.png"
 DRAW-SIZE_X = 50
 DRAW-SIZE_Y = 50
 COLLISION-TYPE = 1
@@ -43,7 +43,7 @@ WARP-SOUND = "./assets/sounds/door.wav"
 [PAPER]
 POSITION-X = 4100
 POSITION-Y = 185
-DRAW-TEXTURE = "./assets/sprites/paper.png"
+DRAW-TEXTURE = "./assets/sprites/interior/paper.png"
 DRAW-SIZE_X = 12
 DRAW-SIZE_Y = 30
 INTERACTION_ZONE-RADIUS = 15

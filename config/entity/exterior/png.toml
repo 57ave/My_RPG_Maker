@@ -1,5 +1,5 @@
 [PNG GENTLEMAN]
-DRAW-TEXTURE = "./assets/sprites/gentleman_sheet.png"
+DRAW-TEXTURE = "./assets/sprites/character/gentleman_sheet.png"
 POSITION-X = 300
 POSITION-Y = 200
 VELOCITY-X = 3
@@ -42,7 +42,7 @@ TEXT-CONTENT = "Bonjour etranger"
 TEXT-FONT = "./assets/font/Milker.otf"
 
 [PNG KNIGHT]
-DRAW-TEXTURE = "./assets/sprites/knight_sheet.png"
+DRAW-TEXTURE = "./assets/sprites/character/knight_sheet.png"
 POSITION-X = 500
 POSITION-Y = 200
 VELOCITY-X = 3
@@ -85,7 +85,7 @@ TEXT-CONTENT = "il me faut de la viande"
 TEXT-FONT = "./assets/font/Milker.otf"
 
 [COOKIE GRANDMA]
-DRAW-TEXTURE = "./assets/sprites/cookie_grandma.png"
+DRAW-TEXTURE = "./assets/sprites/character/cookie_grandma.png"
 POSITION-X = 3250
 POSITION-Y = 200
 DRAW-SIZE_X = 500
