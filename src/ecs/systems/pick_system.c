@@ -11,12 +11,9 @@
 #include "systems.h"
 #include "filter_entity.h"
 
-#define GET_COMP(component, entity) (((void **) \
-                ((vec_t *)es->components[component])->data)[entity])
-
 bool put_in_inventory(entity_system_t *es, int object, int entity)
 {
-    c_inventory_t *inventory = GET_COMP(INVENTORY, entity);
+    c_inventory_t *inventory = get_comp(es, INVENTORY, entity);
 
     for (size_t i = 0; i < inventory->size; i++) {
         if (inventory->object_tab[i] == 0) {
@@ -29,7 +26,7 @@ bool put_in_inventory(entity_system_t *es, int object, int entity)
 
 void change_mode(entity_system_t *es, int entity)
 {
-    c_game_mode_t *obj_mode = GET_COMP(GAME_MODE, entity);
+    c_game_mode_t *obj_mode = get_comp(es, GAME_MODE, entity);
 
     obj_mode->mode = 2;
 }
