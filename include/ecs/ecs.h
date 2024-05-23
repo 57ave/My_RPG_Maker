@@ -12,12 +12,15 @@
     #include "vector.h"
     #include "key_mapping.h"
 
+    #define GAMEMODE_COUNT 12
+
 typedef struct entity_system_s {
     int player;
     int *entity_indexes;
     int nb_of_entities;
     vec_t **components;
-    gamemode_keys_t keys[3];
+    int game_mode;
+    gamemode_keys_t keys[GAMEMODE_COUNT];
 } entity_system_t;
 
 #endif
