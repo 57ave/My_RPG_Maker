@@ -1,6 +1,7 @@
 
 
 [RED FLOWER]
+GAME_MODE-MODE = 1
 POSITION-X = 340
 POSITION-Y = 250
 DRAW-TEXTURE = "./assets/sprites/exterior/flower.png"
@@ -8,6 +9,7 @@ DRAW-SIZE_X = 13
 DRAW-SIZE_Y = 30
 
 [BLUE FLOWER]
+GAME_MODE-MODE = 1
 POSITION-X = 360
 POSITION-Y = 250
 DRAW-TEXTURE = "./assets/sprites/exterior/blue_flower.png"
@@ -15,6 +17,7 @@ DRAW-SIZE_X = 15
 DRAW-SIZE_Y = 30
 
 [RED FLOWER]
+GAME_MODE-MODE = 1
 POSITION-X = 370
 POSITION-Y = 365
 DRAW-TEXTURE = "./assets/sprites/exterior/flower.png"
@@ -22,6 +25,7 @@ DRAW-SIZE_X = 13
 DRAW-SIZE_Y = 30
 
 [BLUE FLOWER]
+GAME_MODE-MODE = 1
 POSITION-X = 420
 POSITION-Y = 510
 DRAW-TEXTURE = "./assets/sprites/exterior/blue_flower.png"
@@ -29,6 +33,7 @@ DRAW-SIZE_X = 15
 DRAW-SIZE_Y = 30
 
 [BLUE FLOWER]
+GAME_MODE-MODE = 1
 POSITION-X = 555
 POSITION-Y = 494
 DRAW-TEXTURE = "./assets/sprites/exterior/blue_flower.png"
@@ -36,6 +41,7 @@ DRAW-SIZE_X = 15
 DRAW-SIZE_Y = 30
 
 [GRASS]
+GAME_MODE-MODE = 1
 POSITION-X = 570
 POSITION-Y = 480
 DRAW-TEXTURE = "./assets/sprites/exterior/grass_texture.png"
@@ -43,6 +49,7 @@ DRAW-SIZE_X = 20
 DRAW-SIZE_Y = 60
 
 [GRASS]
+GAME_MODE-MODE = 1
 POSITION-X = 550
 POSITION-Y = 470
 DRAW-TEXTURE = "./assets/sprites/exterior/grass_texture.png"
@@ -50,6 +57,7 @@ DRAW-SIZE_X = 20
 DRAW-SIZE_Y = 70
 
 [GRASS]
+GAME_MODE-MODE = 1
 POSITION-X = 615
 POSITION-Y = 470
 DRAW-TEXTURE = "./assets/sprites/exterior/grass_texture.png"
@@ -57,6 +65,7 @@ DRAW-SIZE_X = 20
 DRAW-SIZE_Y = 70
 
 [RED FLOWER]
+GAME_MODE-MODE = 1
 POSITION-X = 590
 POSITION-Y = 480
 DRAW-TEXTURE = "./assets/sprites/exterior/flower.png"
@@ -64,6 +73,7 @@ DRAW-SIZE_X = 13
 DRAW-SIZE_Y = 30
 
 [BLUE FLOWER]
+GAME_MODE-MODE = 1
 POSITION-X = 600
 POSITION-Y = 499
 DRAW-TEXTURE = "./assets/sprites/exterior/blue_flower.png"
@@ -71,6 +81,7 @@ DRAW-SIZE_X = 15
 DRAW-SIZE_Y = 30
 
 [GARDEN]
+GAME_MODE-MODE = 1
 POSITION-X = 770
 POSITION-Y = 470
 DRAW-TEXTURE = "./assets/sprites/exterior/garden.png"
@@ -78,6 +89,7 @@ DRAW-SIZE_X = 30
 DRAW-SIZE_Y = 70
 
 [GARDEN]
+GAME_MODE-MODE = 1
 POSITION-X = 805
 POSITION-Y = 505
 DRAW-TEXTURE = "./assets/sprites/exterior/garden.png"
@@ -86,6 +98,7 @@ DRAW-SIZE_Y = 70
 
 
 [GARDEN]
+GAME_MODE-MODE = 1
 POSITION-X = 770
 POSITION-Y = 505
 DRAW-TEXTURE = "./assets/sprites/exterior/green_garden.png"
@@ -93,6 +106,7 @@ DRAW-SIZE_X = 30
 DRAW-SIZE_Y = 70
 
 [GARDEN]
+GAME_MODE-MODE = 1
 POSITION-X = 805
 POSITION-Y = 470
 DRAW-TEXTURE = "./assets/sprites/exterior/green_garden.png"
@@ -100,6 +114,7 @@ DRAW-SIZE_X = 30
 DRAW-SIZE_Y = 70
 
 [SHOVEL]
+GAME_MODE-MODE = 1
 POSITION-X = 835
 POSITION-Y = 480
 DRAW-TEXTURE = "./assets/sprites/object/shovel.png"
@@ -107,6 +122,7 @@ DRAW-SIZE_X = 25
 DRAW-SIZE_Y = 45
 
 [GRASS]
+GAME_MODE-MODE = 1
 POSITION-X = 570
 POSITION-Y = 200
 DRAW-TEXTURE = "./assets/sprites/exterior/grass_texture.png"
@@ -114,6 +130,7 @@ DRAW-SIZE_X = 20
 DRAW-SIZE_Y = 60
 
 [GRASS]
+GAME_MODE-MODE = 1
 POSITION-X = 520
 POSITION-Y = 190
 DRAW-TEXTURE = "./assets/sprites/exterior/grass_texture.png"
@@ -121,6 +138,7 @@ DRAW-SIZE_X = 20
 DRAW-SIZE_Y = 70
 
 [GRASS]
+GAME_MODE-MODE = 1
 POSITION-X = 240
 POSITION-Y = 320
 DRAW-TEXTURE = "./assets/sprites/exterior/grass_texture.png"
@@ -128,6 +146,7 @@ DRAW-SIZE_X = 20
 DRAW-SIZE_Y = 70
 
 [GRASS]
+GAME_MODE-MODE = 1
 POSITION-X = 470
 POSITION-Y = 210
 DRAW-TEXTURE = "./assets/sprites/exterior/grass_texture.png"
@@ -135,6 +154,7 @@ DRAW-SIZE_X = 20
 DRAW-SIZE_Y = 60
 
 [GRASS]
+GAME_MODE-MODE = 1
 POSITION-X = 440
 POSITION-Y = 180
 DRAW-TEXTURE = "./assets/sprites/exterior/grass_texture.png"
@@ -142,6 +162,7 @@ DRAW-SIZE_X = 20
 DRAW-SIZE_Y = 70
 
 [GRASS]
+GAME_MODE-MODE = 1
 POSITION-X = 230
 POSITION-Y = 300
 DRAW-TEXTURE = "./assets/sprites/exterior/grass_texture.png"

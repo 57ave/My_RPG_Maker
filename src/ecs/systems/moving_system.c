@@ -37,7 +37,7 @@ static void play_sound(floor_t ***floor, c_position_t *pos,
     int index_x = 0;
 
     if ((vel->speed.x != 0 || vel->speed.y != 0) &&
-        sfClock_getElapsedTime(vel->floor_sound).microseconds > 400000) {
+        sfClock_getElapsedTime(vel->floor_sound).microseconds > 800000) {
         sfClock_restart(vel->floor_sound);
         index_y = (int)((pos->pos.y) / (TAILED_SIZE)) + 2;
         index_x = (int)(pos->pos.x / (TAILED_SIZE));

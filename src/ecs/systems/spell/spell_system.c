@@ -97,7 +97,6 @@ void spell_entities(entity_system_t *es)
         target_entity = get_target_entity(es, filter->indexes[i]);
         if (check_spell_collisions(es, filter->indexes[i]) ||
         temporary_system(es, filter->indexes[i]))
-            printf("a\n");
         move_spell_entities(es, filter->indexes[i], target_entity);
     }
     free_filter(filter);

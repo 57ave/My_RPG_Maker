@@ -17,3 +17,8 @@ CHAR = "+"
 SPRITE = "./assets/sprites/interior/house_floor.png"
 SOUND = "./assets/sounds/wood.wav"
 CHAR = "p"
+
+[CAVE]
+SPRITE = "./assets/sprites/cave/cave.png"
+SOUND = "./assets/sounds/cave.wav"
+CHAR = "c"
