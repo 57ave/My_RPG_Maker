@@ -10,12 +10,13 @@
 
     #include "floor/floor_struct.h"
     #include "floor/floor_case_struct.h"
+    #include "ecs.h"
 
 tailed_t **init_floor_possibilities(void);
 floor_t ***get_map(tailed_t **possibilities, char const *const path);
 char **get_char_map(char const *const path);
 sfVector2f sprite_size(sfTexture *text, sfVector2f size);
-void draw_floor(sfRenderWindow *wnd, floor_t ***floor);
+void draw_floor(sfRenderWindow *wnd, floor_t ***floor, entity_system_t *es);
 
 
 #endif /* !FUNCTIONS_H */
