@@ -84,6 +84,7 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/action/down.c 			\
 			src/ecs/action/left.c 			\
 			src/ecs/action/right.c 			\
+			src/ecs/action/inventory.c 			\
 			src/ecs/filter_near_entity.c 	\
 			src/ecs/remove_entity.c 	\
 

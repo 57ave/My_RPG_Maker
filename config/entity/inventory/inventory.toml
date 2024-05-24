@@ -1,0 +1,8 @@
+[INVENTORY]
+GAME_MODE-MODE = 2
+POSITION-X = 0
+POSITION-Y = 50
+DRAW-TEXTURE = "./assets/sprites/inventory.png"
+DRAW-SIZE_X = 300
+DRAW-SIZE_Y = 200
+

@@ -14,6 +14,7 @@
 
 void pick_system(entity_system_t *es);
 void draw_entities(entity_system_t *es, sfRenderWindow *wnd);
+void draw_inventory(entity_system_t *es, sfRenderWindow *wnd);
 void draw_floor(sfRenderWindow *wnd, floor_t ***floor, entity_system_t *es);
 void move_entities(entity_system_t *es, floor_t ***);
 bool interaction_zone_entities(entity_system_t *es, int entity1, int entity2);

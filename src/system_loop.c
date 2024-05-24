@@ -43,6 +43,8 @@ void system_loop(sfRenderWindow *wnd, entity_system_t *es, floor_t ***floor)
     warp_entities(es);
     draw_floor(wnd, floor, es);
     draw_entities(es, wnd);
+    if (es->game_mode == 2)
+        draw_inventory(es, wnd);
     life_entities(es, wnd);
     dialogue_system(es, wnd);
 }
