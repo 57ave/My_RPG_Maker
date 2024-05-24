@@ -105,7 +105,6 @@ entity_system_t *init_entity_system(entity_system_t *es)
     es->all_indexes = NULL;
     es->total_indexes = 0;
     es->player = -1;
-    es->game_mode = 1;
     if (!init_component_vector(es, sizeof(vec_t))) {
         return NULL;
     }
