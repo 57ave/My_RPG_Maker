@@ -7,6 +7,8 @@
 
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
+#include <SFML/System/Vector2.h>
+#include <SFML/Window/Event.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -20,7 +22,7 @@
 #include "systems.h"
 
 static void handle_event(sfRenderWindow *wnd,
-    sfEvent *event, entity_system_t *)
+    sfEvent *event, entity_system_t *es)
 {
     if (event->type == sfEvtClosed || sfKeyboard_isKeyPressed(sfKeyEscape)) {
         sfRenderWindow_close(wnd);

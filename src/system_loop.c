@@ -31,6 +31,15 @@ static void catch_keys(entity_system_t *es)
     }
 }
 
+static void catch_click(entity_system_t *es, sfRenderWindow *wnd)
+{
+    sfVector2f mouse_pos = (sfVector2f)sfRenderWindow_mapPixelToCoords(wnd,
+        sfMouse_getPositionRenderWindow(wnd), NULL);
+
+    if (sfMouse_isButtonPressed(sfMouseLeft))
+        clickable_entities(es, mouse_pos, wnd);
+}
+
 static void check_death(entity_system_t *es)
 {
     if (((c_health_t *)get_comp(es, HEALTH, es->player))->current_health <= 0)
@@ -40,6 +49,7 @@ static void check_death(entity_system_t *es)
 void system_loop(sfRenderWindow *wnd, entity_system_t *es, floor_t ***floor)
 {
     catch_keys(es);
+    catch_click(es, wnd);
     if (es->game_mode == 1) {
         aggro_entities(es);
         random_move_entities(es);
