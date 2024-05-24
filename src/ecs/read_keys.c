@@ -13,27 +13,13 @@
 #include "key_mapping.h"
 #include "my_toml.h"
 
-static void print_gamemode_keys(entity_system_t *es)
-{
-    for (int i = 0; i < GAMEMODE_COUNT; ++i) {
-        if (es->keys[i].key_map == NULL)
-            continue;
-        printf("Gamemode: %d\n", es->keys[i].mode);
-        for (int j = 0; j < ACTION_COUNT; ++j) {
-            printf("Key: %d | Callback: %p\n", es->keys[i].key_map[j]->key,
-                es->keys[i].key_map[j]->callback);
-        }
-    }
-}
-
 static void define_key(char *action_name, key_callback_t **key_map,
     int i, int j)
 {
     key_callback_t *key_callback = NULL;
 
-    if (key_map[j])
     if (strcmp(action_name, ACTION_CONFIGS[j].action_name) == 0) {
-        key_callback = calloc(sizeof(key_callback_t), 1);
+        key_callback = calloc(sizeof(key_callback_t *), 1);
         key_callback->key = KEY_CONFIGS[i].key;
         key_callback->callback = ACTION_CONFIGS[j].callback;
         key_map[j] = key_callback;
@@ -83,6 +69,5 @@ int read_keys_from_file(entity_system_t *es, const char *filepath)
 {
     if (add_keys_from_path(es, filepath) == EXIT_FAILURE)
         return EXIT_FAILURE;
-    print_gamemode_keys(es);
     return EXIT_SUCCESS;
 }
