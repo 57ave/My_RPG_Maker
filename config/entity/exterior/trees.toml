@@ -1,4 +1,5 @@
 [TREE]
+GAME_MODE-MODE = 1
 POSITION-X = 100
 POSITION-Y = 120
 DRAW-TEXTURE = "./assets/sprites/exterior/mid_tree.png"
@@ -12,6 +13,7 @@ COLLISION-OFFSET_Y = 23
 COLLISION-WALL = 1
 
 [TREE]
+GAME_MODE-MODE = 1
 POSITION-X = 240
 POSITION-Y = 140
 DRAW-TEXTURE = "./assets/sprites/exterior/mid_tree.png"
@@ -25,6 +27,7 @@ COLLISION-OFFSET_Y = 23
 COLLISION-WALL = 1
 
 [TREE]
+GAME_MODE-MODE = 1
 POSITION-X = 550
 POSITION-Y = 330
 DRAW-TEXTURE = "./assets/sprites/exterior/mid_tree.png"
@@ -39,6 +42,7 @@ COLLISION-WALL = 1
 
 
 [TREE]
+GAME_MODE-MODE = 1
 POSITION-X = 550
 POSITION-Y = 190
 DRAW-TEXTURE = "./assets/sprites/exterior/small_tree.png"
@@ -52,6 +56,7 @@ COLLISION-OFFSET_Y = 26
 COLLISION-WALL = 1
 
 [TREE]
+GAME_MODE-MODE = 1
 POSITION-X = 420
 POSITION-Y = 480
 DRAW-TEXTURE = "./assets/sprites/exterior/small_tree.png"
@@ -65,6 +70,7 @@ COLLISION-OFFSET_Y = 26
 COLLISION-WALL = 1
 
 [SEED BAG]
+GAME_MODE-MODE = 1
 POSITION-X = 740
 POSITION-Y = 510
 DRAW-TEXTURE = "./assets/sprites/exterior/seed_bag.png"

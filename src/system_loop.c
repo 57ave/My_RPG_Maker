@@ -36,6 +36,7 @@ void system_loop(sfRenderWindow *wnd, entity_system_t *es, floor_t ***floor)
     catch_keys(es);
     aggro_entities(es);
     random_move_entities(es);
+    spell_entities(es);
     animation_system(es);
     move_entities(es, floor);
     pick_system(es);

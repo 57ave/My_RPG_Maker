@@ -31,7 +31,7 @@ void dialogue_system(entity_system_t *es, sfRenderWindow *wnd)
         es, POSITION, INTERACTION_ZONE, TEXT);
 
     for (int i = 0; i < filter->number; ++i) {
-        if (interaction_zone_entities(es, filter->indexes[i])) {
+        if (interaction_zone_entities(es, es->player, filter->indexes[i])) {
             print_dialogue(es, filter->indexes[i], wnd);
             break;
         }

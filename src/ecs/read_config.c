@@ -19,6 +19,8 @@ static char *create_filepath(const char *path, const char *filename)
     char *filepath =
         malloc(sizeof(char) * (strlen(path) + strlen(filename) + 1));
 
+    if (filepath == NULL)
+        return NULL;
     snprintf(filepath,
         strlen(path) + strlen(filename) + 1, "%s%s", path, filename);
     return filepath;
@@ -27,6 +29,8 @@ static char *create_filepath(const char *path, const char *filename)
 static int process_directory(char *filepath, entity_system_t *es)
 {
     filepath = realloc(filepath, sizeof(char) * (strlen(filepath) + 2));
+    if (filepath == NULL)
+        return EXIT_ERROR;
     strcat(filepath, "/");
     if (search_for_config_files(filepath, es) == EXIT_ERROR)
         return EXIT_ERROR;
@@ -39,6 +43,8 @@ static int process_file(char *filepath, struct dirent *dir_entry,
     struct stat sb;
 
     filepath = create_filepath(path, dir_entry->d_name);
+    if (filepath == NULL)
+        return EXIT_ERROR;
     stat(filepath, &sb);
     if (S_ISDIR(sb.st_mode)) {
         if (process_directory(filepath, es) == EXIT_ERROR)

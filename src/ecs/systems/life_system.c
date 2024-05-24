@@ -35,18 +35,16 @@ static void update_life_bar(c_health_t *health)
 void life_entities(entity_system_t *es, sfRenderWindow *wnd)
 {
     entity_filter_t *filter = filter_entities(2, es, HEALTH, POSITION);
-    vec_t *component_health = es->components[HEALTH];
-    vec_t *component_position = es->components[POSITION];
     c_health_t *tmp_health = NULL;
     c_position_t *tmp_pos = NULL;
     sfVector2f new_pos = {0};
 
     for (int i = 0; i < filter->number; ++i) {
-        tmp_health = (c_health_t *)
-            ((void **)component_health->data)[filter->indexes[i]];
-        tmp_pos = (c_position_t *)
-            ((void **)component_position->data)[filter->indexes[i]];
+        tmp_health = get_comp(es, HEALTH, filter->indexes[i]);
+        tmp_pos = get_comp(es, POSITION, filter->indexes[i]);
         new_pos = (sfVector2f){tmp_pos->pos.x, tmp_pos->pos.y - 5};
+        if (tmp_health->current_health == 0)
+            remove_entity(es, filter->indexes[i]);
         update_life_bar(tmp_health);
         sfRectangleShape_setPosition(tmp_health->health_rect, new_pos);
         sfRectangleShape_setPosition(tmp_health->armor_rect, new_pos);

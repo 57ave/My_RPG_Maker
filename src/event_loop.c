@@ -22,7 +22,7 @@
 static void handle_event(sfRenderWindow *wnd,
     sfEvent *event, entity_system_t *)
 {
-    if (event->type == sfEvtClosed) {
+    if (event->type == sfEvtClosed || sfKeyboard_isKeyPressed(sfKeyEscape)) {
         sfRenderWindow_close(wnd);
     }
 }

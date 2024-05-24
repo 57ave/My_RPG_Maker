@@ -1,6 +1,7 @@
 
 [Kitsune]
 DRAW-TEXTURE = "./assets/sprites/character/kitsune.png"
+GAME_MODE-MODE = 1
 POSITION-X = 3300
 POSITION-Y = 550
 VELOCITY-X = 0
@@ -23,6 +24,7 @@ TEXT-CONTENT = "choose your weapon !"
 TEXT-FONT = "./assets/font/Milker.otf"
 
 [WALL_1]
+GAME_MODE-MODE = 1
 POSITION-X = 3200
 POSITION-Y = 700
 DRAW-TEXTURE = "./assets/sprites/exterior/start_place/wall_stone.png"
@@ -36,6 +38,7 @@ COLLISION-OFFSET_Y = 0
 COLLISION-WALL = 1
 
 [WALL_2]
+GAME_MODE-MODE = 1
 POSITION-X = 3328
 POSITION-Y = 700
 DRAW-TEXTURE = "./assets/sprites/exterior/start_place/wall_stone.png"
@@ -49,6 +52,7 @@ COLLISION-OFFSET_Y = 0
 COLLISION-WALL = 1
 
 [STAIRS]
+GAME_MODE-MODE = 1
 POSITION-X = 3456
 POSITION-Y = 669
 DRAW-TEXTURE = "./assets/sprites/exterior/start_place/stairs.png"
@@ -57,6 +61,7 @@ DRAW-SIZE_Y = 127
 
 
 [STAIRS_collision]
+GAME_MODE-MODE = 1
 POSITION-X = 3456
 POSITION-Y = 700
 COLLISION-TYPE = 1
@@ -67,6 +72,7 @@ COLLISION-OFFSET_Y = 10
 COLLISION-WALL = 1
 
 [STAIRS_collision]
+GAME_MODE-MODE = 1
 POSITION-X = 3515
 POSITION-Y = 700
 COLLISION-TYPE = 1
@@ -77,6 +83,7 @@ COLLISION-OFFSET_Y = 10
 COLLISION-WALL = 1
 
 [WALL_3]
+GAME_MODE-MODE = 1
 POSITION-X = 3520
 POSITION-Y = 700
 DRAW-TEXTURE = "./assets/sprites/exterior/start_place/wall_stone.png"
@@ -90,6 +97,7 @@ COLLISION-OFFSET_Y = 0
 COLLISION-WALL = 1
 
 [WALL_4]
+GAME_MODE-MODE = 1
 POSITION-X = 3648
 POSITION-Y = 700
 DRAW-TEXTURE = "./assets/sprites/exterior/start_place/wall_stone.png"
@@ -103,6 +111,7 @@ COLLISION-OFFSET_Y = 0
 COLLISION-WALL = 1
 
 [WALL_4]
+GAME_MODE-MODE = 1
 POSITION-X = 3756
 POSITION-Y = 700
 DRAW-TEXTURE = "./assets/sprites/exterior/start_place/wall_window.png"
@@ -117,6 +126,7 @@ COLLISION-WALL = 1
 
 
 [statue]
+GAME_MODE-MODE = 1
 POSITION-X = 3520
 POSITION-Y = 805
 DRAW-TEXTURE = "./assets/sprites/exterior/start_place/statue.png"
