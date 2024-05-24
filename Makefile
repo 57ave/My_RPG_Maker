@@ -80,6 +80,7 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/systems/animation_system.c 	\
 			src/ecs/filter_near_player.c 	\
 			src/ecs/filter_near_entity.c 	\
+			src/ecs/remove_entity.c 	\
 
 SRC_MAIN = 	src/main.c
 

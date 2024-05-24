@@ -33,3 +33,4 @@ void get_object_values(char **content, int *line_offset, obj_t *obj);
 int set_vector_size(entity_system_t *es, int index);
 bool temporary_system(entity_system_t *es, int entity);
 void random_spell_move_system(entity_system_t *es, int entity);
+int remove_entity(entity_system_t *es, int entity);

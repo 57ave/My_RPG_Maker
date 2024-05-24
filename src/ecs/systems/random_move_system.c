@@ -49,7 +49,7 @@ static sfVector2f random_target_position(entity_system_t *es, int i,
             tmp_zone->target_position.y = entity_pos->pos.y;
             return tmp_zone->target_position;
         }
-        tmp_zone->step_counter = rand() % 6 == 0;
+        tmp_zone->step_counter = rand() % 6;
         tmp_zone->count = 0;
         init_random_direction(entity_pos, &target_position, tmp_zone);
     }

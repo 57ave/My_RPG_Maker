@@ -92,11 +92,15 @@ void spell_entities(entity_system_t *es)
     entity_filter_t *filter = filter_entities(5, es, TEMPORARY, DAMAGE,
     COLLISION, POSITION, VELOCITY);
     int target_entity = -1;
+    int error = EXIT_SUCCESS;
 
     for (int i = 0; i < filter->number; ++i) {
         target_entity = get_target_entity(es, filter->indexes[i]);
         if (check_spell_collisions(es, filter->indexes[i]) ||
         temporary_system(es, filter->indexes[i]))
+            error = remove_entity(es, filter->indexes[i]);
+        if (error == EXIT_ERROR)
+            return;
         move_spell_entities(es, filter->indexes[i], target_entity);
     }
     free_filter(filter);

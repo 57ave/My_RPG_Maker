@@ -18,13 +18,13 @@ static void init_random_direction(c_position_t *entity_pos,
     sfVector2f *target_position, c_interaction_zone_t *tmp_zone)
 {
     if (rand() % 2 == 0)
-        target_position->x = entity_pos->pos.x + rand() % 200;
+        target_position->x = entity_pos->pos.x + (rand() % 200) + 1;
     else
-        target_position->x = entity_pos->pos.x - rand() % 200;
+        target_position->x = entity_pos->pos.x - (rand() % 200) - 1;
     if (rand() % 2 == 0)
-        target_position->y = entity_pos->pos.y + rand() % 200;
+        target_position->y = entity_pos->pos.y + (rand() % 200) + 1;
     else
-        target_position->y = entity_pos->pos.y - rand() % 200;
+        target_position->y = entity_pos->pos.y - (rand() % 200) - 1;
     tmp_zone->target_position = *target_position;
 }
 
@@ -37,7 +37,7 @@ static sfVector2f random_target_position(entity_system_t *es, int i,
         ((void **)component_zone->data)[i];
 
     if (tmp_zone->count == tmp_zone->step_counter) {
-        tmp_zone->step_counter = rand() % 10 == 0;
+        tmp_zone->step_counter = rand() % 10;
         tmp_zone->count = 0;
         init_random_direction(entity_pos, &target_position, tmp_zone);
     }
