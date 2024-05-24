@@ -21,6 +21,8 @@ static void move_entities_position(entity_system_t *es,
         ((void **)component_warp->data)[warp];
 
     for (int i = 0; i < to_warp->number; ++i) {
+        if (get_comp(es, WARP, to_warp->indexes[i]) != NULL)
+            continue;
         if (collision_entities(es, warp, to_warp->indexes[i])) {
             to_warp_pos = (c_position_t *)
                 ((void **)component_pos->data)[to_warp->indexes[i]];
