@@ -27,11 +27,6 @@ static void handle_event(sfRenderWindow *wnd,
     if (event->type == sfEvtClosed || sfKeyboard_isKeyPressed(sfKeyEscape)) {
         sfRenderWindow_close(wnd);
     }
-    if (event->type == sfEvtMouseButtonPressed &&
-        event->mouseButton.button == sfMouseLeft) {
-        clickable_entities(es, (sfVector2i){event->mouseButton.x,
-            event->mouseButton.y});
-    }
 }
 
 void event_loop(sfRenderWindow *wnd, sfEvent *event, entity_system_t *es)
