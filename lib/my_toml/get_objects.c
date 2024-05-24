@@ -68,6 +68,7 @@ void get_object_values(char **content, int *line_offset, obj_t *obj, int *err)
     total_size += obj->obj_size;
     obj->data = malloc(sizeof(data_t *) * (obj->obj_size + 1));
     if (obj->obj_size == 0 || obj->data == NULL) {
+        *err = -1;
         free(obj);
         return;
     }

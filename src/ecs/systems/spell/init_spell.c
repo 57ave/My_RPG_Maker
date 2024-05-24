@@ -55,7 +55,6 @@ static bool update_spell_position(entity_system_t *es, int entity,
     sfClock_restart(spell_temp->clock);
     spell_pos->pos.x = entity_pos->pos.x;
     spell_pos->pos.y = entity_pos->pos.y - 20;
-    printf("%f %f\n", spell_pos->pos.x, entity_pos->pos.x);
     return true;
 }
 

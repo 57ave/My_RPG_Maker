@@ -118,6 +118,5 @@ entity_system_t *init_entity_system(entity_system_t *es)
         dprintf(2, "player not initialized\n");
         return NULL;
     }
-    es->max_index = es->total_indexes;
     return es;
 }
