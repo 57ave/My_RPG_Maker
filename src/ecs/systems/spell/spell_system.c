@@ -45,7 +45,7 @@ static bool targ_condition(entity_system_t *es, int i,
     c_health_t *tmp_health = get_comp(es, HEALTH, near_entities[i]);
     c_game_mode_t *tmp_mode = get_comp(es, GAME_MODE, near_entities[i]);
 
-    if (tmp_health != NULL && tmp_mode != NULL && tmp_mode == 0 &&
+    if (tmp_health != NULL && tmp_mode != NULL && tmp_mode->mode == 1 &&
     es->player != near_entities[i])
         return true;
     return false;

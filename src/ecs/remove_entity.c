@@ -14,19 +14,11 @@
 
 int remove_entity(entity_system_t *es, int entity)
 {
-    int *total = malloc(sizeof(int) * (es->total_indexes - 1));
-    int j = 0;
-
-    if (!total)
-        return EXIT_ERROR;
-    for (int i = 0; i < es->total_indexes - 1; ++i) {
-        if (entity == es->all_indexes[i])
-            continue;
-        total[j] = es->all_indexes[i];
-        ++j;
+    for (int i = 0; i < es->total_indexes; ++i) {
+        if (entity == es->all_indexes[i]) {
+            es->all_indexes[i] = -1;
+            break;
+        }
     }
-    free(es->all_indexes);
-    --es->total_indexes;
-    es->all_indexes = total;
     return EXIT_SUCCESS;
 }

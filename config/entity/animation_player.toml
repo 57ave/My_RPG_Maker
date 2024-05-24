@@ -1,8 +1,8 @@
 [PLAYER]
 DRAW-TEXTURE = "./assets/sprites/character/player_sheet.png"
 GAME_MODE-MODE = 1
-POSITION-X = 500
-POSITION-Y = 150
+POSITION-X = 600
+POSITION-Y = 1700
 VELOCITY-X = 10
 VELOCITY-Y = 10
 DRAW-SIZE_X = 300

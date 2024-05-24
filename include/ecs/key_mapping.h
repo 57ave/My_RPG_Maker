@@ -41,7 +41,7 @@ static const action_mapping_t ACTION_CONFIGS[] = {
     {"ACTION-DOWN", down_action},
     {"ACTION-LEFT", left_action},
     {"ACTION-RIGHT", right_action},
-    {"ACTION-ATTACK", up_action},
+    {"ACTION-ATTACK", create_spell},
     {"ACTION-INVENTORY", inventory_action},
 };
 

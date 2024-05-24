@@ -30,7 +30,7 @@ int init_spell(entity_system_t *es, int item_inventory, int entity);
 void spell_entities(entity_system_t *es);
 int obj_to_components(entity_system_t *es, obj_t *obj, int entity);
 void aggro_spell_system(entity_system_t *es, int entity, int target_entity);
-void get_object_values(char **content, int *line_offset, obj_t *obj);
+void get_object_values(char **content, int *line_offset, obj_t *obj, int *err);
 int set_vector_size(entity_system_t *es, int index);
 bool temporary_system(entity_system_t *es, int entity);
 void random_spell_move_system(entity_system_t *es, int entity);
