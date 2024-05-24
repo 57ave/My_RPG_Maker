@@ -22,3 +22,8 @@ CHAR = "p"
 SPRITE = "./assets/sprites/cave/cave.png"
 SOUND = "./assets/sounds/cave.wav"
 CHAR = "c"
+
+[START GRASS]
+SPRITE = "./assets/sprites/exterior/start_place/grass_start.png"
+SOUND = "./assets/sounds/grass.wav"
+CHAR = "@"
