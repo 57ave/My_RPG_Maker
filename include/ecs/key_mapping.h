@@ -15,7 +15,6 @@
 #include "action.h"
 
 #define KEYS_DEFINITION_PATH "./config/keys.toml"
-#define ACTION_COUNT 5
 
 typedef struct key_mapping_s {
     char *key_name;
@@ -37,13 +36,17 @@ typedef struct gamemode_keys_s {
     key_callback_t **key_map;
 } gamemode_keys_t;
 
-static const action_mapping_t ACTION_CONFIGS[ACTION_COUNT] = {
-    {"ACTION-UP", &up_action},
-    {"ACTION-DOWN", &down_action},
-    {"ACTION-LEFT", &left_action},
-    {"ACTION-RIGHT", &right_action},
-    {"ACTION-ATTACK", &up_action}
+static const action_mapping_t ACTION_CONFIGS[] = {
+    {"ACTION-UP", up_action},
+    {"ACTION-DOWN", down_action},
+    {"ACTION-LEFT", left_action},
+    {"ACTION-RIGHT", right_action},
+    {"ACTION-ATTACK", create_spell},
+    {"ACTION-INVENTORY", inventory_action},
 };
+
+static const int ACTION_COUNT =
+sizeof(ACTION_CONFIGS) / sizeof(action_mapping_t);
 
 static const key_mapping_t KEY_CONFIGS[] = {
     {"KEY-UP", sfKeyUp},

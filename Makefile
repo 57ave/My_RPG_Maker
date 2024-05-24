@@ -84,8 +84,12 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/action/down.c 			\
 			src/ecs/action/left.c 			\
 			src/ecs/action/right.c 			\
+			src/ecs/action/inventory.c 			\
+			src/ecs/action/play.c	\
 			src/ecs/filter_near_entity.c 	\
 			src/ecs/remove_entity.c 	\
+			src/ecs/components/init_clickable.c \
+			src/ecs/systems/clickable_system.c
 
 SRC_MAIN = 	src/main.c
 

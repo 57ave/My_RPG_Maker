@@ -19,7 +19,7 @@ static void define_key(char *action_name, key_callback_t **key_map,
     key_callback_t *key_callback = NULL;
 
     if (strcmp(action_name, ACTION_CONFIGS[j].action_name) == 0) {
-        key_callback = calloc(sizeof(key_callback_t *), 1);
+        key_callback = calloc(sizeof(key_callback_t), 1);
         key_callback->key = KEY_CONFIGS[i].key;
         key_callback->callback = ACTION_CONFIGS[j].callback;
         key_map[j] = key_callback;

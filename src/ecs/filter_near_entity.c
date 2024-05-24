@@ -43,6 +43,8 @@ int *get_near_entities(entity_system_t *es, int entity, int *count)
     c_position_t *entity_pos = get_comp(es, POSITION, entity);
 
     for (int i = 0; i < es->total_indexes; ++i) {
+        if (es->all_indexes[i] < 0)
+            continue;
         tmp = (c_position_t *)get_comp(es, POSITION, es->all_indexes[i]);
         if ((tmp == NULL || is_entity_nearby(es, entity, tmp, entity_pos)) &&
             !insert_entity(i, &entities, count))

@@ -9,6 +9,7 @@
 #include "ecs.h"
 #include "components.h"
 #include "filter_entity.h"
+#include "functions.h"
 
 void sort_by_pos(entity_filter_t *filter, vec_t *component)
 {
@@ -45,8 +46,30 @@ void draw_entities(entity_system_t *es, sfRenderWindow *wnd)
             ((void **)component_draw->data)[filter->indexes[i]];
         tmp_pos = (c_position_t *)
             ((void **)component_position->data)[filter->indexes[i]];
+        if (es->game_mode == 2 && get_comp(es, PICKABLE, filter->indexes[i]))
+            continue;
         sfSprite_setPosition(tmp_draw->sprite, tmp_pos->pos);
         sfRenderWindow_drawSprite(wnd, tmp_draw->sprite, NULL);
+    }
+    free_filter(filter);
+}
+
+void draw_inventory(entity_system_t *es, sfRenderWindow *wnd)
+{
+    entity_filter_t *filter = filter_entities(1, es, DRAW);
+    c_draw_t *tmp_draw = NULL;
+    int count = 0;
+
+    for (int i = 0; i < filter->number; ++i) {
+        if (!get_comp(es, PICKABLE, filter->indexes[i]))
+            continue;
+        tmp_draw = get_comp(es, DRAW, filter->indexes[i]);
+        sfSprite_setPosition(tmp_draw->sprite, (sfVector2f)
+            {(count % 7) * 37 + 26, (count / 7) * 32 + 95});
+        sfSprite_setScale(tmp_draw->sprite, sprite_size(tmp_draw->texture,
+            (sfVector2f){15, 15}));
+        sfRenderWindow_drawSprite(wnd, tmp_draw->sprite, NULL);
+        count += 1;
     }
     free_filter(filter);
 }
