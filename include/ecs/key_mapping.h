@@ -99,4 +99,4 @@ static const key_mapping_t KEY_CONFIGS[] = {
     {"KEY-LBRACKET", sfKeyLBracket}
 };
 
-static const int KEYS_COUNT  = sizeof(KEY_CONFIGS) / sizeof(key_mapping_t);
+static const int KEYS_COUNT = sizeof(KEY_CONFIGS) / sizeof(key_mapping_t);
