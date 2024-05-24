@@ -84,8 +84,6 @@ void move_entities(entity_system_t *es, floor_t ***floor)
     c_position_t *tmp_pos = NULL;
     c_velocity_t *tmp_vel = NULL;
 
-    if (es->game_mode != 1)
-        return;
     for (int i = 0; i < filter->number; ++i) {
         tmp_pos = (c_position_t *)get_comp(es, POSITION, filter->indexes[i]);
         tmp_vel = (c_velocity_t *)get_comp(es, VELOCITY, filter->indexes[i]);
