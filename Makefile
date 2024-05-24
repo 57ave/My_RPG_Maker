@@ -75,6 +75,10 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/systems/animation_system.c 	\
 			src/ecs/read_keys.c			\
 			src/ecs/filter_near_player.c 	\
+			src/ecs/action/up.c 			\
+			src/ecs/action/down.c 			\
+			src/ecs/action/left.c 			\
+			src/ecs/action/right.c 			\
 
 SRC_MAIN = 	src/main.c
 
