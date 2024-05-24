@@ -27,6 +27,7 @@
     #include "warp_component.h"
     #include "pickable_component.h"
     #include "active_item_component.h"
+    #include "clickable_component.h"
     #include "ecs.h"
 
 entity_system_t *init_entity_system(entity_system_t *es);
@@ -48,6 +49,7 @@ typedef enum component_e {
     INVENTORY,
     PICKABLE,
     ACTIVE_ITEM,
+    CLICKABLE,
     LAST_COMPONENT
 } component_t;
 
@@ -100,6 +102,8 @@ int init_component_inventory(entity_system_t *es,
 int init_component_pickable(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
 int init_component_active_item(entity_system_t *es,
+    obj_t *obj, component_t type, int entity);
+int init_component_clickable(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
 
 static const component_data_t COMPONENT_INIT_DATA[] = {
@@ -164,6 +168,10 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
     {
         "ACTIVE_ITEM", ACTIVE_ITEM, &init_component_active_item,
         sizeof(c_active_item_t *)
+    },
+    {
+        "CLICKABLE", CLICKABLE, &init_component_clickable,
+        sizeof(c_clickable_t *)
     }
 };
 
