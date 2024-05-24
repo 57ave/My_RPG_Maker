@@ -48,7 +48,6 @@ static int process_file(char *filepath, struct dirent *dir_entry,
         if (add_entities_from_path(es, filepath) == EXIT_ERROR)
             return EXIT_ERROR;
     }
-    free(filepath);
     return EXIT_SUCCESS;
 }
 

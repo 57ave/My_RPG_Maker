@@ -31,8 +31,9 @@ static void define_key(char *action_name, key_callback_t **key_map,
 {
     key_callback_t *key_callback = NULL;
 
+    if (key_map[j])
     if (strcmp(action_name, ACTION_CONFIGS[j].action_name) == 0) {
-        key_callback = malloc(sizeof(key_callback_t));
+        key_callback = calloc(sizeof(key_callback_t), 1);
         key_callback->key = KEY_CONFIGS[i].key;
         key_callback->callback = ACTION_CONFIGS[j].callback;
         key_map[j] = key_callback;
@@ -41,7 +42,8 @@ static void define_key(char *action_name, key_callback_t **key_map,
 
 static int init_keys_gamemode(entity_system_t *es, obj_t *obj, int mode)
 {
-    key_callback_t **key_map = malloc(sizeof(key_callback_t) * ACTION_COUNT);
+    key_callback_t **key_map =
+    calloc(sizeof(key_callback_t *), ACTION_COUNT + 1);
     char *action_name = NULL;
 
     if (key_map == NULL)
