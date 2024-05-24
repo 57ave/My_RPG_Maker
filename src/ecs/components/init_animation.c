@@ -25,7 +25,7 @@ static int init_rect(sfIntRect *rect, obj_t *obj, char const *name)
     int i = 0;
 
     if (!tmp_rect) {
-        return EXIT_ERROR;
+        return EXIT_SUCCESS;
     }
     for (i = 0; tmp_rect[i] != NULL; i++);
     if (i != 4) {
