@@ -87,6 +87,17 @@ static int get_target_entity(entity_system_t *es, int entity)
     return target;
 }
 
+static bool reset_spell_position(entity_system_t *es, int spell_entity)
+{
+    c_position_t *spell_pos = get_comp(es, POSITION, spell_entity);
+
+    if (!spell_pos)
+        return false;
+    spell_pos->pos.x = 8000;
+    spell_pos->pos.y = 8000;
+    return true;
+}
+
 void spell_entities(entity_system_t *es)
 {
     entity_filter_t *filter = filter_entities(5, es, TEMPORARY, DAMAGE,
@@ -98,7 +109,7 @@ void spell_entities(entity_system_t *es)
         target_entity = get_target_entity(es, filter->indexes[i]);
         if (check_spell_collisions(es, filter->indexes[i]) ||
         temporary_system(es, filter->indexes[i]))
-            error = remove_entity(es, filter->indexes[i]);
+            error = reset_spell_position(es, filter->indexes[i]);
         if (error == EXIT_ERROR)
             return;
         move_spell_entities(es, filter->indexes[i], target_entity);

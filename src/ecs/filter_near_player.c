@@ -39,6 +39,8 @@ bool get_entities(entity_system_t *es)
     c_game_mode_t *player_mod = get_comp(es, GAME_MODE, es->player);
 
     for (int i = 0; i < es->total_indexes; ++i) {
+        if (es->all_indexes[i] < 0)
+            continue;
         tmp = (c_position_t *)get_comp(es, POSITION, es->all_indexes[i]);
         if (((tmp == NULL || is_entity_nearby(tmp, player_pos)) ||
             es->game_mode != player_mod->mode) &&
