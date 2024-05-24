@@ -5,8 +5,10 @@
 ** init_spell
 */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "clickable_component.h"
 #include "macro.h"
 #include "components.h"
 #include "my_toml.h"
@@ -21,12 +23,18 @@ static int find_callback(char *on_click)
     return -1;
 }
 
+void custom_printf()
+{
+    printf("Hello from clickable component\n");
+}
+
 int init_component_clickable(entity_system_t *es,
     obj_t *obj, component_t type, int entity)
 {
     c_clickable_t *new_component = calloc(sizeof(c_clickable_t), 1);
-    int *state = (int *)pull_data(obj, "CLICKABLE-STATE");
-    char *on_click = pull_data(obj, "ON-CLICK");
+    c_clickable_state_t *state =
+        (c_clickable_state_t *)pull_data(obj, "CLICKABLE-STATE");
+    char *on_click = pull_data(obj, "CLICKABLE-CALLBACK");
     int index_clickable = -1;
 
     if (!new_component || !state || !on_click)
