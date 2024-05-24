@@ -22,8 +22,9 @@ typedef struct entity_system_s {
     int *entity_indexes;
     int nb_of_entities;
     vec_t **components;
-    int game_mode;
     gamemode_keys_t keys[GAMEMODE_COUNT];
 } entity_system_t;
+
+int read_keys_from_file(entity_system_t *es, const char *filepath);
 
 #endif

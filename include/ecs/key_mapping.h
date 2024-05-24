@@ -8,14 +8,14 @@
 #pragma once
 
 #include <stddef.h>
+
+
 #include <SFML/Window/Export.h>
 #include <SFML/Window/Keyboard.h>
+#include "action.h"
 
 #define KEYS_DEFINITION_PATH "./config/keys.toml"
-#define KEYS_COUNT 51
 #define ACTION_COUNT 5
-
-typedef struct entity_system_s entity_system_t;
 
 typedef struct key_mapping_s {
     char *key_name;
@@ -24,12 +24,12 @@ typedef struct key_mapping_s {
 
 typedef struct key_callback_s {
     sfKeyCode key;
-    void (*callback)(void);
+    int (*callback)(void *);
 } key_callback_t;
 
 typedef struct action_mapping_s {
     char *action_name;
-    void (*callback)(void);
+    int (*callback)(void *);
 } action_mapping_t;
 
 typedef struct gamemode_keys_s {
@@ -38,14 +38,14 @@ typedef struct gamemode_keys_s {
 } gamemode_keys_t;
 
 static const action_mapping_t ACTION_CONFIGS[ACTION_COUNT] = {
-    {"ACTION-UP", NULL},
-    {"ACTION-DOWN", NULL},
-    {"ACTION-LEFT", NULL},
-    {"ACTION-RIGHT", NULL},
-    {"ACTION-ATTACK", NULL}
+    {"ACTION-UP", &up_action},
+    {"ACTION-DOWN", &down_action},
+    {"ACTION-LEFT", &left_action},
+    {"ACTION-RIGHT", &right_action},
+    {"ACTION-ATTACK", &up_action}
 };
 
-static const key_mapping_t KEY_CONFIGS[KEYS_COUNT] = {
+static const key_mapping_t KEY_CONFIGS[] = {
     {"KEY-UP", sfKeyUp},
     {"KEY-DOWN", sfKeyDown},
     {"KEY-LEFT", sfKeyLeft},
@@ -99,4 +99,4 @@ static const key_mapping_t KEY_CONFIGS[KEYS_COUNT] = {
     {"KEY-LBRACKET", sfKeyLBracket}
 };
 
-int read_keys_from_file(entity_system_t *es, const char *filepath);
+static const int KEYS_COUNT  = sizeof(KEY_CONFIGS) / sizeof(key_mapping_t);
