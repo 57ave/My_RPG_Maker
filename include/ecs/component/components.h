@@ -166,12 +166,12 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
         sizeof(c_pickable_t *)
     },
     {
-        "CLICKABLE", CLICKABLE, &init_component_clickable,
-        sizeof(c_clickable_t *)
-    },
-    {
         "ACTIVE_ITEM", ACTIVE_ITEM, &init_component_active_item,
         sizeof(c_active_item_t *)
+    },
+    {
+        "CLICKABLE", CLICKABLE, &init_component_clickable,
+        sizeof(c_clickable_t *)
     }
 };
 
