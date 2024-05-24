@@ -9,8 +9,6 @@
 
 #include <stdlib.h>
 
-#define CLICK_CALLBACKS_COUNT 1
-
 typedef enum clickable_state_e {
     IDLE = 0,
     HOVERED = 1,
@@ -27,6 +25,11 @@ typedef struct on_click_s {
     void (*callback)();
 } on_click_t;
 
-static const on_click_t CLICK_CALLBACKS[CLICK_CALLBACKS_COUNT] = {
-    {"MENU-BUTTON", NULL}
+void play(void *es);
+
+static const on_click_t CLICK_CALLBACKS[] = {
+    {"PLAY-BUTTON", play},
 };
+
+static const int CLICK_CALLBACKS_COUNT =
+sizeof(CLICK_CALLBACKS) / sizeof(on_click_t);

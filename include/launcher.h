@@ -20,4 +20,4 @@ int env_verification(char **env);
 
 int launcher(char **env);
 void system_loop(sfRenderWindow *wnd, entity_system_t *es, floor_t ***);
-void event_loop(sfRenderWindow *wnd, sfEvent *event, entity_system_t *es);
+void event_loop(sfRenderWindow *wnd, sfEvent *event);

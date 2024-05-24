@@ -71,7 +71,7 @@ static bool start_window(entity_system_t *es, floor_t ***floor)
         system_loop(wnd, es, floor);
         sfRenderWindow_display(wnd);
         sfRenderWindow_clear(wnd, sfBlack);
-        event_loop(wnd, &event, es);
+        event_loop(wnd, &event);
         reset_entities(es);
     }
     return true;
