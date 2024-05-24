@@ -31,9 +31,18 @@ static void catch_keys(entity_system_t *es)
     }
 }
 
+static void catch_click(entity_system_t *es, sfRenderWindow *wnd)
+{
+    sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(wnd);
+
+    if (sfMouse_isButtonPressed(sfMouseLeft))
+        clickable_entities(es, mouse_pos);
+}
+
 void system_loop(sfRenderWindow *wnd, entity_system_t *es, floor_t ***floor)
 {
     catch_keys(es);
+    catch_click(es, wnd);
     aggro_entities(es);
     random_move_entities(es);
     spell_entities(es);
