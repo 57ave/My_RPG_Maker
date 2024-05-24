@@ -34,3 +34,4 @@ int set_vector_size(entity_system_t *es, int index);
 bool temporary_system(entity_system_t *es, int entity);
 void random_spell_move_system(entity_system_t *es, int entity);
 int remove_entity(entity_system_t *es, int entity);
+void clickable_entities(entity_system_t *es, sfVector2i mouse_pos);
