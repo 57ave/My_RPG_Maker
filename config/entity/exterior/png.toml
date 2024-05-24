@@ -195,7 +195,7 @@ TEXT-SIZE = 10
 TEXT-CONTENT = "miam les delicieux cookies"
 TEXT-FONT = "./assets/font/Milker.otf"
 
-[GRANDMA]
+[WILL SMITH]
 DRAW-TEXTURE = "./assets/sprites/character/black_friend.png"
 GAME_MODE-MODE = 1
 POSITION-X = 650
