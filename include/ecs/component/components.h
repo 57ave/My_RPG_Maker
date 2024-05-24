@@ -8,6 +8,7 @@
 #pragma once
 
     #include <stddef.h>
+    #include <stdbool.h>
     #include "my_toml.h"
     #include "position_component.h"
     #include "health_component.h"
@@ -21,11 +22,14 @@
     #include "damage_component.h"
     #include "animation_component.h"
     #include "interaction_zone_component.h"
+    #include "collision_component.h"
+    #include "inventory_component.h"
     #include "warp_component.h"
+    #include "pickable_component.h"
+    #include "active_item_component.h"
     #include "ecs.h"
 
 entity_system_t *init_entity_system(entity_system_t *es);
-
 typedef enum component_e {
     POSITION = 0,
     DAMAGE,
@@ -39,12 +43,19 @@ typedef enum component_e {
     HEALTH,
     ANIMATION,
     INTERACTION_ZONE,
+    COLLISION,
     WARP,
+    INVENTORY,
+    PICKABLE,
+    ACTIVE_ITEM,
     LAST_COMPONENT
 } component_t;
 
+void *get_comp(entity_system_t *es, component_t component, int entity);
 int init_components(entity_system_t *es, void *component,
     component_t component_type, int entity);
+bool get_entities(entity_system_t *es);
+int *get_near_entities(entity_system_t *es, int entity, int *count);
 
 typedef struct component_data_s {
     char *name;
@@ -80,7 +91,15 @@ int init_component_animation(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
 int init_component_interaction_zone(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
+int init_component_collision(entity_system_t *es,
+    obj_t *obj, component_t type, int entity);
 int init_component_warp(entity_system_t *es,
+    obj_t *obj, component_t type, int entity);
+int init_component_inventory(entity_system_t *es,
+    obj_t *obj, component_t type, int entity);
+int init_component_pickable(entity_system_t *es,
+    obj_t *obj, component_t type, int entity);
+int init_component_active_item(entity_system_t *es,
     obj_t *obj, component_t type, int entity);
 
 static const component_data_t COMPONENT_INIT_DATA[] = {
@@ -128,7 +147,23 @@ static const component_data_t COMPONENT_INIT_DATA[] = {
         sizeof(c_interaction_zone_t *)
     },
     {
+        "COLLISION", COLLISION, &init_component_collision,
+        sizeof(c_collision_t *)
+    },
+    {
         "WARP", WARP, &init_component_warp, sizeof(c_warp_t *)
+    },
+    {
+        "INVENTORY", INVENTORY, &init_component_inventory,
+        sizeof(c_inventory_t *)
+    },
+    {
+        "PICKABLE", PICKABLE, &init_component_pickable,
+        sizeof(c_pickable_t *)
+    },
+    {
+        "ACTIVE_ITEM", ACTIVE_ITEM, &init_component_active_item,
+        sizeof(c_active_item_t *)
     }
 };
 

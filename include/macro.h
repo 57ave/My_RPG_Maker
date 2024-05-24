@@ -12,4 +12,9 @@
     #define EXIT_ERROR 1
     #define EXIT_FAIL 84
 
+static const char MAP_CONFIG[] = "./config/map.toml";
+
+    #define ABS(x) (((x) < 0) ? -(x) : (x))
+    #define FILTER_RANGE 500
+
 #endif /* !MACRO_H_ */

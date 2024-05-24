@@ -20,25 +20,15 @@
 
 static void catch_keys(entity_system_t *es)
 {
-    c_velocity_t *player_velocity = (c_velocity_t *)
-        (((void **)(((vec_t *)
-        (es->components[VELOCITY]))->data))[es->player]);
-    sfInt64 time = (sfTime_asMicroseconds(
-        sfClock_getElapsedTime(player_velocity->clock)));
+    int gamemode = es->game_mode;
 
-    if (sfKeyboard_isKeyPressed(sfKeyD))
-        player_velocity->speed.x +=
-            (time * player_velocity->velocity.x) / 100000;
-    if (sfKeyboard_isKeyPressed(sfKeyQ))
-        player_velocity->speed.x -=
-            (time * player_velocity->velocity.x) / 100000;
-    if (sfKeyboard_isKeyPressed(sfKeyZ))
-        player_velocity->speed.y -=
-            (time * player_velocity->velocity.y) / 100000;
-    if (sfKeyboard_isKeyPressed(sfKeyS))
-        player_velocity->speed.y +=
-            (time * player_velocity->velocity.y) / 100000;
-    sfClock_restart(player_velocity->clock);
+    for (int i = 0; es->keys[gamemode].key_map[i] != NULL; ++i) {
+        if (es->keys[gamemode].key_map != NULL &&
+            es->keys[gamemode].key_map[i] != NULL &&
+            sfKeyboard_isKeyPressed(es->keys[gamemode].key_map[i]->key)) {
+            es->keys[gamemode].key_map[i]->callback(es);
+        }
+    }
 }
 
 void system_loop(sfRenderWindow *wnd, entity_system_t *es, floor_t ***floor)
@@ -46,9 +36,13 @@ void system_loop(sfRenderWindow *wnd, entity_system_t *es, floor_t ***floor)
     catch_keys(es);
     aggro_entities(es);
     random_move_entities(es);
+    spell_entities(es);
     animation_system(es);
     move_entities(es, floor);
+    pick_system(es);
     warp_entities(es);
     draw_floor(wnd, floor);
     draw_entities(es, wnd);
+    life_entities(es, wnd);
+    dialogue_system(es, wnd);
 }

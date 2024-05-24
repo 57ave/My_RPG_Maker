@@ -23,16 +23,17 @@ static c_text_t *set_text(char *content, sfFont *font, sfText *text, int size)
         return NULL;
     }
     new->content = strdup(content);
-    if (!new) {
+    if (!new->content) {
         sfFont_destroy(font);
         sfText_destroy(text);
-        free(new);
         return NULL;
     }
     new->font = font;
     new->text = text;
+    new->size = size;
     sfText_setFont(text, font);
     sfText_setCharacterSize(text, (unsigned int)size);
+    sfText_setString(text, content);
     return new;
 }
 

@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "components.h"
+#include "key_mapping.h"
 #include "macro.h"
 #include "launcher.h"
 #include "vector.h"
@@ -21,7 +22,7 @@
 static void handle_event(sfRenderWindow *wnd,
     sfEvent *event, entity_system_t *)
 {
-    if (event->type == sfEvtClosed) {
+    if (event->type == sfEvtClosed || sfKeyboard_isKeyPressed(sfKeyEscape)) {
         sfRenderWindow_close(wnd);
     }
 }

@@ -42,6 +42,26 @@ static direction_t get_dir(entity_system_t *es, entity_filter_t *filter, int i)
     return END_DIRECTION;
 }
 
+bool change_anim(c_draw_t *tmp_draw, c_animation_t *tmp_anim, direction_t dir)
+{
+    if (dir == END_DIRECTION) {
+        if (sfClock_getElapsedTime(tmp_anim->clock).microseconds >
+            tmp_anim->static_anim.speed) {
+            sfSprite_setTextureRect(tmp_draw->sprite,
+            get_rect_from_frame(&(tmp_anim->static_anim)));
+            return true;
+        }
+    } else {
+        if (sfClock_getElapsedTime(tmp_anim->clock).microseconds >
+            tmp_anim->multidir_anim[dir].speed) {
+            sfSprite_setTextureRect(tmp_draw->sprite,
+            get_rect_from_frame(&(tmp_anim->multidir_anim[dir])));
+            return true;
+        }
+    }
+    return false;
+}
+
 void animation_entities(entity_system_t *es, entity_filter_t *filter)
 {
     vec_t *component_draw = (vec_t *)(es->components[DRAW]);
@@ -51,18 +71,13 @@ void animation_entities(entity_system_t *es, entity_filter_t *filter)
     direction_t dir = 0;
 
     for (int i = 0; i < filter->number; ++i) {
-        tmp_draw = (c_draw_t *)
-            ((void **)component_draw->data)[filter->indexes[i]];
         tmp_anim = (c_animation_t *)
             ((void **)component_animation->data)[filter->indexes[i]];
+        tmp_draw = (c_draw_t *)
+            ((void **)component_draw->data)[filter->indexes[i]];
         dir = get_dir(es, filter, i);
-        if (dir == END_DIRECTION) {
-            sfSprite_setTextureRect(tmp_draw->sprite,
-            get_rect_from_frame(&(tmp_anim->static_anim)));
-        } else {
-            sfSprite_setTextureRect(tmp_draw->sprite,
-            get_rect_from_frame(&(tmp_anim->multidir_anim[dir])));
-        }
+        if (change_anim(tmp_draw, tmp_anim, dir))
+            sfClock_restart(tmp_anim->clock);
     }
 }
 

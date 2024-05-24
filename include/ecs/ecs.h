@@ -10,12 +10,21 @@
 
     #include <stddef.h>
     #include "vector.h"
+    #include "key_mapping.h"
 
-typedef struct entity_system {
+    #define GAMEMODE_COUNT 12
+
+typedef struct entity_system_s {
     int player;
+    int *all_indexes;
+    int total_indexes;
+    int game_mode;
     int *entity_indexes;
     int nb_of_entities;
     vec_t **components;
-}entity_system_t;
+    gamemode_keys_t keys[GAMEMODE_COUNT];
+} entity_system_t;
+
+int read_keys_from_file(entity_system_t *es, const char *filepath);
 
 #endif

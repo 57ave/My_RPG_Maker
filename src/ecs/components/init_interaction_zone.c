@@ -24,6 +24,8 @@ int init_component_interaction_zone(entity_system_t *es,
         return EXIT_ERROR;
     new_component->radius = *radius;
     new_component->target_position = target_position;
+    new_component->step_counter = 0;
+    new_component->count = 0;
     if (init_components(es, (void *)new_component, type, entity) == EXIT_ERROR)
         return EXIT_ERROR;
     return EXIT_SUCCESS;
