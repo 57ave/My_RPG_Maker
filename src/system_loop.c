@@ -33,10 +33,11 @@ static void catch_keys(entity_system_t *es)
 
 static void catch_click(entity_system_t *es, sfRenderWindow *wnd)
 {
-    sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(wnd);
+    sfVector2f mouse_pos = (sfVector2f)sfRenderWindow_mapPixelToCoords(wnd,
+        sfMouse_getPositionRenderWindow(wnd), NULL);
 
     if (sfMouse_isButtonPressed(sfMouseLeft))
-        clickable_entities(es, mouse_pos);
+        clickable_entities(es, mouse_pos, wnd);
 }
 
 void system_loop(sfRenderWindow *wnd, entity_system_t *es, floor_t ***floor)
