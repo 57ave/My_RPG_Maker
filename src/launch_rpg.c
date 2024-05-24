@@ -82,7 +82,6 @@ static int test(void)
     tailed_t **possibilities = init_floor_possibilities();
     floor_t ***floor = NULL;
     entity_system_t *es = calloc(sizeof(entity_system_t), 1);
-    es->game_mode = 1;
 
     if (possibilities == NULL)
         return EXIT_ERROR;

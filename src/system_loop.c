@@ -31,6 +31,12 @@ static void catch_keys(entity_system_t *es)
     }
 }
 
+static void check_death(entity_system_t *es)
+{
+    if (((c_health_t *)get_comp(es, HEALTH, es->player))->current_health <= 0)
+        es->game_mode = 3;
+}
+
 void system_loop(sfRenderWindow *wnd, entity_system_t *es, floor_t ***floor)
 {
     catch_keys(es);
@@ -49,4 +55,5 @@ void system_loop(sfRenderWindow *wnd, entity_system_t *es, floor_t ***floor)
         draw_inventory(es, wnd);
     life_entities(es, wnd);
     dialogue_system(es, wnd);
+    check_death(es);
 }
