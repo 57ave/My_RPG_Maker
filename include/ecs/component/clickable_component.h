@@ -28,5 +28,5 @@ typedef struct on_click_s {
 } on_click_t;
 
 static const on_click_t CLICK_CALLBACKS[CLICK_CALLBACKS_COUNT] = {
-    {"MENU-BUTTON", &free}
+    {"MENU-BUTTON", NULL}
 };
