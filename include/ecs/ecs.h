@@ -21,6 +21,7 @@ typedef struct entity_system_s {
     int game_mode;
     int *entity_indexes;
     int nb_of_entities;
+    int max_index;
     vec_t **components;
     gamemode_keys_t keys[GAMEMODE_COUNT];
 } entity_system_t;

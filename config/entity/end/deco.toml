@@ -1237,4 +1237,4 @@ WARP-SOUND = "./assets/sounds/cave_warp.wav"
 TEXT-SIZE = 10
 TEXT-CONTENT = "village"
 TEXT-FONT = "./assets/font/Milker.otf"
-INTERACTION_ZONE-RADIUS = 100
+INTERACTION_ZONE-RADIUS = 50

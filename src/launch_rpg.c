@@ -39,8 +39,11 @@ static void set_view(entity_system_t *es, sfView *view)
         (((void **)(((vec_t *)
         (es->components[POSITION]))->data))[es->player]);
 
-    sfView_setCenter(view, (sfVector2f)
-        {player_pos->pos.x + 25, player_pos->pos.y + 25});
+    if (es->game_mode == 1)
+        sfView_setCenter(view, (sfVector2f)
+            {player_pos->pos.x + 25, player_pos->pos.y + 25});
+    else
+        sfView_setCenter(view, (sfVector2f){150, 150});
 }
 
 static void reset_entities(entity_system_t *es)

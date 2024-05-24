@@ -11,4 +11,6 @@
 
 typedef struct active_item_s {
     char **file;
+    sfClock *clock;
+    size_t time;
 } c_active_item_t;
