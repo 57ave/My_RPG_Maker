@@ -15,7 +15,7 @@
 #include "position_component.h"
 
 static bool is_mouse_on_entity(c_position_t *pos, c_draw_t *draw,
-    sfVector2i mouse_pos)
+    sfVector2f mouse_pos)
 {
     if (mouse_pos.x >= pos->pos.x
         && mouse_pos.x <= pos->pos.x + draw->size.x
@@ -25,7 +25,7 @@ static bool is_mouse_on_entity(c_position_t *pos, c_draw_t *draw,
     return false;
 }
 
-void clickable_entities(entity_system_t *es, sfVector2i mouse_pos)
+void clickable_entities(entity_system_t *es, sfVector2f mouse_pos)
 {
     entity_filter_t *clickable = filter_entities(3, es, POSITION,
         CLICKABLE, DRAW);
