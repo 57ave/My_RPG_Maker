@@ -68,12 +68,18 @@ SRC 	=	src/launch_rpg.c \
 			src/ecs/systems/dialogue_system.c	\
 			src/ecs/systems/damage_system.c 	\
 			src/ecs/systems/life_system.c 	\
+			src/ecs/systems/spell/spell_system.c 	\
+			src/ecs/systems/spell/init_spell.c 	\
+			src/ecs/systems/spell/aggro_spell_system.c 	\
+			src/ecs/systems/spell/random_spell_move_system.c	\
+			src/ecs/systems/temporary_system.c 	\
 			src/map_parsing/get_char_map.c	\
 			src/map_parsing/get_map.c	\
 			src/map_parsing/init_floor_possibilities.c	\
 			src/draw_floor.c	\
 			src/ecs/systems/animation_system.c 	\
 			src/ecs/filter_near_player.c 	\
+			src/ecs/filter_near_entity.c 	\
 
 SRC_MAIN = 	src/main.c
 

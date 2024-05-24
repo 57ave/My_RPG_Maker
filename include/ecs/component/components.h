@@ -55,6 +55,7 @@ void *get_comp(entity_system_t *es, component_t component, int entity);
 int init_components(entity_system_t *es, void *component,
     component_t component_type, int entity);
 bool get_entities(entity_system_t *es);
+int *get_near_entities(entity_system_t *es, int entity, int *count);
 
 typedef struct component_data_s {
     char *name;

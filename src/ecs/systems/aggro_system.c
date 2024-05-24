@@ -47,8 +47,8 @@ static void aggro_move_direction(entity_system_t *es, int entity,
 
 void aggro_entities(entity_system_t *es)
 {
-    entity_filter_t *filter = filter_entities(4, es, VELOCITY, POSITION,
-        DAMAGE, INTERACTION_ZONE);
+    entity_filter_t *filter = filter_entities(5, es, VELOCITY, POSITION,
+        DAMAGE, HEALTH, INTERACTION_ZONE);
     vec_t *component_vel = es->components[VELOCITY];
     vec_t *component_pos = es->components[POSITION];
     c_velocity_t *tmp_vel = NULL;
@@ -59,7 +59,7 @@ void aggro_entities(entity_system_t *es)
             ((void **)component_vel->data)[filter->indexes[i]];
         tmp_pos = (c_position_t *)
         ((void **)component_pos->data)[filter->indexes[i]];
-        if (interaction_zone_entities(es, filter->indexes[i])) {
+        if (interaction_zone_entities(es, es->player, filter->indexes[i])) {
             aggro_move_direction(es, filter->indexes[i], tmp_vel, tmp_pos);
         }
     }

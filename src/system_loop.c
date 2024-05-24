@@ -44,6 +44,7 @@ static void catch_keys(entity_system_t *es)
 void system_loop(sfRenderWindow *wnd, entity_system_t *es, floor_t ***floor)
 {
     catch_keys(es);
+    spell_entities(es);
     aggro_entities(es);
     random_move_entities(es);
     animation_system(es);
