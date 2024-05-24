@@ -18,6 +18,7 @@
 #include "type_create.h"
 #include "ecs.h"
 #include "vector.h"
+#include "key_mapping.h"
 
 static int check_component(size_t cmpt_id,
     entity_system_t *es, obj_t *obj, int entity)
@@ -108,6 +109,9 @@ entity_system_t *init_entity_system(entity_system_t *es)
         return NULL;
     }
     if (search_for_config_files(ENTITY_DIRECTORY_PATH, es) == EXIT_ERROR) {
+        return NULL;
+    }
+    if (read_keys_from_file(es, KEYS_DEFINITION_PATH) == EXIT_ERROR) {
         return NULL;
     }
     if (es->player == -1) {

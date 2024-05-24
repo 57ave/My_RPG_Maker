@@ -55,13 +55,16 @@ static size_t get_obj_size(char **content, int line_offset)
     return size_obj;
 }
 
-void get_object_values(char **content, int *line_offset, obj_t *obj)
+void get_object_values(char **content, int *line_offset, obj_t *obj, int *err)
 {
     size_t idx = 0;
-    size_t idx_content = *line_offset;
     size_t total_size = *line_offset;
 
     obj->obj_size = get_obj_size(content, *line_offset);
+    if (obj->obj_size == 0) {
+        *err = -1;
+        return;
+    }
     total_size += obj->obj_size;
     obj->data = malloc(sizeof(data_t *) * (obj->obj_size + 1));
     if (obj->obj_size == 0 || obj->data == NULL) {
@@ -69,8 +72,8 @@ void get_object_values(char **content, int *line_offset, obj_t *obj)
         free(obj);
         return;
     }
-    for (; idx_content < total_size; idx_content++) {
-        obj->data[idx] = get_data_struct(content[idx_content]);
+    for (size_t idx_cont = *line_offset; idx_cont < total_size; idx_cont++) {
+        obj->data[idx] = get_data_struct(content[idx_cont]);
         idx++;
     }
     obj->data[idx] = NULL;
@@ -81,6 +84,7 @@ obj_t **get_object(char **content, int *line_offset, obj_t **obj)
     int idx_obj = 0;
     int size_obj = 1;
     int idx_line = 0;
+    int r_value = 0;
 
     if (content == NULL)
         return NULL;
@@ -89,10 +93,12 @@ obj_t **get_object(char **content, int *line_offset, obj_t **obj)
             obj = alloc_obj(
             &content[*line_offset][idx_line], obj, idx_obj, size_obj);
             *line_offset += 1;
-            get_object_values(content, line_offset, obj[idx_obj]);
+            get_object_values(content, line_offset, obj[idx_obj], &r_value);
             size_obj++;
             idx_obj++;
         }
+        if (r_value == -1)
+            return NULL;
     }
     return obj;
 }

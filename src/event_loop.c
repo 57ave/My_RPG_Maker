@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "components.h"
+#include "key_mapping.h"
 #include "macro.h"
 #include "launcher.h"
 #include "vector.h"

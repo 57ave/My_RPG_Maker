@@ -78,7 +78,12 @@ SRC 	=	src/launch_rpg.c \
 			src/map_parsing/init_floor_possibilities.c	\
 			src/draw_floor.c	\
 			src/ecs/systems/animation_system.c 	\
+			src/ecs/read_keys.c			\
 			src/ecs/filter_near_player.c 	\
+			src/ecs/action/up.c 			\
+			src/ecs/action/down.c 			\
+			src/ecs/action/left.c 			\
+			src/ecs/action/right.c 			\
 			src/ecs/filter_near_entity.c 	\
 			src/ecs/remove_entity.c 	\
 
