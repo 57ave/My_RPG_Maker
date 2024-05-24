@@ -37,12 +37,12 @@ typedef struct gamemode_keys_s {
 } gamemode_keys_t;
 
 static const action_mapping_t ACTION_CONFIGS[] = {
-    {"ACTION-UP", &up_action},
-    {"ACTION-DOWN", &down_action},
-    {"ACTION-LEFT", &left_action},
-    {"ACTION-RIGHT", &right_action},
-    {"ACTION-ATTACK", &up_action},
-    {"ACTION-INVENTORY", &inventory_action},
+    {"ACTION-UP", up_action},
+    {"ACTION-DOWN", down_action},
+    {"ACTION-LEFT", left_action},
+    {"ACTION-RIGHT", right_action},
+    {"ACTION-ATTACK", up_action},
+    {"ACTION-INVENTORY", inventory_action},
 };
 
 static const int ACTION_COUNT =
