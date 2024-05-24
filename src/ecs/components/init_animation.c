@@ -48,15 +48,17 @@ static int init_animation_data(struct anim_data *data,
     concat_strings(3, "ANIMATION-", name, "-NB_FRAME"));
     int *next_line_frame = (int *) pull_data(obj,
     concat_strings(3, "ANIMATION-", name, "-NEXT_LINE_FRAME"));
+    int *anim_speed = (int *) pull_data(obj,
+    concat_strings(3, "ANIMATION-", name, "-SPEED"));
 
     data->x_add = (x_add != NULL) ? *x_add : 0;
     data->y_add = (y_add != NULL) ? *y_add : 0;
     data->nb_frame = (nb_frame != NULL) ? *nb_frame : 1;
     data->next_line_frame = (next_line_frame != NULL) ? *next_line_frame : 0;
     data->current_frame = 0;
-    if (init_rect(&(data->rect), obj, name) == EXIT_ERROR) {
+    data->speed = (anim_speed != NULL) ? *anim_speed : 0;
+    if (init_rect(&(data->rect), obj, name) == EXIT_ERROR)
         return EXIT_ERROR;
-    }
     return EXIT_SUCCESS;
 }
 
@@ -74,6 +76,7 @@ int init_component_animation(entity_system_t *es, obj_t *obj,
         &(animation_component->multidir_anim[dir]), obj, DIRECTION_WORDS[dir]))
             return EXIT_ERROR;
     }
+    animation_component->clock = sfClock_create();
     if (init_components(es, (void *)animation_component, type, entity) ==
         EXIT_ERROR) {
         return EXIT_ERROR;

@@ -16,6 +16,9 @@
 
 typedef struct entity_system_s {
     int player;
+    int *all_indexes;
+    int total_indexes;
+    int game_mode;
     int *entity_indexes;
     int nb_of_entities;
     vec_t **components;

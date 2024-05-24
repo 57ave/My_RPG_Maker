@@ -18,15 +18,16 @@ char **read_file(char const *filepath)
     size_t n = 0;
     int nb_line = 1;
 
-    if (file_ptr == NULL) {
+    if (file_ptr == NULL)
         return NULL;
-    }
     for (; getline(&lineptr, &n, file_ptr) > 0; nb_line++) {
         size_read += n;
         content = my_realloc(
         content, sizeof(char *) * (nb_line + 1), sizeof(char *) * nb_line);
         content[nb_line - 1] = my_strdup(lineptr);
     }
+    if (content == NULL)
+        return NULL;
     content[nb_line - 1] = NULL;
     fclose(file_ptr);
     return content;

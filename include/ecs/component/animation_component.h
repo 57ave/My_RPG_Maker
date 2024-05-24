@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <SFML/System/Clock.h>
+
 struct anim_data {
     sfIntRect rect;
     int x_add;
@@ -14,6 +16,7 @@ struct anim_data {
     int current_frame;
     int nb_frame;
     int next_line_frame;
+    int speed;
 };
 
 typedef enum direction {
@@ -28,4 +31,5 @@ typedef struct animation_component {
     struct anim_data static_anim;
     direction_t direction;
     struct anim_data multidir_anim[END_DIRECTION];
+    sfClock *clock;
 } c_animation_t;

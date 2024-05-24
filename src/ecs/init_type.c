@@ -50,7 +50,7 @@ int obj_to_components(entity_system_t *es, obj_t *obj, int entity)
     return EXIT_SUCCESS;
 }
 
-static int set_vector_size(entity_system_t *es, int index)
+int set_vector_size(entity_system_t *es, int index)
 {
     for (size_t cmpt_id = 0; cmpt_id < NB_OF_COMPONENT; cmpt_id++) {
         es->components[cmpt_id] = push_index_vector(es->components[cmpt_id],
@@ -62,25 +62,25 @@ static int set_vector_size(entity_system_t *es, int index)
 int add_entities_from_path(entity_system_t *es, char const *filepath)
 {
     char **content = read_file(filepath);
-    obj_t **obj_tab = NULL;
+    obj_t **obs = NULL;
     int offset = 0;
 
-    obj_tab = get_object(content, &offset, obj_tab);
-    if (obj_tab == NULL)
+    obs = get_object(content, &offset, obs);
+    if (obs == NULL)
         return EXIT_ERROR;
-    for (int entity = 0; obj_tab[entity] != NULL; entity++) {
-        if (obj_to_components(es, obj_tab[entity], entity) == EXIT_ERROR) {
-            free_obj(obj_tab);
+    for (int i = 0; obs[i] != NULL; i++) {
+        if (obj_to_components(es, obs[i], es->total_indexes) == EXIT_ERROR) {
+            free_obj(obs);
             return EXIT_ERROR;
         }
-        es->entity_indexes = realloc(es->entity_indexes,
-            sizeof(int) * (es->nb_of_entities + 1));
-        if (es->entity_indexes == NULL)
+        es->all_indexes = realloc(es->all_indexes,
+            sizeof(int) * (es->total_indexes + 1));
+        if (es->all_indexes == NULL)
             return EXIT_ERROR;
-        es->entity_indexes[es->nb_of_entities] = entity;
-        es->nb_of_entities += 1;
+        es->all_indexes[es->total_indexes] = es->total_indexes;
+        es->total_indexes += 1;
     }
-    return set_vector_size(es, es->nb_of_entities);
+    return set_vector_size(es, es->total_indexes);
 }
 
 static vec_t **init_component_vector(entity_system_t *es, unsigned long size)
@@ -102,8 +102,8 @@ static vec_t **init_component_vector(entity_system_t *es, unsigned long size)
 
 entity_system_t *init_entity_system(entity_system_t *es)
 {
-    es->entity_indexes = NULL;
-    es->nb_of_entities = 0;
+    es->all_indexes = NULL;
+    es->total_indexes = 0;
     es->player = -1;
     if (!init_component_vector(es, sizeof(vec_t))) {
         return NULL;

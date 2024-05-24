@@ -25,3 +25,4 @@ libmy.a
 *.gcno
 *.gcda
 *_test
+compile_flags.txt
