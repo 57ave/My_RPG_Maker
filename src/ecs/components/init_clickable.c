@@ -23,11 +23,6 @@ static int find_callback(char *on_click)
     return -1;
 }
 
-void custom_printf()
-{
-    printf("Hello from clickable component\n");
-}
-
 int init_component_clickable(entity_system_t *es,
     obj_t *obj, component_t type, int entity)
 {
