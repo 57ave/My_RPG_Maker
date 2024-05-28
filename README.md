@@ -9,7 +9,7 @@ How does it work ?
 
 We create an ECS to create our game coding the ecs was the most part of our work
 
-Everything detailled on our Wiki : https://github.com/EpitechPromo2028/B-MUL-200-PAR-2-1-myrpg-gustave.delecroix/wiki
+Everything detailled on our Wiki : https://github.com/57ave/My_RPG_Maker/wiki
 
 ## Getting Started
 In order to start you'll need to compile with ```make```
